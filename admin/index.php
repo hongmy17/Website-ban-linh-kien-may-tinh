@@ -22,7 +22,7 @@
   <?= require_once "components/header.php"; ?>
 
   <div id="layoutSidenav">
-    <!-- @include('admin.components.menu') -->
+    <?= require_once "components/menu.php"; ?>
 
     <div id="layoutSidenav_content">
       <div class="container-fluid p-4">
