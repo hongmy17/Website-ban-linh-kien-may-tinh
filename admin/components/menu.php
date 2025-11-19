@@ -15,7 +15,7 @@
         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
             <a class="nav-link" href="#">Thêm người dùng</a>
-            <a class="nav-link" href="#">Danh sách người dùng</a>
+            <a class="nav-link" href="/admin/user/index.php">Danh sách người dùng</a>
           </nav>
         </div>
 
