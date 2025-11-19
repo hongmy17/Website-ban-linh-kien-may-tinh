@@ -17,6 +17,7 @@
             <a class="nav-link" href="/admin/user/add-form.php">Thêm người dùng</a>
             <a class="nav-link" href="/admin/user/index.php">Danh sách người dùng</a>
             <a class="nav-link" href="/admin/user/info.php">Thông tin người dùng</a>
+            <a class="nav-link" href="/admin/user/edit-form.php">Chỉnh sửa người dùng</a>
           </nav>
         </div>
 
