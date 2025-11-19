@@ -55,7 +55,7 @@
         </a>
         <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="#">Danh sách đơn hàng</a>
+            <a class="nav-link" href="/admin/order/index.php">Danh sách đơn hàng</a>
           </nav>
         </div>
       </div>
