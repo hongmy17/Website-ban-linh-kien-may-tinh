@@ -29,7 +29,7 @@
         <!-- @include('admin.components.error-alert')
         @include('admin.components.success-alert') -->
 
-        <!-- @yield('content') -->
+        <?= require_once $pageName ?? "dashboard/index.php"; ?>
       </div>
     </div>
   </div>
