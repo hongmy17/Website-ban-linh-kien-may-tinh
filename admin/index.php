@@ -19,17 +19,17 @@
 </head>
 
 <body class="sb-nav-fixed">
-  @include('admin.components.header')
+  <?= require_once "components/header.php"; ?>
 
   <div id="layoutSidenav">
-    @include('admin.components.menu')
+    <!-- @include('admin.components.menu') -->
 
     <div id="layoutSidenav_content">
       <div class="container-fluid p-4">
         <!-- @include('admin.components.error-alert')
         @include('admin.components.success-alert') -->
 
-        @yield('content')
+        <!-- @yield('content') -->
       </div>
     </div>
   </div>
