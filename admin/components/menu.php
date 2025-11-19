@@ -43,6 +43,7 @@
           <nav class="sb-sidenav-menu-nested nav">
             <a class="nav-link" href="/admin/product/add-form.php">Thêm sản phẩm</a>
             <a class="nav-link" href="/admin/product/index.php">Danh sách sản phẩm</a>
+            <a class="nav-link" href="/admin/product/info.php">Thông tin sản phẩm</a>
           </nav>
         </div>
 
