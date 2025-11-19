@@ -10,17 +10,16 @@ $pageName = <<<HTML
       </div>
 
       <div class="col-md-6 border-right">
-        <form action="#" method="post" class="px-3 ps-lg-5 py-5 sign-up-form">
-          <div class='alert alert-danger border-0 p-0 text-center'>
-          </div>
+        <form action="#" method="post"
+          class="px-3 ps-lg-5 py-5 sign-up-form">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-right">Thêm danh mục</h4>
+            <h4 class="text-right">Chỉnh sửa danh mục</h4>
           </div>
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Tên</label>
-              <input type="text" class="form-control" placeholder="VD: CPU" name="name"
-                value="" />
+              <input type="text" class="form-control" placeholder="Ao" name="name"
+                value="CPU" />
               <p class="field-message mb-0">
                 <!-- @error('name')
                 {{ $message }}
@@ -30,7 +29,7 @@ $pageName = <<<HTML
           </div>
           <div class="mt-5 text-center">
             <button class="btn btn-primary profile-button" style="background-color: #333">
-              Thêm
+              Lưu
             </button>
           </div>
         </form>

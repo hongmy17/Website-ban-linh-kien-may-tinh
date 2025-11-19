@@ -1,6 +1,6 @@
 <?php
 $pageName = <<<HTML
-<h4>Danh sách loại hàng</h4>
+<h4>Danh sách danh mục</h4>
 
 <div class="mt-3">
   <div class="table-title border-bottom pb-3">
@@ -13,10 +13,10 @@ $pageName = <<<HTML
       </div>
       <div class="col-sm-8 text-sm-end text-center mt-sm-0 mt-3">
         <a href="#" class="btn btn-success me-lg-2">
-          <i class="fas fa-plus-circle"></i> <span>Thêm loại hàng</span>
+          <i class="fas fa-plus-circle"></i> <span>Thêm danh mục</span>
         </a>
         <a href="#" class="btn btn-danger disabled" data-bs-toggle="modal" id="delete-btn">
-          <i class="fas fa-minus-circle"></i> <span>Xóa loại hàng</span>
+          <i class="fas fa-minus-circle"></i> <span>Xóa danh mục</span>
         </a>
       </div>
     </div>

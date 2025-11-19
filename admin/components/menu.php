@@ -28,8 +28,9 @@
         </a>
         <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/admin/category/add-form.php">Thêm loại hàng</a>
-            <a class="nav-link" href="/admin/category/index.php">Danh sách loại hàng</a>
+            <a class="nav-link" href="/admin/category/add-form.php">Thêm danh mục</a>
+            <a class="nav-link" href="/admin/category/edit-form.php">Chỉnh sửa danh mục</a>
+            <a class="nav-link" href="/admin/category/index.php">Danh sách danh mục</a>
           </nav>
         </div>
 
