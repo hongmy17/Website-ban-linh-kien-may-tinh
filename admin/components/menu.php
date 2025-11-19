@@ -41,7 +41,7 @@
         </a>
         <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="#">Thêm sản phẩm</a>
+            <a class="nav-link" href="/admin/product/add-form.php">Thêm sản phẩm</a>
             <a class="nav-link" href="/admin/product/index.php">Danh sách sản phẩm</a>
           </nav>
         </div>
