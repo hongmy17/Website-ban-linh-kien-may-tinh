@@ -37,7 +37,7 @@ $pageName = <<<HTML
           </div>
           <div class="row mt-2">
             <div class="col-md-12">
-              <label class="labels">Thể loại</label><input readonly type="text" class="form-control"
+              <label class="labels">Danh mục</label><input readonly type="text" class="form-control"
                 value="CPU" name="categories" />
               <p class="field-message mb-0"></p>
             </div>

@@ -2,8 +2,8 @@
 $pageName = <<<HTML
 <div class="container rounded" style="padding: 50px 0;">
   <div class="bg-white">
-    <form action="#" method="post" class="row align-items-center edit-form"
-      enctype="multipart/form-data">
+    <form action="" method="post"
+      class="row align-items-center edit-form" enctype="multipart/form-data">
       <div class="col-md-6 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
           <img class="rounded-circle" width="300px" id="avatar"
@@ -13,13 +13,13 @@ $pageName = <<<HTML
       </div>
       <div class="col-md-6 border-right">
         <div class="px-3 pe-lg-5 py-5">
-          <div class="d-flex justerrory-content-between align-items-center mb-3">
-            <h4 class="text-right">Thêm sản phẩm</h4>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-right">Sửa sản phẩm</h4>
           </div>
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Tên</label><input type="text" class="form-control" placeholder="CPU Intel Core i5 14400F"
-                name="name" value="" />
+                name="name" value="CPU Intel Core i5 14400F" />
               <p class="field-message mb-0">
                 <!-- @error (('name'))
                 {{ $message }}
@@ -30,7 +30,9 @@ $pageName = <<<HTML
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Mô tả</label>
-              <textarea class="form-control" cols="30" rows="4" name="description" placeholder="Mô tả">Intel Core i5-14400F đưa hiệu năng đa nhiệm lên một tầm cao mới với cấu hình ấn tượng</textarea>
+              <textarea class="form-control" cols="30" rows="4" name="description" placeholder="Intel Core i5-14400F đưa hiệu năng đa nhiệm lên một tầm cao mới với cấu hình ấn tượng">
+              Intel Core i5-14400F đưa hiệu năng đa nhiệm lên một tầm cao mới với cấu hình ấn tượng
+              </textarea>
               <p class="field-message mb-0">
                 <!-- @error (('description'))
                 {{ $message }}
@@ -41,7 +43,7 @@ $pageName = <<<HTML
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Giá</label><input type="number" class="form-control" name="price"
-                placeholder="VD: 100000" value="" />
+                placeholder="VD: 100000" value="4590000" />
               <p class="field-message mb-0">
                 <!-- @error (('price'))
                 {{ $message }}
@@ -56,15 +58,15 @@ $pageName = <<<HTML
                 <option value="">Chọn danh mục</option>
                 <option value="1">CPU</option>
               </select>
-              <!-- <p class="field-message mb-0">
-                @error (('category_id'))
+              <p class="field-message mb-0">
+                <!-- @error (('category_id'))
                 {{ $message }}
                 @enderror -->
               </p>
             </div>
           </div>
           <div class="mt-5 text-center">
-            <button class="btn btn-primary profile-button" style="background-color: #333">Thêm</button>
+            <button class="btn btn-primary profile-button" style="background-color: #333">Sửa</button>
           </div>
         </div>
       </div>
