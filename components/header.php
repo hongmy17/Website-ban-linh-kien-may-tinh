@@ -49,30 +49,31 @@
             <div class="col-lg-4 text-center text-lg-start mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <a href="#" class="text-muted me-2"> Help</a><small> / </small>
-                    <a href="#" class="text-muted mx-2"> Support</a><small> / </small>
-                    <a href="/?action=contact" class="text-muted ms-2"> Contact</a>
+                    <a href="#" class="text-muted mx-2"> Hỗ trợ</a><small> / </small>
+                    <a href="/?action=contact" class="text-muted ms-2"> Liên hệ</a>
 
                 </div>
             </div>
             <div class="col-lg-4 text-center d-flex align-items-center justify-content-center">
-                <small class="text-dark">Call Us:</small>
+                <small class="text-dark">gọi cho:</small>
                 <a href="#" class="text-muted">(+012) 1234 567890</a>
             </div>
 
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle text-muted me-2" data-bs-toggle="dropdown"><small>
-                                USD</small></a>
-                        <div class="dropdown-menu rounded">
+                        <a href="#" class="toggle text-muted me-2" data-bs-toggle="dropdown"><small>
+                                VNĐ</small></a>
+                        <!-- <div class="dropdown-menu rounded">
                             <a href="#" class="dropdown-item"> Euro</a>
                             <a href="#" class="dropdown-item"> Dolar</a>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle text-muted mx-2" data-bs-toggle="dropdown"><small>
-                                English</small></a>
+                                Vietnamese</small></a>
                         <div class="dropdown-menu rounded">
+                            <a href="#" class="dropdown-item"> Vietnamese</a>
                             <a href="#" class="dropdown-item"> English</a>
                             <a href="#" class="dropdown-item"> Turkish</a>
                             <a href="#" class="dropdown-item"> Spanol</a>
@@ -83,7 +84,7 @@
                         <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i
                                     class="fa fa-home me-2"></i> My Dashboard</small></a>
                         <div class="dropdown-menu rounded">
-                            <a href="#" class="dropdown-item"> Login</a>
+                            <a href="#" class="dropdown-item"> Đăng nhập</a>
                             <a href="#" class="dropdown-item"> Wishlist</a>
                             <a href="#" class="dropdown-item"> My Card</a>
                             <a href="#" class="dropdown-item"> Notifications</a>
@@ -102,7 +103,7 @@
                 <div class="d-inline-flex align-items-center">
                     <a href="/" class="navbar-brand p-0">
                         <h1 class="display-5 text-primary m-0"><i
-                                class="fas fa-shopping-bag text-secondary me-2"></i>Electro</h1>
+                                class="fas fa-shopping-bag text-secondary me-2"></i>DXM</h1>
                         <!-- <img src="img/logo.png" alt="Logo"> -->
                     </a>
                 </div>
@@ -111,9 +112,9 @@
                 <div class="position-relative ps-4">
                     <div class="d-flex border rounded-pill">
                         <input class="form-control border-0 rounded-pill w-100 py-3" type="text"
-                            data-bs-target="#dropdownToggle123" placeholder="Search Looking For?">
+                            data-bs-target="#dropdownToggle123" placeholder="Bạn muốn tìm gì?">
                         <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
-                            <option value="All Category">All Category</option>
+                            <option value="All Category">Danh mục</option>
                             <option value="Pest Control-2">Category 1</option>
                             <option value="Pest Control-3">Category 2</option>
                             <option value="Pest Control-4">Category 3</option>
@@ -132,7 +133,7 @@
                             class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
                     <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span
                             class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
-                        <span class="text-dark ms-2">$0.00</span></a>
+                        <span class="text-dark ms-2">0.00 VNĐ</span></a>
                 </div>
             </div>
         </div>
@@ -146,7 +147,7 @@
                 <nav class="navbar navbar-light position-relative" style="width: 250px;">
                     <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
                         data-bs-toggle="collapse" data-bs-target="#allCat">
-                        <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
+                        <h4 class="m-0"><i class="fa fa-bars me-2"></i>Tất cả danh mục</h4>
                     </button>
                     <div class="collapse navbar-collapse rounded-bottom" id="allCat">
                         <div class="navbar-nav ms-auto py-0">
@@ -190,7 +191,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
                     <a href="" class="navbar-brand d-block d-lg-none">
                         <h1 class="display-5 text-secondary m-0"><i
-                                class="fas fa-shopping-bag text-white me-2"></i>Electro</h1>
+                                class="fas fa-shopping-bag text-white me-2"></i>DXM</h1>
                         <!-- <img src="img/logo.png" alt="Logo"> -->
                     </a>
                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
@@ -199,11 +200,11 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                            <a href="shop.html" class="nav-item nav-link">Cửa hàng</a>
                             <a href="/?action=productDetail" class="nav-item nav-link">chi tiết</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
                                 <div class="dropdown-menu m-0">
                                     <a href="bestseller.html" class="dropdown-item">Bestseller</a>
                                     <a href="cart.html" class="dropdown-item">Cart Page</a>

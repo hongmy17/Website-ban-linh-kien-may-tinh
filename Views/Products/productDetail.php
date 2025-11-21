@@ -1,10 +1,10 @@
 <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Single Product</h1>
+        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Chi tiết sản phẩm</h1>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">Single Product</li>
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Trang</a></li>
+            <li class="breadcrumb-item active text-white">Chi tiết sản phẩm</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -21,7 +21,7 @@
                         <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                     </div>
                     <div class="product-categories mb-4">
-                        <h4>Products Categories</h4>
+                        <h4>Danh mục sản phẩm</h4>
                         <ul class="list-unstyled">
                             <li>
                                 <div class="categories-item">
@@ -61,28 +61,28 @@
                         </ul>
                     </div>
                     <div class="additional-product mb-4">
-                        <h4>Select By Color</h4>
+                        <h4>Chọn màu sắc</h4>
                         <div class="additional-product-item">
                             <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Beverages">
-                            <label for="Categories-1" class="text-dark"> Gold</label>
+                            <label for="Categories-1" class="text-dark"> Vàng</label>
                         </div>
                         <div class="additional-product-item">
                             <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Beverages">
-                            <label for="Categories-2" class="text-dark"> Green</label>
+                            <label for="Categories-2" class="text-dark"> Xanh</label>
                         </div>
                         <div class="additional-product-item">
                             <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beverages">
-                            <label for="Categories-3" class="text-dark"> White</label>
+                            <label for="Categories-3" class="text-dark"> Trắng</label>
                         </div>
                     </div>
                     <div class="featured-product mb-4">
-                        <h4 class="mb-3">Featured products</h4>
+                        <h4 class="mb-3">Sản phẩm nổi bật</h4>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
                                 <img src="assets/img/product-3.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
-                                <h6 class="mb-2">SmartPhone</h6>
+                                <h6 class="mb-2">điện thoại di động</h6>
                                 <div class="d-flex mb-2">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -101,7 +101,7 @@
                                 <img src="assets/img/product-4.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
-                                <h6 class="mb-2">Smart Camera</h6>
+                                <h6 class="mb-2">Camera thông minh</h6>
                                 <div class="d-flex mb-2">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -120,7 +120,7 @@
                                 <img src="assets/img/product-5.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
-                                <h6 class="mb-2">Smart Camera</h6>
+                                <h6 class="mb-2">Camera thông minh</h6>
                                 <div class="d-flex mb-2">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -139,7 +139,7 @@
                                 <img src="assets/img/product-6.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
-                                <h6 class="mb-2">Smart Camera</h6>
+                                <h6 class="mb-2">Camera thông minh</h6>
                                 <div class="d-flex mb-2">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -158,7 +158,7 @@
                                 <img src="assets/img/product-7.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
-                                <h6 class="mb-2">Camera Leance</h6>
+                                <h6 class="mb-2">Ống kính máy ảnh</h6>
                                 <div class="d-flex mb-2">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -177,7 +177,7 @@
                                 <img src="assets/img/product-8.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
-                                <h6 class="mb-2">Smart Camera</h6>
+                                <h6 class="mb-2">Camera thông minh</h6>
                                 <div class="d-flex mb-2">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
