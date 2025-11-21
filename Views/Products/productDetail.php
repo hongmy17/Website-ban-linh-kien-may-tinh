@@ -79,7 +79,7 @@
                         <h4 class="mb-3">Featured products</h4>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="img/product-3.png" class="img-fluid rounded" alt="Image">
+                                <img src="assets/img/product-3.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2">SmartPhone</h6>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="img/product-4.png" class="img-fluid rounded" alt="Image">
+                                <img src="assets/img/product-4.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2">Smart Camera</h6>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="img/product-5.png" class="img-fluid rounded" alt="Image">
+                                <img src="assets/img/product-5.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2">Smart Camera</h6>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="img/product-6.png" class="img-fluid rounded" alt="Image">
+                                <img src="assets/img/product-6.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2">Smart Camera</h6>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="img/product-7.png" class="img-fluid rounded" alt="Image">
+                                <img src="assets/img/product-7.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2">Camera Leance</h6>
@@ -174,7 +174,7 @@
                         </div>
                         <div class="featured-product-item">
                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="img/product-8.png" class="img-fluid rounded" alt="Image">
+                                <img src="assets/img/product-8.png" class="img-fluid rounded" alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2">Smart Camera</h6>
@@ -197,7 +197,7 @@
                     </div>
                     <a href="#">
                         <div class="position-relative">
-                            <img src="img/product-banner-2.jpg" class="img-fluid w-100 rounded" alt="Image">
+                            <img src="assets/img/product-banner-2.jpg" class="img-fluid w-100 rounded" alt="Image">
                             <div class="text-center position-absolute d-flex flex-column align-items-center justify-content-center rounded p-4"
                                 style="width: 100%; height: 100%; top: 0; right: 0; background: rgba(242, 139, 0, 0.3);">
                                 <h5 class="display-6 text-primary">SALE</h5>
@@ -227,33 +227,33 @@
                         <div class="col-xl-6">
                             <div class="single-carousel owl-carousel">
                                 <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-4.png' alt=''>">
+                                    data-dot="<img class='img-fluid' src='assets/img/product-4.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
-                                        <img src="img/product-4.png" class="img-fluid rounded" alt="Image">
+                                        <img src="assets/img/product-4.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                                 <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-5.png' alt=''>">
+                                    data-dot="<img class='img-fluid' src='assets/img/product-5.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
-                                        <img src="img/product-5.png" class="img-fluid rounded" alt="Image">
+                                        <img src="assets/img/product-5.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                                 <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-6.png' alt=''>">
+                                    data-dot="<img class='img-fluid' src='assets/img/product-6.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
-                                        <img src="img/product-6.png" class="img-fluid rounded" alt="Image">
+                                        <img src="assets/img/product-6.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                                 <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-7.png' alt=''>">
+                                    data-dot="<img class='img-fluid' src='assets/img/product-7.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
-                                        <img src="img/product-7.png" class="img-fluid rounded" alt="Image">
+                                        <img src="assets/img/product-7.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                                 <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-3.png' alt=''>">
+                                    data-dot="<img class='img-fluid' src='assets/img/product-3.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
-                                        <img src="img/product-3.png" class="img-fluid rounded" alt="Image">
+                                        <img src="assets/img/product-3.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +343,7 @@
                                 <div class="tab-pane" id="nav-mission" role="tabpanel"
                                     aria-labelledby="nav-mission-tab">
                                     <div class="d-flex">
-                                        <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
+                                        <img src="assets/img/avatar.jpg" class="img-fluid rounded-circle p-3"
                                             style="width: 100px; height: 100px;" alt="">
                                         <div class="">
                                             <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
@@ -363,7 +363,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex">
-                                        <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
+                                        <img src="assets/img/avatar.jpg" class="img-fluid rounded-circle p-3"
                                             style="width: 100px; height: 100px;" alt="">
                                         <div class="">
                                             <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
@@ -451,7 +451,7 @@
                 <div class="related-item rounded">
                     <div class="related-item-inner border rounded">
                         <div class="related-item-inner-item">
-                            <img src="img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                             <div class="related-new">New</div>
                             <div class="related-details">
                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -490,7 +490,7 @@
                 <div class="related-item rounded">
                     <div class="related-item-inner border rounded">
                         <div class="related-item-inner-item">
-                            <img src="img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                             <div class="related-new">New</div>
                             <div class="related-details">
                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -529,7 +529,7 @@
                 <div class="related-item rounded">
                     <div class="related-item-inner border rounded">
                         <div class="related-item-inner-item">
-                            <img src="img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                             <div class="related-new">New</div>
                             <div class="related-details">
                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -568,7 +568,7 @@
                 <div class="related-item rounded">
                     <div class="related-item-inner border rounded">
                         <div class="related-item-inner-item">
-                            <img src="img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                             <div class="related-new">New</div>
                             <div class="related-details">
                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -607,7 +607,7 @@
                 <div class="related-item rounded">
                     <div class="related-item-inner border rounded">
                         <div class="related-item-inner-item">
-                            <img src="img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                             <div class="related-new">New</div>
                             <div class="related-details">
                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
