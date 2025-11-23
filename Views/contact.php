@@ -23,10 +23,10 @@
                 <div class="col-lg-7">
                     <h5 class="text-primary wow fadeInUp" data-wow-delay="0.1s">Hãy kết nối</h5>
                     <h1 class="display-5 mb-4 wow fadeInUp" data-wow-delay="0.3s">Gửi tin nhắn của bạn</h1>
-                    <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">Biểu mẫu liên hệ hiện không hoạt động. 
-                        Hãy tạo một biểu mẫu liên hệ hoạt động tốt với Ajax & PHP chỉ trong vài phút. 
+                    <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">Biểu mẫu liên hệ hiện không hoạt động.
+                        Hãy tạo một biểu mẫu liên hệ hoạt động tốt với Ajax & PHP chỉ trong vài phút.
                         Chỉ cần sao chép và dán các tệp, thêm một chút mã là xong. Tải xuống ngay.<a
-                        href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                            href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
                     <form>
                         <div class="row g-4 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="col-lg-12 col-xl-6">

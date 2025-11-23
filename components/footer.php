@@ -9,7 +9,7 @@
                             <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
                         </div>
                         <div>
-                            <h4 class="text-white">Address</h4>
+                            <h4 class="text-white">Địa chỉ</h4>
                             <p class="mb-2">123 Street New York.USA</p>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                             <i class="fas fa-envelope fa-2x text-primary"></i>
                         </div>
                         <div>
-                            <h4 class="text-white">Mail Us</h4>
+                            <h4 class="text-white">Email</h4>
                             <p class="mb-2">info@example.com</p>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             <i class="fa fa-phone-alt fa-2x text-primary"></i>
                         </div>
                         <div>
-                            <h4 class="text-white">Telephone</h4>
+                            <h4 class="text-white">Số điện thoại</h4>
                             <p class="mb-2">(+012) 3456 7890</p>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item d-flex flex-column">
                         <div class="footer-item">
-                            <h4 class="text-primary mb-4">Newsletter</h4>
+                            <h4 class="text-primary mb-4">Giới thiệu</h4>
                             <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit
                                 amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
                             <div class="position-relative mx-auto rounded-pill">
@@ -69,44 +69,44 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item d-flex flex-column">
-                        <h4 class="text-primary mb-4">Customer Service</h4>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Returns</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Order History</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Site Map</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Testimonials</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> My Account</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Unsubscribe Notification</a>
+                        <h4 class="text-primary mb-4">Dịch vụ</h4>
+                        <a href="/?action=contact" class=""><i class="fas fa-angle-right me-2"></i> Liên hệ với chúng tôi</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Hoàn lại</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Lịch sử đặt hàng</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Sơ đồ trang web</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Lời chứng thực</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Tài khoản của tôi</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Hủy đăng ký thông báo</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item d-flex flex-column">
-                        <h4 class="text-primary mb-4">Information</h4>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Delivery infomation</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Warranty</a>
+                        <h4 class="text-primary mb-4">Thông tin</h4>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Về chúng tôi</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Thông tin giao hàng</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Chính sách bảo mật</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Điều khoản & Điều kiện</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Bảo hành</a>
                         <a href="#" class=""><i class="fas fa-angle-right me-2"></i> FAQ</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Seller Login</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Đăng nhập người bán</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item d-flex flex-column">
-                        <h4 class="text-primary mb-4">Extras</h4>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Brands</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Gift Vouchers</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Affiliates</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Wishlist</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Order History</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Track Your Order</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Track Your Order</a>
+                        <h4 class="text-primary mb-4">Tiện ích</h4>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Thương hiệu</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Phiếu quà tặng</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> chi nhánh</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Danh sách yêu thích</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Lịch sử đặt hàng</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Theo dõi đơn hàng của bạn</a>
+                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Theo dõi đơn hàng của bạn</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+<!-- Footer End -->
 
 
     <!-- Copyright Start -->
@@ -115,7 +115,7 @@
             <div class="row g-4 align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-md-0">
                     <span class="text-white"><a href="#" class="border-bottom text-white"><i
-                                class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right
+                                class="fas fa-copyright text-light me-2"></i>DXM Computer</a>, All right
                         reserved.</span>
                 </div>
                 <div class="col-md-6 text-center text-md-end text-white">

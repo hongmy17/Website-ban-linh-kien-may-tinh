@@ -115,10 +115,10 @@
                             data-bs-target="#dropdownToggle123" placeholder="Bạn muốn tìm gì?">
                         <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
                             <option value="All Category">Danh mục</option>
-                            <option value="Pest Control-2">Category 1</option>
-                            <option value="Pest Control-3">Category 2</option>
-                            <option value="Pest Control-4">Category 3</option>
-                            <option value="Pest Control-5">Category 4</option>
+                            <option value="Pest Control-2">Danh mục 1</option>
+                            <option value="Pest Control-3">Danh mục 2</option>
+                            <option value="Pest Control-4">Danh mục 3</option>
+                            <option value="Pest Control-5">Danh mục 4</option>
                         </select>
                         <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;"><i
                                 class="fas fa-search"></i></button>
@@ -154,31 +154,31 @@
                             <ul class="list-unstyled categories-bars">
                                 <li>
                                     <div class="categories-bars-item">
-                                        <a href="#">Accessories</a>
+                                        <a href="#">Phụ kiện</a>
                                         <span>(3)</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="categories-bars-item">
-                                        <a href="#">Electronics & Computer</a>
+                                        <a href="#">Điện tử & Máy tính</a>
                                         <span>(5)</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="categories-bars-item">
-                                        <a href="#">Laptops & Desktops</a>
+                                        <a href="#">Laptops và máy tính để bàn</a>
                                         <span>(2)</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="categories-bars-item">
-                                        <a href="#">Mobiles & Tablets</a>
+                                        <a href="#">Điện thoại di động & Máy tính bảng</a>
                                         <span>(8)</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="categories-bars-item">
-                                        <a href="#">SmartPhone & Smart TV</a>
+                                        <a href="#">Điện thoại thông minh và TV thông minh</a>
                                         <span>(5)</span>
                                     </div>
                                 </li>
@@ -189,7 +189,7 @@
             </div>
             <div class="col-12 col-lg-9">
                 <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
-                    <a href="" class="navbar-brand d-block d-lg-none">
+                    <a href="/" class="navbar-brand d-block d-lg-none">
                         <h1 class="display-5 text-secondary m-0"><i
                                 class="fas fa-shopping-bag text-white me-2"></i>DXM</h1>
                         <!-- <img src="img/logo.png" alt="Logo"> -->
@@ -200,50 +200,50 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
-                            <a href="shop.html" class="nav-item nav-link">Cửa hàng</a>
+                            <a href="/" class="nav-item nav-link active">Trang chủ</a>
+                            <a href="/?action=products" class="nav-item nav-link">Cửa hàng</a>
                             <a href="/?action=productDetail" class="nav-item nav-link">chi tiết</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
                                 <div class="dropdown-menu m-0">
-                                    <a href="bestseller.html" class="dropdown-item">Bestseller</a>
-                                    <a href="cart.html" class="dropdown-item">Cart Page</a>
-                                    <a href="cheackout.html" class="dropdown-item">Cheackout</a>
-                                    <a href="404.html" class="dropdown-item">404 Page</a>
+                                    <a href="/?action=bestseller" class="dropdown-item">Bán chạy</a>
+                                    <a href="/?action=cart" class="dropdown-item">Giỏ hàng</a>
+                                    <a href="/?action=cheackout" class="dropdown-item">Thanh toán</a>
+                                    <a href="404.html" class="dropdown-item">Trang 404</a>
                                 </div>
                             </div>
                             <a href="/?action=contact" class="nav-item nav-link me-2">Liên hệ</a>
                             <div class="nav-item dropdown d-block d-lg-none mb-3">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Category</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                                 <div class="dropdown-menu m-0">
                                     <ul class="list-unstyled categories-bars">
                                         <li>
                                             <div class="categories-bars-item">
-                                                <a href="#">Accessories</a>
+                                                <a href="#">Phụ kiện</a>
                                                 <span>(3)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="categories-bars-item">
-                                                <a href="#">Electronics & Computer</a>
+                                                <a href="#">Điện tử & Máy tính</a>
                                                 <span>(5)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="categories-bars-item">
-                                                <a href="#">Laptops & Desktops</a>
+                                                <a href="#">Laptops và máy tính để bàn</a>
                                                 <span>(2)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="categories-bars-item">
-                                                <a href="#">Mobiles & Tablets</a>
+                                                <a href="#">Điện thoại di động & Máy tính bảng</a>
                                                 <span>(8)</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="categories-bars-item">
-                                                <a href="#">SmartPhone & Smart TV</a>
+                                                <a href="#">Điện thoại thông minh và TV thông minh</a>
                                                 <span>(5)</span>
                                             </div>
                                         </li>
