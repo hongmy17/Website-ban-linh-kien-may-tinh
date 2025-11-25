@@ -78,7 +78,7 @@
                     <h4 class="mb-3">Sản phẩm nổi bật</h4>
                     <div class="featured-product-item">
                         <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="assets/img/product-3.png" class="img-fluid rounded" alt="Image">
+                            <img src="public/assets/images/client/product-3.png" class="img-fluid rounded" alt="Image">
                         </div>
                         <div>
                             <h6 class="mb-2">điện thoại di động</h6>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="featured-product-item">
                         <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="assets/img/product-4.png" class="img-fluid rounded" alt="Image">
+                            <img src="public/assets/images/client/product-4.png" class="img-fluid rounded" alt="Image">
                         </div>
                         <div>
                             <h6 class="mb-2">Camera thông minh</h6>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="featured-product-item">
                         <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="assets/img/product-5.png" class="img-fluid rounded" alt="Image">
+                            <img src="public/assets/images/client/product-5.png" class="img-fluid rounded" alt="Image">
                         </div>
                         <div>
                             <h6 class="mb-2">Camera thông minh</h6>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="featured-product-item">
                         <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="assets/img/product-6.png" class="img-fluid rounded" alt="Image">
+                            <img src="public/assets/images/client/product-6.png" class="img-fluid rounded" alt="Image">
                         </div>
                         <div>
                             <h6 class="mb-2">Camera thông minh</h6>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="featured-product-item">
                         <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="assets/img/product-7.png" class="img-fluid rounded" alt="Image">
+                            <img src="public/assets/images/client/product-7.png" class="img-fluid rounded" alt="Image">
                         </div>
                         <div>
                             <h6 class="mb-2">Ống kính máy ảnh</h6>
@@ -173,7 +173,7 @@
                     </div>
                     <div class="featured-product-item">
                         <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="assets/img/product-8.png" class="img-fluid rounded" alt="Image">
+                            <img src="public/assets/images/client/product-8.png" class="img-fluid rounded" alt="Image">
                         </div>
                         <div>
                             <h6 class="mb-2">Camera thông minh</h6>
@@ -196,7 +196,7 @@
                 </div>
                 <a href="#">
                     <div class="position-relative">
-                        <img src="assets/img/product-banner-2.jpg" class="img-fluid w-100 rounded" alt="Image">
+                        <img src="public/assets/images/client/product-banner-2.jpg" class="img-fluid w-100 rounded" alt="Image">
                         <div class="text-center position-absolute d-flex flex-column align-items-center justify-content-center rounded p-4"
                             style="width: 100%; height: 100%; top: 0; right: 0; background: rgba(242, 139, 0, 0.3);">
                             <h5 class="display-6 text-primary">SALE</h5>
@@ -225,33 +225,33 @@
                     <div class="col-xl-6">
                         <div class="single-carousel owl-carousel">
                             <div class="single-item"
-                                data-dot="<img class='img-fluid' src='assets/img/product-4.png' alt=''>">
+                                data-dot="<img class='img-fluid' src='public/assets/images/client/product-4.png' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="assets/img/product-4.png" class="img-fluid rounded" alt="Image">
+                                    <img src="public/assets/images/client/product-4.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
                             <div class="single-item"
-                                data-dot="<img class='img-fluid' src='assets/img/product-5.png' alt=''>">
+                                data-dot="<img class='img-fluid' src='public/assets/images/client/product-5.png' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="assets/img/product-5.png" class="img-fluid rounded" alt="Image">
+                                    <img src="public/assets/images/client/product-5.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
                             <div class="single-item"
-                                data-dot="<img class='img-fluid' src='assets/img/product-6.png' alt=''>">
+                                data-dot="<img class='img-fluid' src='public/assets/images/client/product-6.png' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="assets/img/product-6.png" class="img-fluid rounded" alt="Image">
+                                    <img src="public/assets/images/client/product-6.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
                             <div class="single-item"
-                                data-dot="<img class='img-fluid' src='assets/img/product-7.png' alt=''>">
+                                data-dot="<img class='img-fluid' src='public/assets/images/client/product-7.png' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="assets/img/product-7.png" class="img-fluid rounded" alt="Image">
+                                    <img src="public/assets/images/client/product-7.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
                             <div class="single-item"
-                                data-dot="<img class='img-fluid' src='assets/img/product-3.png' alt=''>">
+                                data-dot="<img class='img-fluid' src='public/assets/images/client/product-3.png' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="assets/img/product-3.png" class="img-fluid rounded" alt="Image">
+                                    <img src="public/assets/images/client/product-3.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
                         </div>
@@ -313,9 +313,9 @@
                             <div class="tab-pane active" id="nav-about" role="tabpanel"
                                 aria-labelledby="nav-about-tab">
                                 <p>Our new <b class="fw-bold">Pin HPB12 / A12</b> mới của chúng tôi có dung lượng 2000mAh
-                                và được thiết kế để cung cấp năng lượng cho dòng dụng cụ 12V Black and Decker / FireStorm, 
-                                cho phép người dùng vận hành nhiều thiết bị bằng cùng một bộ pin. HPB12 tương thích với các 
-                                mẫu dụng cụ điện Black and Decker sau:
+                                    và được thiết kế để cung cấp năng lượng cho dòng dụng cụ 12V Black and Decker / FireStorm,
+                                    cho phép người dùng vận hành nhiều thiết bị bằng cùng một bộ pin. HPB12 tương thích với các
+                                    mẫu dụng cụ điện Black and Decker sau:
                                 </p>
                                 <b class="fw-bold">Máy khoan và máy vặn vít Black & Decker:</b>
                                 <p class="small">BD12PSK, BDG1200K, BDGL12K, BDID1202, CD1200SK, CD12SFK, CDC1200K,
@@ -341,7 +341,7 @@
                             <div class="tab-pane" id="nav-mission" role="tabpanel"
                                 aria-labelledby="nav-mission-tab">
                                 <div class="d-flex">
-                                    <img src="assets/img/avatar.jpg" class="img-fluid rounded-circle p-3"
+                                    <img src="public/assets/images/client/avatar.jpg" class="img-fluid rounded-circle p-3"
                                         style="width: 100px; height: 100px;" alt="">
                                     <div class="">
                                         <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex">
-                                    <img src="assets/img/avatar.jpg" class="img-fluid rounded-circle p-3"
+                                    <img src="public/assets/images/client/avatar.jpg" class="img-fluid rounded-circle p-3"
                                         style="width: 100px; height: 100px;" alt="">
                                     <div class="">
                                         <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
@@ -450,7 +450,7 @@
             <div class="related-item rounded">
                 <div class="related-item-inner border rounded">
                     <div class="related-item-inner-item">
-                        <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                         <div class="related-new">Mới</div>
                         <div class="related-details">
                             <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -489,7 +489,7 @@
             <div class="related-item rounded">
                 <div class="related-item-inner border rounded">
                     <div class="related-item-inner-item">
-                        <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                         <div class="related-new">Mới</div>
                         <div class="related-details">
                             <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -528,7 +528,7 @@
             <div class="related-item rounded">
                 <div class="related-item-inner border rounded">
                     <div class="related-item-inner-item">
-                        <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                         <div class="related-new">Mới</div>
                         <div class="related-details">
                             <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -567,7 +567,7 @@
             <div class="related-item rounded">
                 <div class="related-item-inner border rounded">
                     <div class="related-item-inner-item">
-                        <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                         <div class="related-new">Mới</div>
                         <div class="related-details">
                             <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -606,7 +606,7 @@
             <div class="related-item rounded">
                 <div class="related-item-inner border rounded">
                     <div class="related-item-inner-item">
-                        <img src="assets/img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
                         <div class="related-new">Mới</div>
                         <div class="related-details">
                             <a href="#"><i class="fa fa-eye fa-1x"></i></a>

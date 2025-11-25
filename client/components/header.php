@@ -20,15 +20,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="assets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="public/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/assets/css/client/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="public/assets/css/client/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -85,12 +85,10 @@
                                     class="fa fa-home me-2"></i> My Dashboard</small></a>
                         <div class="dropdown-menu rounded">
                             <a href="#" class="dropdown-item"> Đăng nhập</a>
-                            <a href="#" class="dropdown-item"> Wishlist</a>
-                            <a href="#" class="dropdown-item"> My Card</a>
-                            <a href="#" class="dropdown-item"> Notifications</a>
-                            <a href="#" class="dropdown-item"> Account Settings</a>
-                            <a href="#" class="dropdown-item"> My Account</a>
-                            <a href="#" class="dropdown-item"> Log Out</a>
+                            <a href="#" class="dropdown-item"> Đăng ký</a>
+                            <a href="#" class="dropdown-item"> Sửa tài khoản</a>
+                            <a href="#" class="dropdown-item"> Tài khoản của tôi</a>
+                            <a href="#" class="dropdown-item"> Đăng xuất</a>
                         </div>
                     </div>
                 </div>
@@ -131,7 +129,7 @@
                             class="rounded-circle btn-md-square border"><i class="fas fa-random"></i></i></a>
                     <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
                             class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
-                    <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span
+                    <a href="/?action=cart" class="text-muted d-flex align-items-center justify-content-center"><span
                             class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
                         <span class="text-dark ms-2">0.00 VNĐ</span></a>
                 </div>
@@ -209,7 +207,7 @@
                                     <a href="/?action=bestseller" class="dropdown-item">Bán chạy</a>
                                     <a href="/?action=cart" class="dropdown-item">Giỏ hàng</a>
                                     <a href="/?action=cheackout" class="dropdown-item">Thanh toán</a>
-                                    <a href="404.html" class="dropdown-item">Trang 404</a>
+                                    <a href="/?action=404" class="dropdown-item">Trang 404</a>
                                 </div>
                             </div>
                             <a href="/?action=contact" class="nav-item nav-link me-2">Liên hệ</a>
