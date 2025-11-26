@@ -174,7 +174,7 @@
                             <li class="nav-item mb-4">
                                 <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
                                     href="#tab-1">
-                                    <span class="text-dark" style="width: 130px;">Tất cản sản phẩm</span>
+                                    <span class="text-dark" style="width: 130px;">Tất cả sản phẩm</span>
                                 </a>
                             </li>
                             <li class="nav-item mb-4">
