@@ -1,6 +1,15 @@
 <?php
 
 use App\Router;
+
+// Client
+use App\Controller\Client\ClientHomeController;
+use App\Controller\Client\ClientProductController;
+use App\Controller\Client\ClientContactController;
+use App\Controller\Client\ClientErrorController;
+use App\Controller\Client\ClientCartController;
+
+// Admin
 use App\Controller\Admin\AdminDashboardController;
 use App\Controller\Admin\AdminUserController;
 use App\Controller\Admin\AdminProductController;
@@ -11,6 +20,24 @@ require_once "vendor/autoload.php";
 
 
 $router = new Router();
+
+// Client
+$router->add("/", ["controller" => ClientHomeController::class, "action" => "index"]);
+
+// Product
+$router->add("/product", ["controller" => ClientProductController::class, "action" => "index"]);
+$router->add("/product/detail", ["controller" => ClientProductController::class, "action" => "detail"]);
+$router->add("/product/best-seller", ["controller" => ClientProductController::class, "action" => "bestSeller"]);
+
+// Contact
+$router->add("/contact", ["controller" => ClientContactController::class, "action" => "index"]);
+
+// Error
+$router->add("/404-error", ["controller" => ClientErrorController::class, "action" => "notFound"]);
+
+// Cart
+$router->add("/cart", ["controller" => ClientCartController::class, "action" => "index"]);
+$router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
 
 // Admin
 $router->add("/admin", ["controller" => AdminDashboardController::class, "action" => "index"]);
