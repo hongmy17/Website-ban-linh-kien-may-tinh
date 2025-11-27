@@ -14,6 +14,9 @@
           <span class="ml-2">Trạng thái</span>
         </th>
         <th>
+          <span class="ml-2">Tổng tiền</span>
+        </th>
+        <th>
           <span class="ml-4">Hàng động</span>
         </th>
       </tr>
@@ -37,6 +40,11 @@
         <td>
           <div class="p-2">
             <span class="status text-success">&bull;</span> Đã thanh toán
+          </div>
+        </td>
+        <td>
+          <div class="p-2">
+            4,590,000₫
           </div>
         </td>
         <td>
