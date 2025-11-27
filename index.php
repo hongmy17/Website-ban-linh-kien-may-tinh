@@ -1,5 +1,7 @@
 <?php
 
+require_once "vendor/autoload.php";
+
 use App\Router;
 
 // Client
@@ -15,9 +17,6 @@ use App\Controller\Admin\AdminUserController;
 use App\Controller\Admin\AdminProductController;
 use App\Controller\Admin\AdminCategoryController;
 use App\Controller\Admin\AdminOrderController;
-
-require_once "vendor/autoload.php";
-
 
 $router = new Router();
 
@@ -65,11 +64,6 @@ $router->add("/admin/order/detail", ["controller" => AdminOrderController::class
 
 $uri = $_SERVER["REQUEST_URI"];
 $path = parse_url($uri, PHP_URL_PATH);
-$query = parse_url($uri, PHP_URL_QUERY);
-
-if ($query) {
-  parse_str($query, $_GET);
-}
 
 $params = $router->match($path);
 
