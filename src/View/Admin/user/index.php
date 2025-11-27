@@ -1,4 +1,3 @@
-
 <h4>Danh sách người dùng</h4>
 
 <div class="mt-3">
@@ -17,9 +16,6 @@
         <a href="#" class="btn btn-success me-lg-2">
           <i class="fas fa-plus-circle"></i> <span>Thêm người dùng</span>
         </a>
-        <a href="#deleteEmployeeModal" class="btn btn-danger disabled" data-bs-toggle="modal" id="delete-btn">
-          <i class="fas fa-minus-circle"></i> <span>Xóa người dùng</span>
-        </a>
       </div>
     </div>
   </div>
@@ -28,11 +24,6 @@
     <table class="table table-borderless table-responsive card-1">
       <thead>
         <tr class="border-bottom">
-          <th>
-            <span class="ml-1">
-              <input class="form-check-input" type="checkbox" id="checkbox-all" />
-            </span>
-          </th>
           <th>
             <span class="ml-1">STT</span>
           </th>
@@ -50,15 +41,6 @@
       <tbody>
         <tr class="border-bottom">
           <td>
-            <div class="p-2 ps-0">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="id[]"
-                value="" />
-            </div>
-          </td>
-          <td>
             <div class="p-2">1</div>
           </td>
           <td>
@@ -89,22 +71,13 @@
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
               <a href="#" class="edit text-decoration-none">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
               </a>
             </div>
           </td>
         </tr>
         <tr class="border-bottom">
           <td>
-            <div class="p-2 ps-0">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="id[]"
-                value="" />
-            </div>
-          </td>
-          <td>
             <div class="p-2">1</div>
           </td>
           <td>
@@ -135,22 +108,13 @@
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
               <a href="#" class="edit text-decoration-none">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
               </a>
             </div>
           </td>
         </tr>
         <tr class="border-bottom">
           <td>
-            <div class="p-2 ps-0">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="id[]"
-                value="" />
-            </div>
-          </td>
-          <td>
             <div class="p-2">1</div>
           </td>
           <td>
@@ -181,22 +145,13 @@
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
               <a href="#" class="edit text-decoration-none">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
               </a>
             </div>
           </td>
         </tr>
         <tr class="border-bottom">
           <td>
-            <div class="p-2 ps-0">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="id[]"
-                value="" />
-            </div>
-          </td>
-          <td>
             <div class="p-2">1</div>
           </td>
           <td>
@@ -227,7 +182,7 @@
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
               <a href="#" class="edit text-decoration-none">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
               </a>
             </div>
           </td>
