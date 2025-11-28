@@ -10,6 +10,8 @@ use App\Controller\Client\ClientProductController;
 use App\Controller\Client\ClientContactController;
 use App\Controller\Client\ClientErrorController;
 use App\Controller\Client\ClientCartController;
+use App\Controller\Client\ClientAccountController;
+
 
 // Admin
 use App\Controller\Admin\AdminDashboardController;
@@ -37,6 +39,9 @@ $router->add("/404-error", ["controller" => ClientErrorController::class, "actio
 // Cart
 $router->add("/cart", ["controller" => ClientCartController::class, "action" => "index"]);
 $router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
+
+$router->add("/account/login", ["controller" => ClientAccountController::class, "action" => "login"]);
+
 
 // Admin
 $router->add("/admin", ["controller" => AdminDashboardController::class, "action" => "index"]);
@@ -68,7 +73,7 @@ $path = parse_url($uri, PHP_URL_PATH);
 $params = $router->match($path);
 
 if ($params == false) {
-  exit("Trang khong ton tai");
+  header("Location: /404-error");
 }
 
 $controller = $params["controller"];
