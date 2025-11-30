@@ -39,8 +39,17 @@
          </div>
          <div class="col-md-4 col-lg-3 text-center text-lg-end">
              <div class="d-inline-flex align-items-center">
-                 <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
-                         class="rounded-circle btn-md-square border"><i class="fas fa-random"></i></i></a>
+                 <div class="dropdown">
+                     <div class="text-muted d-flex align-items-center justify-content-center me-3" id="dropdownMenuButton1"
+                         data-bs-toggle="dropdown" aria-expanded="false"><span
+                         class="rounded-circle btn-md-square border"><i class="bi bi-person-circle"></i></i></div>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                         <li><a class="dropdown-item" href="/account/login">Đăng nhập</a></li>
+                         <li><a class="dropdown-item" href="/account/register">Đăng ký</a></li>
+                         <li><a class="dropdown-item" href="/account/profile">hồ sơ</a></li>
+                     </ul>
+                 </div>
+
                  <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
                          class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
                  <a href="/cart" class="text-muted d-flex align-items-center justify-content-center"><span

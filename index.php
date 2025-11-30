@@ -40,7 +40,12 @@ $router->add("/404-error", ["controller" => ClientErrorController::class, "actio
 $router->add("/cart", ["controller" => ClientCartController::class, "action" => "index"]);
 $router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
 
+// Account
 $router->add("/account/login", ["controller" => ClientAccountController::class, "action" => "login"]);
+$router->add("/account/register", ["controller" => ClientAccountController::class, "action" => "register"]);
+$router->add("/account/profile", ["controller" => ClientAccountController::class, "action" => "profile"]);
+
+
 
 
 // Admin

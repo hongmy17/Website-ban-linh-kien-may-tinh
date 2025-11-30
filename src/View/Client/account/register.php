@@ -11,7 +11,7 @@
         <!-- Bên phải: Form Thêm người dùng - giống login 100% -->
         <div class="col-lg-6 col-12 bg-white px-4 py-5 px-lg-5">
             <div class="text-center mb-5">
-                <h2 class="fw-bold text-dark" style="font-size: 2rem;">Thêm người dùng</h2>
+                <h2 class="fw-bold text-dark" style="font-size: 2rem;">Đăng ký</h2>
                 <p class="text-muted">Tạo tài khoản mới cho nhân viên / khách hàng</p>
             </div>
 

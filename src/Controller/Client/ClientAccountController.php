@@ -12,9 +12,15 @@ class ClientAccountController
         echo $viewer->renderClient(["pageName" => "account/login.php"]);
     }
 
-    public function checkOut()
+    public function register()
     {
         $viewer = new Viewer();
-        echo $viewer->renderClient(["pageName" => "account/login.php"]);
+        echo $viewer->renderClient(["pageName" => "account/register.php"]);
+    }
+
+    public function profile()
+    {
+        $viewer = new Viewer();
+        echo $viewer->renderClient(["pageName" => "account/index.php"]);
     }
 }
