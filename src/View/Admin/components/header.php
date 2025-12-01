@@ -17,7 +17,7 @@
         <img src="/public/assets/images/admin/user.svg" />
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">Trang chủ</a></li>
+        <li><a class="dropdown-item" href="/">Trang chủ</a></li>
         <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
       </ul>
     </li>

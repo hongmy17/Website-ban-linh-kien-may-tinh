@@ -5,7 +5,7 @@
     <div class="card bg-primary text-white mb-4">
       <div class="card-body">Khách hàng</div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="#">Xem chi tiết</a>
+        <a class="small text-white stretched-link" href="/admin/user">Xem chi tiết</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="card bg-warning text-white mb-4">
       <div class="card-body">Loại hàng</div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="#">Xem chi tiết</a>
+        <a class="small text-white stretched-link" href="/admin/category">Xem chi tiết</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="card bg-success text-white mb-4">
       <div class="card-body">Sản phẩm</div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="#">Xem chi tiết</a>
+        <a class="small text-white stretched-link" href="/admin/product">Xem chi tiết</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="card bg-danger text-white mb-4">
       <div class="card-body">Đơn hàng</div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="#">Xem chi tiết</a>
+        <a class="small text-white stretched-link" href="/admin/order">Xem chi tiết</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
