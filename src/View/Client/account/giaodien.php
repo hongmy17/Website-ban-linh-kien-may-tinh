@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile - Bootstrap</title>
-
-    <!-- Bootstrap CSS -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
 
     <style>
         .profile-card {
             max-width: 450px;
             margin: 40px auto;
             padding: 25px;
-            background: #ffffff;
+            background: #fff;
             border-radius: 14px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-align: center;
@@ -24,7 +13,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid #0d6efd;
+            border: 4px solid #FD7E14;
         }
     </style>
 </head>
@@ -33,7 +22,7 @@
     <div class="profile-card">
         
         <div class="avatar mb-3">
-            <img src="https://i.pravatar.cc/180" alt="Avatar">
+            <img src="" alt="Avatar">
         </div>
 
         <h3 class="fw-bold">Nguyễn Văn A</h3>
@@ -50,15 +39,4 @@
         </button>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-    </script>
 
-    <script>
-        function editProfile() {
-            alert("Tính năng chỉnh sửa đang được phát triển!");
-        }
-    </script>
-</body>
-</html>

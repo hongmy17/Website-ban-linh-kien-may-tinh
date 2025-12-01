@@ -21,6 +21,6 @@ class ClientAccountController
     public function profile()
     {
         $viewer = new Viewer();
-        echo $viewer->renderClient(["pageName" => "account/index.php"]);
+        echo $viewer->renderClient(["pageName" => "account/giaodien.php"]);
     }
 }
