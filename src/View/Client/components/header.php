@@ -42,11 +42,13 @@
                  <div class="dropdown">
                      <div class="text-muted d-flex align-items-center justify-content-center me-3" id="dropdownMenuButton1"
                          data-bs-toggle="dropdown" aria-expanded="false"><span
-                         class="rounded-circle btn-md-square border"><i class="bi bi-person-circle"></i></i></div>
+                             class="rounded-circle btn-md-square border"><i class="bi bi-person-circle"></i></i></div>
                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                          <li><a class="dropdown-item" href="/account/login">Đăng nhập</a></li>
                          <li><a class="dropdown-item" href="/account/register">Đăng ký</a></li>
                          <li><a class="dropdown-item" href="/account/profile">hồ sơ</a></li>
+                         <li><a class="dropdown-item" href="/admin">Quản trị viên</a></li>
+
                      </ul>
                  </div>
 
@@ -134,7 +136,6 @@
                              </div>
                          </div>
                          <a href="/contact" class="nav-item nav-link me-2">Liên hệ</a>
-                         <a href="/admin" class="nav-item nav-link me-2">Admin</a>
                          <div class="nav-item dropdown d-block d-lg-none mb-3">
                              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                              <div class="dropdown-menu m-0">
