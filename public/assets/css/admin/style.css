@@ -12236,3 +12236,13 @@ body {
   pointer-events: none;
   opacity: 0.7;
 }
+
+.product-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Đổi thành 2 nếu muốn 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px; /* Điều chỉnh theo layout */
+  white-space: normal;
+}

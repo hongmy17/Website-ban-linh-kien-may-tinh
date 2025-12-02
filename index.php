@@ -45,9 +45,6 @@ $router->add("/account/login", ["controller" => ClientAccountController::class, 
 $router->add("/account/register", ["controller" => ClientAccountController::class, "action" => "register"]);
 $router->add("/account/profile", ["controller" => ClientAccountController::class, "action" => "profile"]);
 
-
-
-
 // Admin
 $router->add("/admin", ["controller" => AdminDashboardController::class, "action" => "index"]);
 
@@ -61,7 +58,7 @@ $router->add("/admin/user/info", ["controller" => AdminUserController::class, "a
 $router->add("/admin/product", ["controller" => AdminProductController::class, "action" => "index"]);
 $router->add("/admin/product/add", ["controller" => AdminProductController::class, "action" => "add"]);
 $router->add("/admin/product/edit", ["controller" => AdminProductController::class, "action" => "edit"]);
-$router->add("/admin/product/info", ["controller" => AdminProductController::class, "action" => "add"]);
+$router->add("/admin/product/info", ["controller" => AdminProductController::class, "action" => "info"]);
 
 // Category
 $router->add("/admin/category", ["controller" => AdminCategoryController::class, "action" => "index"]);
