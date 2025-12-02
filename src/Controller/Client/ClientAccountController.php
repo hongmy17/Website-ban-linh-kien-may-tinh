@@ -6,6 +6,12 @@ use App\Framework\Viewer;
 
 class ClientAccountController
 {
+    public function index()
+    {
+        $viewer = new Viewer();
+        echo $viewer->renderClient(["pageName" => "account/index.php"]);
+    }
+
     public function login()
     {
         $viewer = new Viewer();
@@ -16,11 +22,5 @@ class ClientAccountController
     {
         $viewer = new Viewer();
         echo $viewer->renderClient(["pageName" => "account/register.php"]);
-    }
-
-    public function profile()
-    {
-        $viewer = new Viewer();
-        echo $viewer->renderClient(["pageName" => "account/giaodien.php"]);
     }
 }

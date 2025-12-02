@@ -46,7 +46,7 @@
                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                          <li><a class="dropdown-item" href="/account/login">Đăng nhập</a></li>
                          <li><a class="dropdown-item" href="/account/register">Đăng ký</a></li>
-                         <li><a class="dropdown-item" href="/account/profile">hồ sơ</a></li>
+                         <li><a class="dropdown-item" href="/account">Hồ sơ</a></li>
                          <li><a class="dropdown-item" href="/admin">Quản trị viên</a></li>
 
                      </ul>
