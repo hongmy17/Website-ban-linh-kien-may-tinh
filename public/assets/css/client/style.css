@@ -971,3 +971,10 @@
   max-width: 350px; /* Điều chỉnh theo layout */
   white-space: normal;
 }
+
+.product-card img {
+  width: 100%; /* Chiếm hết chiều ngang khung */
+  height: 250px; /* Chiều cao cố định cho tất cả ảnh */
+  object-fit: cover; /* Giữ tỷ lệ ảnh, cắt nếu cần */
+  border-radius: 8px 8px 0 0; /* Bo tròn phía trên nếu muốn */
+}

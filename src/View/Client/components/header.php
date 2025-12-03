@@ -125,7 +125,6 @@
                      <div class="navbar-nav ms-auto py-0">
                          <a href="/" class="nav-item nav-link active">Trang chủ</a>
                          <a href="/product" class="nav-item nav-link">Cửa hàng</a>
-                         <a href="/product/detail" class="nav-item nav-link">Chi tiết sản phẩm</a>
                          <div class="nav-item dropdown">
                              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
                              <div class="dropdown-menu m-0">

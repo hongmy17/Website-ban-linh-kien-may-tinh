@@ -36,6 +36,8 @@ class ClientProductController {
       $optionValues[$opt['id']] = $productModel->getOptionValues($productID, $opt['id']);
     }
 
+    $relatedProducts = $productModel->getRelatedProductsWithCategory($productID, $product["category_id"]);
+
     $viewer = new Viewer();
     echo $viewer->renderClient([
       "pageName" => "product/detail.php",
@@ -44,6 +46,7 @@ class ClientProductController {
       "options" => $options,
       "variants" => $variants,
       "optionValues" => $optionValues,
+      "relatedProducts" => $relatedProducts,
     ]);
   }
 

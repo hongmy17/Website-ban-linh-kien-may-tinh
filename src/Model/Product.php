@@ -203,4 +203,20 @@ class Product extends Model {
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
+
+  public function getRelatedProductsWithCategory($productID, $categoryID) {
+    $sql = "
+      SELECT 
+        p.*, c.name AS category_name
+      FROM products p
+      LEFT JOIN categories c ON p.category_id = c.id
+      WHERE p.category_id = ?
+        AND p.id != ?
+    ";
+    
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$categoryID, $productID]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 }

@@ -279,7 +279,7 @@
                                 <div class="col-lg-4">
                                     <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
                                         <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
+                                            <div class="product-item-inner-item product-card">
                                                 <img src="/upload/product/<?= $product["base_image"]; ?>" class="img-fluid w-100 rounded-top" alt="">
                                                 <div class="product-new">Mới</div>
                                                 <div class="product-details">
@@ -294,6 +294,7 @@
                                                     <del class="me-2 fs-5">
                                                         <?= number_format($product['base_price']) ?> VNĐ
                                                     </del>
+                                                    <br>
                                                     <span class="text-primary fs-5">
                                                         <?= number_format($product['base_discount_price']) ?> VNĐ
                                                     </span>

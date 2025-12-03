@@ -397,205 +397,38 @@
         <div class="mx-auto text-center pb-5" style="max-width: 700px;">
             <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius wow fadeInUp"
                 data-wow-delay="0.1s">Sản phẩm liên quan</h4>
-            <p class="wow fadeInUp" data-wow-delay="0.2s">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Modi, asperiores ducimus sint quos tempore officia similique quia? Libero, pariatur consectetur?</p>
         </div>
         <div class="related-carousel owl-carousel pt-4">
-            <div class="related-item rounded">
-                <div class="related-item-inner border rounded">
-                    <div class="related-item-inner-item">
-                        <img src="/public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
-                        <div class="related-new">Mới</div>
-                        <div class="related-details">
-                            <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+            <?php foreach ($relatedProducts as $relatedProduct): ?>
+                <div class="related-item rounded">
+                    <div class="related-item-inner border rounded">
+                        <div class="related-item-inner-item product-card">
+                            <img src="/upload/product/<?= $relatedProduct["base_image"]; ?>" class="img-fluid w-100 rounded-top" alt="">
+                            <div class="related-new">Mới</div>
+                            <div class="related-details">
+                                <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>"><i class="fa fa-eye fa-1x"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-center rounded-bottom p-4">
-                        <a href="#" class="d-block mb-2">Điện thoại thông minh</a>
-                        <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                        <del class="me-2 fs-5">1.250.000 VNĐ</del>
-                        <span class="text-primary fs-5">1.050.000 VNĐ</span>
-                    </div>
-                </div>
-                <div class="related-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                    <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                            class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ hàng</a>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="d-flex">
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                    class="rounded-circle btn-sm-square border"><i
-                                        class="fas fa-random"></i></i></a>
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                    class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
+                        <div class="text-center rounded-bottom p-4">
+                            <a href="#" class="d-block mb-2"><?= $relatedProduct["category_name"]; ?></a>
+                            <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>" class="h4 product-name"><?= $relatedProduct["name"]; ?></a>
+                            <?php if (!empty($product['base_discount_price']) && $product['base_discount_price'] > 0): ?>
+                                <del class="me-2 fs-5">
+                                    <?= number_format($product['base_price']) ?> VNĐ
+                                </del>
+                                <br>
+                                <span class="text-primary fs-5">
+                                    <?= number_format($product['base_discount_price']) ?> VNĐ
+                                </span>
+                            <?php else: ?>
+                                <span class="text-primary fs-5">
+                                    <?= number_format($product['base_price']) ?> VNĐ
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="related-item rounded">
-                <div class="related-item-inner border rounded">
-                    <div class="related-item-inner-item">
-                        <img src="/public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
-                        <div class="related-new">Mới</div>
-                        <div class="related-details">
-                            <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center rounded-bottom p-4">
-                        <a href="#" class="d-block mb-2">Điện thoại thông minh</a>
-                        <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                        <del class="me-2 fs-5">1.250.000 VNĐ</del>
-                        <span class="text-primary fs-5">1.050.000 VNĐ</span>
-                    </div>
-                </div>
-                <div class="related-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                    <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                            class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ hàng</a>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="d-flex">
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                    class="rounded-circle btn-sm-square border"><i
-                                        class="fas fa-random"></i></i></a>
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                    class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="related-item rounded">
-                <div class="related-item-inner border rounded">
-                    <div class="related-item-inner-item">
-                        <img src="/public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
-                        <div class="related-new">Mới</div>
-                        <div class="related-details">
-                            <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center rounded-bottom p-4">
-                        <a href="#" class="d-block mb-2">Điện thoại thông minh</a>
-                        <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                        <del class="me-2 fs-5">1.250.000 VNĐ</del>
-                        <span class="text-primary fs-5">1.050.000 VNĐ</span>
-                    </div>
-                </div>
-                <div class="related-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                    <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                            class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ hàng</a>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="d-flex">
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                    class="rounded-circle btn-sm-square border"><i
-                                        class="fas fa-random"></i></i></a>
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                    class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="related-item rounded">
-                <div class="related-item-inner border rounded">
-                    <div class="related-item-inner-item">
-                        <img src="/public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
-                        <div class="related-new">Mới</div>
-                        <div class="related-details">
-                            <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center rounded-bottom p-4">
-                        <a href="#" class="d-block mb-2">Điện thoại thông minh</a>
-                        <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                        <del class="me-2 fs-5">1.250.000 VNĐ</del>
-                        <span class="text-primary fs-5">1.050.000 VNĐ</span>
-                    </div>
-                </div>
-                <div class="related-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                    <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                            class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ hàng</a>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="d-flex">
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                    class="rounded-circle btn-sm-square border"><i
-                                        class="fas fa-random"></i></i></a>
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                    class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="related-item rounded">
-                <div class="related-item-inner border rounded">
-                    <div class="related-item-inner-item">
-                        <img src="/public/assets/images/client/product-3.png" class="img-fluid w-100 rounded-top" alt="">
-                        <div class="related-new">Mới</div>
-                        <div class="related-details">
-                            <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center rounded-bottom p-4">
-                        <a href="#" class="d-block mb-2">Điện thoại thông minh</a>
-                        <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                        <del class="me-2 fs-5">1.250.000 VNĐ</del>
-                        <span class="text-primary fs-5">1.050.000 VNĐ</span>
-                    </div>
-                </div>
-                <div class="related-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                    <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                            class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ hàng</a>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="d-flex">
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                    class="rounded-circle btn-sm-square border"><i
-                                        class="fas fa-random"></i></i></a>
-                            <a href="#"
-                                class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                    class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
