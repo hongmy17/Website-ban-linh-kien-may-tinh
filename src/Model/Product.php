@@ -247,4 +247,61 @@ class Product extends Model {
     
     return $stmt->execute([$productID]);
   }
+
+  public function getPaginatedProducts($page = 1, $perPage = 6, $categoryId = null) {
+    $page    = (int)$page;
+    $perPage = (int)$perPage;
+    if ($page < 1) $page = 1;
+    if ($perPage < 1) $perPage = 12;
+
+    $offset = ($page - 1) * $perPage;
+
+    $sql = "
+      SELECT 
+        p.id,
+        p.name,
+        p.base_image,
+        p.base_price,
+        p.base_discount_price,
+        p.view,
+        c.name AS category_name
+      FROM products p
+      LEFT JOIN categories c ON p.category_id = c.id
+    ";
+
+    $params = [];
+
+    // Nếu có lọc theo danh mục
+    if ($categoryId !== null) {
+      $categoryId = (int)$categoryId;
+      $sql .= " WHERE p.category_id = ?";
+      $params[] = $categoryId;
+    }
+
+    // Fix LIMIT/OFFSET trực tiếp
+    $sql .= " 
+      ORDER BY p.id DESC
+      LIMIT $perPage OFFSET $offset
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getTotalProducts($categoryId = null) {
+    $sql = "SELECT COUNT(*) FROM products p";
+
+    $params = [];
+    if ($categoryId !== null) {
+      $sql .= " WHERE p.category_id = ?";
+      $params[] = (int)$categoryId;
+    }
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute($params);
+
+    return (int)$stmt->fetchColumn();
+  }
 }

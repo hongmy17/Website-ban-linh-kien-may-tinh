@@ -1015,3 +1015,9 @@
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
+.pagination a.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: #f8f9fa;
+}

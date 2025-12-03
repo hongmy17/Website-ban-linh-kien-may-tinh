@@ -190,17 +190,41 @@
                                 </div>
                             <?php endforeach; ?>
 
-                            <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="pagination d-flex justify-content-center mt-5">
-                                    <a href="#" class="rounded">&laquo;</a>
-                                    <a href="#" class="active rounded">1</a>
-                                    <a href="#" class="rounded">2</a>
-                                    <a href="#" class="rounded">3</a>
-                                    <a href="#" class="rounded">4</a>
-                                    <a href="#" class="rounded">5</a>
-                                    <a href="#" class="rounded">6</a>
-                                    <a href="#" class="rounded">&raquo;</a>
+                            <?php if ($totalPages > 1): ?>
+                                <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="pagination d-flex justify-content-center mt-5">
+                                        <!-- Previous -->
+                                        <a href="?page=<?= max(1, $currentPage - 1) ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" 
+                                        class="rounded <?= $currentPage <= 1 ? 'disabled' : '' ?>">&laquo;</a>
+
+                                        <?php 
+                                        $start = max(1, $currentPage - 2);
+                                        $end   = min($totalPages, $currentPage + 2);
+                                        if ($start > 1): ?>
+                                            <a href="?page=1<?= $categoryId ? '&category=' . $categoryId : '' ?>" class="rounded">1</a>
+                                            <?php if ($start > 2): ?><span class="rounded">...</span><?php endif; ?>
+                                        <?php endif; ?>
+
+                                        <?php for ($i = $start; $i <= $end; $i++): ?>
+                                            <a href="?page=<?= $i ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" 
+                                            class="rounded <?= $i == $currentPage ? 'active' : '' ?>"><?= $i ?></a>
+                                        <?php endfor; ?>
+
+                                        <?php if ($end < $totalPages): ?>
+                                            <?php if ($end < $totalPages - 1): ?><span class="rounded">...</span><?php endif; ?>
+                                            <a href="?page=<?= $totalPages ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" class="rounded"><?= $totalPages ?></a>
+                                        <?php endif; ?>
+
+                                        <!-- Next -->
+                                        <a href="?page=<?= min($totalPages, $currentPage + 1) ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" 
+                                        class="rounded <?= $currentPage >= $totalPages ? 'disabled' : '' ?>">&raquo;</a>
+                                    </div>
                                 </div>
+                            <?php endif; ?>
+
+                            <div class="text-center text-muted mb-4">
+                                Hiển thị <?= count($products) ?> trong tổng số <?= $totalProducts ?> sản phẩm
+                                <?php if ($categoryId): ?> (đang lọc theo danh mục)<?php endif; ?>
                             </div>
                         </div>
                     </div>
