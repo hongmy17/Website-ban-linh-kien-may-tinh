@@ -30,7 +30,6 @@ $router->add("/", ["controller" => ClientHomeController::class, "action" => "ind
 // Product
 $router->add("/product", ["controller" => ClientProductController::class, "action" => "index"]);
 $router->add("/product/detail", ["controller" => ClientProductController::class, "action" => "detail"]);
-$router->add("/product/best-seller", ["controller" => ClientProductController::class, "action" => "bestSeller"]);
 
 // Contact
 $router->add("/contact", ["controller" => ClientContactController::class, "action" => "index"]);

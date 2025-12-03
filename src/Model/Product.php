@@ -38,6 +38,7 @@ class Product extends Model {
             p.base_image,
             p.base_price,
             p.base_discount_price,
+            p.view,
             c.name AS category_name
         FROM products p
         LEFT JOIN categories c ON p.category_id = c.id
@@ -218,5 +219,32 @@ class Product extends Model {
     $stmt->execute([$categoryID, $productID]);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getPopularProducts($limit) {
+    $limit = (int)$limit;
+    if ($limit <= 0) $limit = 5;
+
+    $sql = "
+      SELECT 
+        p.*, c.name AS category_name
+      FROM products p
+      LEFT JOIN categories c ON p.category_id = c.id
+      ORDER BY p.view DESC
+      LIMIT $limit
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function increaseView($productID) {
+    $sql = "UPDATE products SET view = view + 1 WHERE id = ?";
+
+    $stmt = $this->connection->prepare($sql);
+    
+    return $stmt->execute([$productID]);
   }
 }

@@ -13,12 +13,15 @@ class ClientProductController {
 
     $categoryModel = new Category();
     $categoriesWithCount = $categoryModel->getCategoriesWithCount();
+    $popularProducts = $productModel->getPopularProducts(6);
 
     $viewer = new Viewer();
     echo $viewer->renderClient([
+      "title" => "Cửa hàng",
       "pageName" => "product/index.php",
       "products" => $products,
       "categoriesWithCount" => $categoriesWithCount,
+      "popularProducts" => $popularProducts,
     ]);
   }
 
@@ -37,9 +40,13 @@ class ClientProductController {
     }
 
     $relatedProducts = $productModel->getRelatedProductsWithCategory($productID, $product["category_id"]);
+    $productModel->increaseView($productID);
+
+    $popularProducts = $productModel->getPopularProducts(6);
 
     $viewer = new Viewer();
     echo $viewer->renderClient([
+      "title" => $product["name"],
       "pageName" => "product/detail.php",
       "categoriesWithCount" => $categoriesWithCount,
       "product" => $product,
@@ -47,6 +54,7 @@ class ClientProductController {
       "variants" => $variants,
       "optionValues" => $optionValues,
       "relatedProducts" => $relatedProducts,
+      "popularProducts" => $popularProducts,
     ]);
   }
 

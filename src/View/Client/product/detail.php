@@ -1,14 +1,3 @@
-<!-- Single Page Header start -->
-<div class="container-fluid page-header py-5">
-    <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Chi tiết sản phẩm</h1>
-    <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item"><a href="#">Trang</a></li>
-        <li class="breadcrumb-item active text-white">Chi tiết sản phẩm</li>
-    </ol>
-</div>
-<!-- Single Page Header End -->
-
 <!-- Single Products Start -->
 <div class="container-fluid shop py-5">
     <div class="container py-5">
@@ -43,135 +32,27 @@
                 </div>
                 <div class="featured-product mb-4">
                     <h4 class="mb-3">Sản phẩm nổi bật</h4>
-                    <div class="featured-product-item">
-                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="/public/assets/images/client/product-3.png" class="img-fluid rounded" alt="Image">
-                        </div>
-                        <div>
-                            <h6 class="mb-2">điện thoại di động</h6>
-                            <div class="d-flex mb-2">
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star"></i>
+                    <?php foreach ($popularProducts as $popularProduct): ?>
+                        <a href="/product/detail?id=<?= $popularProduct["id"]; ?>" class="featured-product-item">
+                            <div class="rounded me-4 product-card-sm" style="width: 100px; height: 100px;">
+                                <img src="/upload/product/<?= $popularProduct["base_image"]; ?>" class="img-fluid rounded" alt="Image">
                             </div>
-                            <div class="d-flex mb-2">
-                                <h5 class="fw-bold me-2">200.000 VNĐ</h5>
-                                <h5 class="text-danger text-decoration-line-through">400.000 VNĐ</h5>
+                            <div>
+                                <h6 class="mb-2 product-name-sm"><?= $popularProduct["name"]; ?></h6>
+                                <div class="d-flex mb-2">
+                                    <h5 class="fw-bold me-2">
+                                        <?php 
+                                            $price = !empty($popularProduct["base_discount_price"]) && $popularProduct["base_discount_price"] > 0
+                                                ? $popularProduct["base_discount_price"]
+                                                : $popularProduct["base_price"];
+                                            echo number_format($price, 0, ','); 
+                                        ?> VNĐ
+                                    </h5>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="featured-product-item">
-                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="/public/assets/images/client/product-4.png" class="img-fluid rounded" alt="Image">
-                        </div>
-                        <div>
-                            <h6 class="mb-2">Camera thông minh</h6>
-                            <div class="d-flex mb-2">
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <h5 class="fw-bold me-2">200.000 VNĐ</h5>
-                                <h5 class="text-danger text-decoration-line-through">400.000 VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-product-item">
-                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="/public/assets/images/client/product-5.png" class="img-fluid rounded" alt="Image">
-                        </div>
-                        <div>
-                            <h6 class="mb-2">Camera thông minh</h6>
-                            <div class="d-flex mb-2">
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <h5 class="fw-bold me-2">200.000 VNĐ</h5>
-                                <h5 class="text-danger text-decoration-line-through">400.000 VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-product-item">
-                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="/public/assets/images/client/product-6.png" class="img-fluid rounded" alt="Image">
-                        </div>
-                        <div>
-                            <h6 class="mb-2">Camera thông minh</h6>
-                            <div class="d-flex mb-2">
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <h5 class="fw-bold me-2">200.000 VNĐ</h5>
-                                <h5 class="text-danger text-decoration-line-through">400.000 VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-product-item">
-                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="/public/assets/images/client/product-7.png" class="img-fluid rounded" alt="Image">
-                        </div>
-                        <div>
-                            <h6 class="mb-2">Ống kính máy ảnh</h6>
-                            <div class="d-flex mb-2">
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <h5 class="fw-bold me-2">200.000 VNĐ</h5>
-                                <h5 class="text-danger text-decoration-line-through">400.000 VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-product-item">
-                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                            <img src="/public/assets/images/client/product-8.png" class="img-fluid rounded" alt="Image">
-                        </div>
-                        <div>
-                            <h6 class="mb-2">Camera thông minh</h6>
-                            <div class="d-flex mb-2">
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <h5 class="fw-bold me-2">200.000 VNĐ</h5>
-                                <h5 class="text-danger text-decoration-line-through">400.000 VNĐ</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center my-4">
-                        <a href="#" class="btn btn-primary px-4 py-3 rounded-pill w-100">Xem thêm</a>
-                    </div>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
-                <a href="#">
-                    <div class="position-relative">
-                        <img src="/public/assets/images/client/product-banner-2.jpg" class="img-fluid w-100 rounded" alt="Image">
-                        <div class="text-center position-absolute d-flex flex-column align-items-center justify-content-center rounded p-4"
-                            style="width: 100%; height: 100%; top: 0; right: 0; background: rgba(242, 139, 0, 0.3);">
-                            <h5 class="display-6 text-primary">SALE</h5>
-                            <h4 class="text-secondary">Giảm tới 50%</h4>
-                            <a href="#" class="btn btn-primary rounded-pill px-4">Mua ngay</a>
-                        </div>
-                    </div>
-                </a>
             </div>
             <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="row g-4 single-product">
@@ -301,36 +182,9 @@
                                         <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
                                         <div class="d-flex justify-content-between">
                                             <h5>Jason Smith</h5>
-                                            <div class="d-flex mb-3">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
                                         </div>
                                         <p>The generated Lorem Ipsum is therefore always free from repetition
                                             injected humour, or non-characteristic
-                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <img src="/public/assets/images/client/avatar.jpg" class="img-fluid rounded-circle p-3"
-                                        style="width: 100px; height: 100px;" alt="">
-                                    <div class="">
-                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                        <div class="d-flex justify-content-between">
-                                            <h5>Sam Peters</h5>
-                                            <div class="d-flex mb-3">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p class="text-dark">The generated Lorem Ipsum is therefore always free from
-                                            repetition injected humour, or non-characteristic
                                             words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                                     </div>
                                 </div>
@@ -394,41 +248,65 @@
 <!-- Related Product Start -->
 <div class="container-fluid related-product">
     <div class="container">
-        <div class="mx-auto text-center pb-5" style="max-width: 700px;">
+        <div class="mx-auto text-center" style="max-width: 700px;">
             <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius wow fadeInUp"
                 data-wow-delay="0.1s">Sản phẩm liên quan</h4>
         </div>
-        <div class="related-carousel owl-carousel pt-4">
-            <?php foreach ($relatedProducts as $relatedProduct): ?>
-                <div class="related-item rounded">
-                    <div class="related-item-inner border rounded">
-                        <div class="related-item-inner-item product-card">
-                            <img src="/upload/product/<?= $relatedProduct["base_image"]; ?>" class="img-fluid w-100 rounded-top" alt="">
-                            <div class="related-new">Mới</div>
-                            <div class="related-details">
-                                <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>"><i class="fa fa-eye fa-1x"></i></a>
+        <?php if (empty($relatedProducts)): ?>
+            <div class="w-100 text-center py-5">
+                <div class="d-inline-block">
+                    <div class="empty-box mx-auto mb-4" style="width: 100px;">
+                        <i class="fa fa-box-open fa-4x text-muted opacity-50"></i>
+                    </div>
+                    <h5 class="text-muted mb-3">Chưa có sản phẩm liên quan</h5>
+                    <p class="text-secondary mb-4" style="max-width: 420px; margin-left: auto; margin-right: auto;">
+                        Hiện tại chưa có sản phẩm nào tương tự. <br>
+                        Hãy quay lại sau hoặc khám phá các danh mục khác nhé!
+                    </p>
+                    <a href="/product" class="btn btn-outline-primary btn-sm px-4">
+                        Xem tất cả sản phẩm
+                    </a>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="related-carousel owl-carousel pt-4">
+                <?php foreach ($relatedProducts as $relatedProduct): ?>
+                    <div class="related-item rounded">
+                        <div class="related-item-inner border rounded">
+                            <div class="related-item-inner-item product-card">
+                                <img src="/upload/product/<?= $relatedProduct["base_image"]; ?>" class="img-fluid w-100 rounded-top" alt="">
+                                <div class="related-new">Mới</div>
+                                <div class="related-details">
+                                    <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>"><i class="fa fa-eye fa-1x"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center rounded-bottom p-4">
+                                <p class="text-muted mb-2">
+                                    <i class="fa fa-eye me-1"></i>
+                                    <?= $product["view"] ?>
+                                </p>
+
+                                <a href="#" class="d-block mb-2"><?= $relatedProduct["category_name"]; ?></a>
+                                <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>" class="h4 product-name"><?= $relatedProduct["name"]; ?></a>
+
+                                <?php if (!empty($product['base_discount_price']) && $product['base_discount_price'] > 0): ?>
+                                    <del class="me-2 fs-5">
+                                        <?= number_format($product['base_price']) ?> VNĐ
+                                    </del>
+                                    <br>
+                                    <span class="text-primary fs-5">
+                                        <?= number_format($product['base_discount_price']) ?> VNĐ
+                                    </span>
+                                <?php else: ?>
+                                    <span class="text-primary fs-5">
+                                        <?= number_format($product['base_price']) ?> VNĐ
+                                    </span>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <div class="text-center rounded-bottom p-4">
-                            <a href="#" class="d-block mb-2"><?= $relatedProduct["category_name"]; ?></a>
-                            <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>" class="h4 product-name"><?= $relatedProduct["name"]; ?></a>
-                            <?php if (!empty($product['base_discount_price']) && $product['base_discount_price'] > 0): ?>
-                                <del class="me-2 fs-5">
-                                    <?= number_format($product['base_price']) ?> VNĐ
-                                </del>
-                                <br>
-                                <span class="text-primary fs-5">
-                                    <?= number_format($product['base_discount_price']) ?> VNĐ
-                                </span>
-                            <?php else: ?>
-                                <span class="text-primary fs-5">
-                                    <?= number_format($product['base_price']) ?> VNĐ
-                                </span>
-                            <?php endif; ?>
-                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

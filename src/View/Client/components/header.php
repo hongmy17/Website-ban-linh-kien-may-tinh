@@ -25,13 +25,6 @@
                  <div class="d-flex border rounded-pill">
                      <input class="form-control border-0 rounded-pill w-100 py-3" type="text"
                          data-bs-target="#dropdownToggle123" placeholder="Bạn muốn tìm gì?">
-                     <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
-                         <option value="All Category">Danh mục</option>
-                         <option value="Pest Control-2">Danh mục 1</option>
-                         <option value="Pest Control-3">Danh mục 2</option>
-                         <option value="Pest Control-4">Danh mục 3</option>
-                         <option value="Pest Control-5">Danh mục 4</option>
-                     </select>
                      <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;"><i
                              class="fas fa-search"></i></button>
                  </div>
@@ -52,8 +45,6 @@
                      </ul>
                  </div>
 
-                 <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
-                         class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
                  <a href="/cart" class="text-muted d-flex align-items-center justify-content-center"><span
                          class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
                      <span class="text-dark ms-2">0.00 VNĐ</span></a>
@@ -74,38 +65,16 @@
                  </button>
                  <div class="collapse navbar-collapse rounded-bottom" id="allCat">
                      <div class="navbar-nav ms-auto py-0">
-                         <ul class="list-unstyled categories-bars">
-                             <li>
-                                 <div class="categories-bars-item">
-                                     <a href="#">Phụ kiện</a>
-                                     <span>(3)</span>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="categories-bars-item">
-                                     <a href="#">Điện tử & Máy tính</a>
-                                     <span>(5)</span>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="categories-bars-item">
-                                     <a href="#">Laptops và máy tính để bàn</a>
-                                     <span>(2)</span>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="categories-bars-item">
-                                     <a href="#">Điện thoại di động & Máy tính bảng</a>
-                                     <span>(8)</span>
-                                 </div>
-                             </li>
-                             <li>
-                                 <div class="categories-bars-item">
-                                     <a href="#">Điện thoại thông minh và TV thông minh</a>
-                                     <span>(5)</span>
-                                 </div>
-                             </li>
-                         </ul>
+                        <ul class="list-unstyled categories-bars">
+            
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">Phụ kiện</a>
+                                        <span>(3)</span>
+                                    </div>
+                                </li>
+
+                        </ul>
                      </div>
                  </div>
              </nav>
@@ -128,7 +97,6 @@
                          <div class="nav-item dropdown">
                              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
                              <div class="dropdown-menu m-0">
-                                 <a href="/product/best-seller" class="dropdown-item">Bán chạy</a>
                                  <a href="/cart" class="dropdown-item">Giỏ hàng</a>
                                  <a href="/cart/check-out" class="dropdown-item">Thanh toán</a>
                                  <a href="/404-error" class="dropdown-item">Trang 404</a>
