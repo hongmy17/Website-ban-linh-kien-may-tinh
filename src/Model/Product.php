@@ -58,13 +58,21 @@ class Product extends Model {
   }
 
   public function getOptionsName($optionIDs) {
+    if (empty($optionIDs)) {
+      return [];
+    }
+
     $placeholders = str_repeat('?,', count($optionIDs) - 1) . '?';
-    $sql = "SELECT * FROM options WHERE id IN ($placeholders) ORDER BY id";
-    
+    $sql = "SELECT id, name FROM options WHERE id IN ($placeholders) ORDER BY id";
+
     $stmt = $this->connection->prepare($sql);
     $stmt->execute($optionIDs);
-    
-    return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+
+    $result = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $result[$row['id']] = $row['name'];
+    }
+    return $result;
   }
 
   public function getProductOptions($productID) {

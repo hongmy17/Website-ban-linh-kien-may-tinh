@@ -32,12 +32,15 @@ class AdminProductController {
     $productModel = new Product();
     $product = $productModel->find($_GET["id"]);
 
+    if (!$product) {
+        die("Sản phẩm không tồn tại!");
+    }
+
     $categoryModel = new Category();
-    $category = $categoryModel->find($product["category_id"]);
+    $category = $categoryModel->find($product["category_id"]) ?: ['name' => 'Chưa có danh mục'];
 
     $optionsID = $productModel->getOptionsID($product["id"]);
-    $optionsWithValues = $productModel->getOptionsName($optionsID);
-
+    $optionsWithValues = $productModel->getOptionsName($optionsID); // đã fix
     $variants = $productModel->getProductVariantsWithOptions($product["id"]);
 
     $viewer = new Viewer();
@@ -46,7 +49,7 @@ class AdminProductController {
       "product" => $product,
       "category" => $category,
       "optionsWithValues" => $optionsWithValues,
-      "variants" => $variants,
+      "variants" => $variants, // có thể là []
     ]);
   }
 }
