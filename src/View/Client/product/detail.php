@@ -22,57 +22,24 @@
                 <div class="product-categories mb-4">
                     <h4>Danh mục sản phẩm</h4>
                     <ul class="list-unstyled">
-                        <li>
-                            <div class="categories-item">
-                                <a href="#" class="text-dark"><i class="fas fa-apple-alt text-secondary me-2"></i>
-                                    Phụ kiện</a>
-                                <span>(3)</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="categories-item">
-                                <a href="#" class="text-dark"><i class="fas fa-apple-alt text-secondary me-2"></i>
-                                    Điện tử & máy tính</a>
-                                <span>(5)</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="categories-item">
-                                <a href="#" class="text-dark"><i
-                                        class="fas fa-apple-alt text-secondary me-2"></i>Laptops & máy tính để bàn</a>
-                                <span>(2)</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="categories-item">
-                                <a href="#" class="text-dark"><i
-                                        class="fas fa-apple-alt text-secondary me-2"></i>Điện thoại di động & Ipad</a>
-                                <span>(8)</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="categories-item">
-                                <a href="#" class="text-dark"><i
-                                        class="fas fa-apple-alt text-secondary me-2"></i>Điện thoại thông minh & TV thông minh</a>
-                                <span>(5)</span>
-                            </div>
-                        </li>
+                        <?php 
+                            foreach ($categoriesWithCount as $category): 
+                                if ($category["product_count"] > 0):
+                        ?>
+                            <li>
+                                <div class="categories-item">
+                                    <a href="#" class="text-dark">
+                                        <i class="fas fa-apple-alt text-secondary me-2"></i>
+                                        <?= $category["name"]; ?>
+                                    </a>
+                                    <span>(<?= $category["product_count"]; ?>)</span>
+                                </div>
+                            </li>
+                        <?php 
+                                endif;
+                            endforeach; 
+                        ?>
                     </ul>
-                </div>
-                <div class="additional-product mb-4">
-                    <h4>Chọn màu sắc</h4>
-                    <div class="additional-product-item">
-                        <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Beverages">
-                        <label for="Categories-1" class="text-dark"> Vàng</label>
-                    </div>
-                    <div class="additional-product-item">
-                        <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Beverages">
-                        <label for="Categories-2" class="text-dark"> Xanh</label>
-                    </div>
-                    <div class="additional-product-item">
-                        <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beverages">
-                        <label for="Categories-3" class="text-dark"> Trắng</label>
-                    </div>
                 </div>
                 <div class="featured-product mb-4">
                     <h4 class="mb-3">Sản phẩm nổi bật</h4>
@@ -205,32 +172,24 @@
                         </div>
                     </div>
                 </a>
-                <div class="product-tags my-4">
-                    <h4 class="mb-3">Thẻ sản phẩm</h4>
-                    <div class="product-tags-items bg-light rounded p-3">
-                        <a href="#" class="border rounded py-1 px-2 mb-2">mới</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">Thương hiệu</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">Đen</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">Trắng</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">tablats</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">Điện thoại</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">Máy ảnh</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">Máy bay không người lái</a>
-                        <a href="#" class="border rounded py-1 px-2 mb-2">sales</a>
-                    </div>
-                </div>
             </div>
             <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="row g-4 single-product">
                     <div class="col-xl-6">
                         <div class="single-carousel owl-carousel">
                             <div class="single-item"
-                                data-dot="<img class='img-fluid' src='/public/assets/images/client/product-4.png' alt=''>">
+                                data-dot="<img class='img-fluid' src='/upload/product/<?= $product["base_image"]; ?>' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="/public/assets/images/client/product-4.png" class="img-fluid rounded" alt="Image">
+                                    <img src="/upload/product/<?= $product["base_image"]; ?>" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
-                            <div class="single-item"
+                            <!-- <div class="single-item"
+                                data-dot="<img class='img-fluid' src='/upload/product/<?= $product["base_image"]; ?>' alt=''>">
+                                <div class="single-inner bg-light rounded">
+                                    <img src="/upload/product/<?= $product["base_image"]; ?>" class="img-fluid rounded" alt="Image">
+                                </div>
+                            </div> -->
+                            <!-- <div class="single-item"
                                 data-dot="<img class='img-fluid' src='/public/assets/images/client/product-5.png' alt=''>">
                                 <div class="single-inner bg-light rounded">
                                     <img src="/public/assets/images/client/product-5.png" class="img-fluid rounded" alt="Image">
@@ -253,51 +212,69 @@
                                 <div class="single-inner bg-light rounded">
                                     <img src="/public/assets/images/client/product-3.png" class="img-fluid rounded" alt="Image">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
+
                     <div class="col-xl-6">
-                        <h4 class="fw-bold mb-3">Camera thông minh</h4>
-                        <p class="mb-3">Thể loại: Điện tử</p>
-                        <h5 class="fw-bold mb-3">350.000 VNĐ</h5>
-                        <div class="d-flex mb-4">
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star text-secondary"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
+                        <h4 class="fw-bold mb-3"><?= htmlspecialchars($product['name']) ?></h4>
+                        <p class="mb-3">Thể loại: <?= htmlspecialchars($product['category_name']) ?></p>
+
+                        <!-- ==================== PHẦN CHỌN BIẾN THỂ (THÊM MỚI) ==================== -->
+                        <?php if (!empty($options)): ?>
+                            <div class="variant-selector mb-4 p-3 border rounded bg-light">
+                                <?php foreach ($options as $opt): ?>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold text-dark"><?= htmlspecialchars($opt['option_name']) ?></label>
+                                        <select class="form-select variant-select" data-option-id="<?= $opt['id'] ?>">
+                                            <option value="">-- Chọn <?= strtolower($opt['option_name']) ?> --</option>
+                                            <?php foreach ($optionValues[$opt['id']] as $val): ?>
+                                                <option value="<?= $val['value_id'] ?>">
+                                                    <?= htmlspecialchars($val['value_name']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                        <!-- ===================================================================== -->
+
+                        <!-- GIÁ - SẼ TỰ ĐỘNG CẬP NHẬT -->
                         <div class="mb-3">
-                            <div class="btn btn-primary d-inline-block rounded text-white py-1 px-4 me-2"><i
-                                    class="fab fa-facebook-f me-1"></i> Chia sẻ</div>
-                            <div class="btn btn-secondary d-inline-block rounded text-white py-1 px-4 ms-2"><i
-                                    class="fab fa-twitter ms-1"></i> chia sẽ</div>
+                            <span id="variant-price-new" class="fw-bold text-dark" style="font-size:22px;"></span>
+                            <span id="variant-price-old" class="text-muted text-decoration-line-through me-2" style="font-size:18px;"></span>
                         </div>
+
+
                         <div class="d-flex flex-column mb-3">
                             <small>Mã sản phẩm: N/A</small>
-                            <small>Có sẵn: <strong class="text-primary">20 tồn kho</strong></small>
+                            <small>Có sẵn: <strong class="text-primary" id="variant-stock">0 tồn kho</strong></small>
                         </div>
-                        <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected
-                            humour, or non-characteristic words etc.</p>
-                        <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder;
-                            chain pickerel hatchetfish, pencilfish snailfish</p>
+
+                        <!-- SỐ LƯỢNG - GIỮ NGUYÊN CỦA BẠN -->
                         <div class="input-group quantity mb-5" style="width: 100px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                            <input type="text" class="form-control form-control-sm text-center border-0" value="1" id="quantity" readonly>
                             <div class="input-group-btn">
-                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
-                        <a href="#"
-                            class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                class="fa fa-shopping-bag me-2 text-white"></i> Thêm vào giỏ hàng</a>
+
+                        <!-- NÚT THÊM GIỎ HÀNG - GIỮ NGUYÊN GIAO DIỆN CỦA BẠN -->
+                        <a href="#" id="add-to-cart"
+                        class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-white"
+                        style="background:#0d6efd;" disabled>
+                            <i class="fa fa-shopping-bag me-2"></i> Thêm vào giỏ hàng
+                        </a>
                     </div>
+                    
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
@@ -312,30 +289,7 @@
                         <div class="tab-content mb-5">
                             <div class="tab-pane active" id="nav-about" role="tabpanel"
                                 aria-labelledby="nav-about-tab">
-                                <p>Our new <b class="fw-bold">Pin HPB12 / A12</b> mới của chúng tôi có dung lượng 2000mAh
-                                    và được thiết kế để cung cấp năng lượng cho dòng dụng cụ 12V Black and Decker / FireStorm,
-                                    cho phép người dùng vận hành nhiều thiết bị bằng cùng một bộ pin. HPB12 tương thích với các
-                                    mẫu dụng cụ điện Black and Decker sau:
-                                </p>
-                                <b class="fw-bold">Máy khoan và máy vặn vít Black & Decker:</b>
-                                <p class="small">BD12PSK, BDG1200K, BDGL12K, BDID1202, CD1200SK, CD12SFK, CDC1200K,
-                                    CDC120AK, CDC120ASB, CP122K, CP122KB, CP12K, CP12KB, EPC12, EPC126, EPC126BK,
-                                    EPC12CA, EPC12CABK, HP122K, HP122KD, HP126F2B, HP126F2K, HP126F3B, HP126F3K,
-                                    HP126FBH, HP126FSC, HP126FSH, HP126K, HP128F3B, HP12K, HP12KD, HPD1200, HPD1202,
-                                    HPD1202KF, HPD12K-2, PS122K, PS122KB, PS12HAK, SS12, SX3000, SX3500, XD1200,
-                                    XD1200K, XTC121
-                                </p>
-                                <b class="fw-bold">thiếu & Cờ lê tác động Decker:</b>
-                                <p class="small">SX5000, XTC12IK, XTC12IKH</p>
-                                <b class="fw-bold">Bộ dụng cụ đa năng Black & Decker:</b>
-                                <p class="small">KC2000FK</p>
-                                <b class="fw-bold">Máy đóng đinh Black & Decker:</b>
-                                <p class="small">BDBN1202</p>
-                                <b class="fw-bold">Tua vít Black & Decker:</b>
-                                <p class="small">HP9019K</p>
-                                <b class="fw-bold mb-0">Sản phẩm thay thế tốt nhất cho các mã số pin OEM Black and Decker sau:</b>
-                                <p class="small">HPB12, A12, A12EX, A12-XJ, A1712, B-8315, BD1204L, BD-1204L,
-                                    BPT1047, FS120B, FS120BX, FSB12.</p>
+                                <?= $product["description"]; ?>
                             </div>
 
                             <div class="tab-pane" id="nav-mission" role="tabpanel"
@@ -646,3 +600,119 @@
     </div>
 </div>
 <!-- Related Product End -->
+
+<script>
+// Dữ liệu variant từ PHP (đã có $variants từ Controller)
+const variants = <?= json_encode($variants, JSON_UNESCAPED_UNICODE) ?>;
+
+const priceEl  = document.getElementById('variant-price');
+const stockEl  = document.getElementById('variant-stock');
+const btnCart  = document.getElementById('add-to-cart');
+
+function updateVariantInfo() {
+    const selected = {};
+    let allSelected = true;
+
+    // Nếu không có select nào → coi như đã chọn đủ (dành cho sản phẩm không có biến thể)
+    const selects = document.querySelectorAll('.variant-select');
+    if (selects.length === 0) {
+        allSelected = true;
+    } else {
+        selects.forEach(sel => {
+            if (!sel.value) allSelected = false;
+            selected[sel.dataset.optionId] = sel.value;
+        });
+    }
+
+    const oldPriceEl = document.getElementById('variant-price-old');
+    const newPriceEl = document.getElementById('variant-price-new');
+
+    // TRƯỜNG HỢP 1: Sản phẩm KHÔNG có biến thể → dùng giá của sản phẩm chính
+    if (variants.length === 0 || selects.length === 0) {
+        const basePrice = <?= (float)$product['base_price'] ?>;
+        const baseDiscount = <?= $product['base_discount_price'] && $product['base_discount_price'] > 0 ? (float)$product['base_discount_price'] : 'null' ?>;
+
+        if (baseDiscount && baseDiscount < basePrice) {
+            oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
+            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(baseDiscount) + ' ₫';
+            newPriceEl.style.color = '#d70018';
+        } else {
+            oldPriceEl.textContent = '';
+            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
+            newPriceEl.style.color = '#d70018';
+        }
+
+        stockEl.innerHTML = '<strong class="text-primary">Có hàng</strong>';
+        btnCart.disabled = false;
+        btnCart.dataset.variantId = <?= $product['id'] ?>; // dùng product_id làm variant_id
+        return;
+    }
+
+    // TRƯỜNG HỢP 2: Có biến thể → xử lý như cũ
+    if (!allSelected) {
+        oldPriceEl.textContent = '';
+        newPriceEl.textContent = 'Vui lòng chọn cấu hình';
+        newPriceEl.style.color = '#666';
+        stockEl.innerHTML = '<strong class="text-warning">Chưa chọn</strong>';
+        btnCart.disabled = true;
+        return;
+    }
+
+    const found = variants.find(v => 
+        Object.keys(selected).every(key => v.values[key] == selected[key])
+    );
+
+    if (found) {
+        if (found.discount_price && found.discount_price < found.price) {
+            oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.price) + ' ₫';
+            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.discount_price) + ' ₫';
+            newPriceEl.style.color = '#d70018';
+        } else {
+            oldPriceEl.textContent = '';
+            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.price) + ' ₫';
+            newPriceEl.style.color = '#d70018';
+        }
+
+        if (found.stock > 0) {
+            stockEl.innerHTML = `<strong class="text-primary">${found.stock} tồn kho</strong>`;
+            btnCart.disabled = false;
+            btnCart.dataset.variantId = found.id;
+        } else {
+            stockEl.innerHTML = '<strong class="text-danger">Hết hàng</strong>';
+            btnCart.disabled = true;
+        }
+    } else {
+        oldPriceEl.textContent = '';
+        newPriceEl.textContent = 'Không có cấu hình này';
+        newPriceEl.style.color = '#666';
+        stockEl.innerHTML = '<strong class="text-danger">Hết hàng</strong>';
+        btnCart.disabled = true;
+    }
+}
+
+// Sự kiện khi thay đổi select
+document.querySelectorAll('.variant-select').forEach(el => {
+    el.addEventListener('change', updateVariantInfo);
+});
+
+// Load lần đầu: chọn biến thể mặc định (nếu có)
+document.addEventListener('DOMContentLoaded', () => {
+    const defaultVariant = variants.find(v => v.default === true);
+    if (defaultVariant) {
+        Object.entries(defaultVariant.values).forEach(([optId, valId]) => {
+            const select = document.querySelector(`.variant-select[data-option-id="${optId}"]`);
+            if (select) select.value = valId;
+        });
+    }
+    updateVariantInfo();
+});
+
+// Tăng giảm số lượng
+document.querySelector('.btn-minus').addEventListener('click', () => {
+    let qty = parseInt(document.getElementById('quantity').value);
+    if (qty > 1) document.getElementById('quantity').value = qty - 1;
+});
+document.querySelector('.btn-plus').addEventListener('click', () => {
+    document.getElementById('quantity').value = parseInt(document.getElementById('quantity').value) + 1;
+});
+</script>
