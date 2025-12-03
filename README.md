@@ -3,7 +3,7 @@
 ## Mục lục
 
 - [1. Clone dự án](#1-clone-dự-án)
-- [2. Cài đặt dump-autoload](#2-cài-đặt-dump-autoload)
+- [2. Cài đặt thư viện](#2-cài-đặt-thư-viện)
 - [3. Chạy dự án](#3-chạy-dự-án)
 
 ## 1. Clone dự án
@@ -12,10 +12,10 @@
 git clone https://github.com/hongmy17/Website-ban-linh-kien-may-tinh.git
 ```
 
-## 2. Cài đặt dump-autoload
+## 2. Cài đặt thư viện
 
 ```php
-composer dump-autoload
+composer install
 ```
 
 Nếu lỗi có thể là do chưa cài composer. Cài đặt [tại đây](https://getcomposer.org/download/)
@@ -27,6 +27,7 @@ composer -V
 ```
 
 Nếu cài đặt thành công, bạn sẽ thấy kết quả tương tự:
+
 ```php
 Composer version 2.x.x 2024-xx-xx
 ```
