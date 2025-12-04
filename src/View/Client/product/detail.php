@@ -281,25 +281,25 @@
                                 </div>
                             </div>
                             <div class="text-center rounded-bottom p-4">
-                                <p class="text-muted mb-2">
-                                    <i class="fa fa-eye me-1"></i>
-                                    <?= $product["view"] ?>
-                                </p>
+                                <div class="product-meta-new">
+                                    <span class="meta-view"><i class="fas fa-eye"></i> <?= number_format($relatedProduct["view"]) ?></span>
+                                    <span class="meta-sold"><i class="fas fa-shopping-cart"></i> <?= number_format($relatedProduct["sold"]) ?></span>
+                                </div>
 
                                 <a href="#" class="d-block mb-2"><?= $relatedProduct["category_name"]; ?></a>
                                 <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>" class="h4 product-name"><?= $relatedProduct["name"]; ?></a>
 
-                                <?php if (!empty($product['base_discount_price']) && $product['base_discount_price'] > 0): ?>
+                                <?php if (!empty($relatedProduct['base_discount_price']) && $relatedProduct['base_discount_price'] > 0): ?>
                                     <del class="me-2 fs-5">
-                                        <?= number_format($product['base_price']) ?> VNĐ
+                                        <?= number_format($relatedProduct['base_price']) ?> VNĐ
                                     </del>
                                     <br>
                                     <span class="text-primary fs-5">
-                                        <?= number_format($product['base_discount_price']) ?> VNĐ
+                                        <?= number_format($relatedProduct['base_discount_price']) ?> VNĐ
                                     </span>
                                 <?php else: ?>
                                     <span class="text-primary fs-5">
-                                        <?= number_format($product['base_price']) ?> VNĐ
+                                        <?= number_format($relatedProduct['base_price']) ?> VNĐ
                                     </span>
                                 <?php endif; ?>
                             </div>

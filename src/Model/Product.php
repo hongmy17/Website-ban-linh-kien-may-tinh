@@ -30,24 +30,95 @@ class Product extends Model {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getProductWithCategories() {
+  public function getProductWithCategories($limit = null, $offset = 0) {
     $sql = "
-        SELECT 
-            p.id,
-            p.name,
-            p.base_image,
-            p.base_price,
-            p.base_discount_price,
-            p.view,
-            c.name AS category_name
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.id
-        ORDER BY p.id DESC
+      SELECT 
+        p.id,
+        p.name,
+        p.base_image,
+        p.base_price,
+        p.base_discount_price,
+        p.view,
+        p.sold,
+        c.name AS category_name
+      FROM products p
+      LEFT JOIN categories c ON p.category_id = c.id
     ";
 
-    $stmt = $this->connection->query($sql);
+    if ($limit !== null) {
+        $sql .= " LIMIT :offset, :limit";
+    }
+
+    $stmt = $this->connection->prepare($sql);
+
+    if ($limit !== null) {
+      $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+      $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
-    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getLatestProduct($limit = null, $offset = 0) {
+    $sql = "
+      SELECT 
+        p.id,
+        p.name,
+        p.base_image,
+        p.base_price,
+        p.base_discount_price,
+        p.view,
+        p.sold,
+        c.name AS category_name
+      FROM products p
+      LEFT JOIN categories c ON p.category_id = c.id
+      ORDER BY p.updated_at DESC
+    ";
+
+    if ($limit !== null) {
+        $sql .= " LIMIT :offset, :limit";
+    }
+
+    $stmt = $this->connection->prepare($sql);
+
+    if ($limit !== null) {
+      $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+      $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getBestSellerProducts($limit = null, $offset = 0) {
+    $sql = "
+      SELECT 
+        p.id,
+        p.name,
+        p.base_image,
+        p.base_price,
+        p.base_discount_price,
+        p.view,
+        p.sold,
+        c.name AS category_name
+      FROM products p
+      LEFT JOIN categories c ON p.category_id = c.id
+      ORDER BY p.sold DESC
+    ";
+
+    if ($limit !== null) {
+        $sql .= " LIMIT :offset, :limit";
+    }
+
+    $stmt = $this->connection->prepare($sql);
+
+    if ($limit !== null) {
+      $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+      $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
   
@@ -264,6 +335,7 @@ class Product extends Model {
         p.base_price,
         p.base_discount_price,
         p.view,
+        p.sold,
         c.name AS category_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
@@ -280,7 +352,6 @@ class Product extends Model {
 
     // Fix LIMIT/OFFSET trực tiếp
     $sql .= " 
-      ORDER BY p.id DESC
       LIMIT $perPage OFFSET $offset
     ";
 

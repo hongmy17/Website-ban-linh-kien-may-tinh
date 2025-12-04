@@ -1,76 +1,3 @@
-<!-- Searvices Start -->
-<div class="container-fluid px-0">
-    <div class="row g-0">
-        <div class="col-6 col-md-4 col-lg-2 border-start border-end wow fadeInUp" data-wow-delay="0.1s">
-            <div class="p-4">
-                <div class="d-inline-flex align-items-center">
-                    <i class="fa fa-sync-alt fa-2x text-primary"></i>
-                    <div class="ms-4">
-                        <h6 class="text-uppercase mb-2">Hoàn trả miễn phí</h6>
-                        <p class="mb-0">Đảm bảo hoàn tiền trong 30 ngày!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 border-end wow fadeInUp" data-wow-delay="0.2s">
-            <div class="p-4">
-                <div class="d-flex align-items-center">
-                    <i class="fab fa-telegram-plane fa-2x text-primary"></i>
-                    <div class="ms-4">
-                        <h6 class="text-uppercase mb-2">Miễn phí giao hàng</h6>
-                        <p class="mb-0">Miễn phí vận chuyển cho tất cả các đơn hàng</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 border-end wow fadeInUp" data-wow-delay="0.3s">
-            <div class="p-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-life-ring fa-2x text-primary"></i>
-                    <div class="ms-4">
-                        <h6 class="text-uppercase mb-2">Hỗ trợ 24/7</h6>
-                        <p class="mb-0">Chúng tôi hỗ trợ trực tuyến 24 giờ một ngày</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 border-end wow fadeInUp" data-wow-delay="0.4s">
-            <div class="p-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-credit-card fa-2x text-primary"></i>
-                    <div class="ms-4">
-                        <h6 class="text-uppercase mb-2">Nhận thẻ quà tặng</h6>
-                        <p class="mb-0">Nhận quà tặng trên đơn hàng 50.000 VNĐ</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 border-end wow fadeInUp" data-wow-delay="0.5s">
-            <div class="p-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-lock fa-2x text-primary"></i>
-                    <div class="ms-4">
-                        <h6 class="text-uppercase mb-2">Thanh toán an toàn</h6>
-                        <p class="mb-0">Chúng tôi coi trọng sự an toàn của bạn</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 border-end wow fadeInUp" data-wow-delay="0.6s">
-            <div class="p-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-blog fa-2x text-primary"></i>
-                    <div class="ms-4">
-                        <h6 class="text-uppercase mb-2">Dịch vụ trực tuyến</h6>
-                        <p class="mb-0">Sản phẩm được trả lại miễn phí trong 30 ngày</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Searvices End -->
-
 <!-- Shop Page Start -->
 <div class="container-fluid shop py-5">
     <div class="container py-5">
@@ -163,10 +90,11 @@
                                                 </div>
                                             </div>
                                             <div class="text-center rounded-bottom p-4">
-                                                <p class="text-muted mb-2">
-                                                    <i class="fa fa-eye me-1"></i>
-                                                    <?= $product["view"] ?>
-                                                </p>
+                                                <div class="product-meta-new">
+                                                    <span class="meta-view"><i class="fas fa-eye"></i> <?= number_format($product["view"]) ?></span>
+                                                    <span class="meta-sold"><i class="fas fa-shopping-cart"></i> <?= number_format($product["sold"]) ?></span>
+                                                </div>
+                                                
                                                 <a href="#" class="d-block mb-2"><?= $product["category_name"]; ?></a>
                                                 <a href="/product/detail?id=<?= $product["id"]; ?>" class="h5 product-name"><?= $product["name"]; ?></a>
                                                 

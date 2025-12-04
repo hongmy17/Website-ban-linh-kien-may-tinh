@@ -1021,3 +1021,174 @@
   opacity: 0.5;
   background-color: #f8f9fa;
 }
+
+.product-meta-new {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 13.5px;
+  color: #666;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.meta-view i {
+  color: #aab0b6;
+}
+.meta-sold i {
+  color: #f57224;
+  margin-right: 2px;
+}
+.meta-sold {
+  color: #f57224;
+  font-weight: 600;
+}
+
+/* new */
+.double-offer-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.offer-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.offer-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.offer-img {
+  width: 100%;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast; /* chống mờ trên Chrome */
+  image-rendering: crisp-edges;
+  transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* zoom chậm mượt */
+}
+
+.offer-item:hover .offer-img {
+  transform: scale(1.12);
+}
+
+/* Lớp tối dần dần từ trái sang phải (trái) / phải sang trái (phải) */
+.offer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65) 0%,
+    transparent 70%
+  );
+  z-index: 1;
+}
+
+.right .offer-overlay {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.65) 0%, transparent 70%);
+}
+
+.offer-content {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  z-index: 2;
+  color: white;
+}
+
+.right .offer-content {
+  left: auto;
+  right: 40px;
+  text-align: right;
+}
+
+.offer-content h2 {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.offer-content h2 span {
+  font-size: 32px;
+  font-weight: 700;
+  display: block;
+  color: #ffeb3b;
+}
+
+.price-wrap del {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-right: 10px;
+}
+
+.price-wrap strong {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffeb3b;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.tag.hot {
+  background: #ff3b30;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(255, 59, 48, 0);
+  }
+}
+
+/* Mobile: xếp chồng, full width */
+@media (max-width: 992px) {
+  .offer-item {
+    height: 360px;
+  }
+  .offer-content {
+    left: 25px;
+    bottom: 30px;
+  }
+  .right .offer-content {
+    left: 25px;
+    right: auto;
+    text-align: left;
+  }
+  .right .offer-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.65) 0%,
+      transparent 70%
+    );
+  }
+  .offer-content h2 {
+    font-size: 30px;
+  }
+  .offer-content h2 span {
+    font-size: 26px;
+  }
+  .price-wrap strong {
+    font-size: 28px;
+  }
+}
