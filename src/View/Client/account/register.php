@@ -1,75 +1,96 @@
 <div class="container px-4 py-5">
-    <div class="row g-0 shadow-lg rounded-4 overflow-hidden" style="max-width: 1000px; margin: 0 auto; background: #fff;">
-        
-        <!-- Bên trái: Ảnh lớn (chỉ hiện trên desktop) - giống login -->
-        <div class="col-lg-6 p-0 d-none d-lg-block">
-            <img src="/public/assets/images/client/loginimage.jpg"
-                 alt="DXM Store"
-                 class="w-100 h-100 object-fit-cover">
-        </div>
+    <div class="login-wrapper bg-white rounded-4 shadow-lg overflow-hidden" style="max-width: 1100px; margin: 0 auto;">
+        <div class="row g-0">
 
-        <!-- Bên phải: Form Thêm người dùng - giống login 100% -->
-        <div class="col-lg-6 col-12 bg-white px-4 py-5 px-lg-5">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold text-dark" style="font-size: 2rem;">Đăng ký</h2>
-                <p class="text-muted">Tạo tài khoản mới cho nhân viên / khách hàng</p>
+            <!-- Bên trái: Hình ảnh full + overlay cam nhẹ (rất sang) -->
+            <div class="col-lg-6 position-relative p-0">
+                <!-- Ẩn trên mobile nếu muốn gọn -->
+                <img src="/public/assets/images/client/loginimage.jpg"
+                    alt="DXM Store - Chào mừng bạn"
+                    class="w-100 h-100 object-fit-cover">
+
+                <!-- Overlay + chữ chào (tùy chọn bật lại nếu muốn) -->
+
             </div>
 
-            <form action="xuly_them_nguoidung.php" method="POST">
-                <!-- Họ tên -->
-                <div class="mb-4">
-                    <input type="text"
-                           class="form-control form-control-lg rounded-pill border-0 shadow-sm"
-                           name="fullname"
-                           placeholder="Họ và tên"
-                           style="height: 56px; background: #f8f9fa;"
-                           required>
+            <!-- Bên phải: Form đăng nhập (gọn, đẹp, hiện đại) -->
+            <div class="col-lg-6 col-12 login-form px-4 py-5 px-xl-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-dark" style="font-size: 2rem;">Đăng Ký</h2>
+                    <p class="text-muted">Nhập thông tin để tiếp tục đăng ký</p>
                 </div>
 
-                <!-- Email -->
-                <div class="mb-4">
-                    <input type="email"
-                           class="form-control form-control-lg rounded-pill border-0 shadow-sm"
-                           name="email"
-                           placeholder="Email"
-                           style="height: 56px; background: #f8f9fa;"
-                           required>
-                </div>
+                <form action="xuly_login.php" method="POST" class="needs-validation" novalidate>
+                    <div class="mb-4">
+                        <label class="form-label fw-500">Họ và Tên</label>
+                        <input type="text"
+                            class="form-control form-control-lg rounded-3 border-2"
+                            name="username"
+                            placeholder="Vui lòng nhập Họ và Tên"
+                            required autofocus>
+                        <div class="invalid-feedback">Vui lòng nhập Họ và Tên !</div>
+                    </div>
 
-                <!-- Mật khẩu -->
-                <div class="mb-4">
-                    <input type="password"
-                           class="form-control form-control-lg rounded-pill border-0 shadow-sm"
-                           name="password"
-                           placeholder="Mật khẩu"
-                           style="height: 56px; background: #f8f9fa;"
-                           required>
-                </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-500">Nhập Email </label>
+                        <input type="password"
+                            class="form-control form-control-lg rounded-3 border-2"
+                            name="password"
+                            placeholder="Nhập Email"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập Email!</div>
+                    </div>
 
-                <!-- Xác nhận mật khẩu -->
-                <div class="mb-5">
-                    <input type="password"
-                           class="form-control form-control-lg rounded-pill border-0 shadow-sm"
-                           name="password_confirm"
-                           placeholder="Xác nhận mật khẩu"
-                           style="height: 56px; background: #f8f9fa;"
-                           required>
-                </div>
 
-                <!-- Nút Thêm người dùng -->
-                <button type="submit"
-                        class="btn btn-lg w-100 fw-bold rounded-pill text-white shadow"
-                        style="background: #FD7E14; height: 56px; font-size: 1.1rem;">
-                    Thêm người dùng
-                </button>
 
-                <!-- Link quay lại (tuỳ chọn) -->
-                <div class="text-center mt-4">
-                    <a href="login.php" class="small text-muted text-decoration-none">
-                        Quay lại đăng nhập
-                    </a>
-                </div>
-            </form>
+                    <div class="mb-4">
+                        <label class="form-label fw-500">Nhập Số Điện Thoại </label>
+                        <input type="password"
+                            class="form-control form-control-lg rounded-3 border-2"
+                            name="password"
+                            placeholder="Nhập Số Điện Thoại"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập Số Điện Thoại!</div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-500">Nhập Mật Khẩu </label>
+                        <input type="password"
+                            class="form-control form-control-lg rounded-3 border-2"
+                            name="password"
+                            placeholder="Nhập Mật Khẩu"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập Mật Khẩu!</div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <label class="form-label fw-500">Nhập lại Mật Khẩu </label>
+                        <input type="password"
+                            class="form-control form-control-lg rounded-3 border-2"
+                            name="password"
+                            placeholder="Nhập Lại Mật Khẩu"
+                            required>
+                        <div class="invalid-feedback">Vui lòng nhập lại Mật Khẩu!</div>
+                    </div>
+
+
+
+                   
+
+                    <button type="submit"
+                        class="btn btn-lg w-100 fw-600 rounded-3 text-white shadow-sm   "
+                        style="background: #FD7E14; padding: 0.9rem; font-size: 1.1rem;">
+                         Đăng ký 
+                    </button>
+
+                    <div class="text-center mt-4">
+                        <span class="text-muted">Đã có tài khoản?</span>
+                        <a href="register.php" class="fw-600 ms-1" style="color: #FD7E14; text-decoration: none;">
+                            Đăng Nhập Ngay
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
