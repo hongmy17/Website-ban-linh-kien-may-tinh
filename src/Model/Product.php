@@ -147,6 +147,7 @@ class Product extends Model {
     return $result;
   }
 
+  // Lấy option VD: Ram, SSD, CPU
   public function getProductOptions($productID) {
     $sql = "
         SELECT DISTINCT o.id, o.name AS option_name
@@ -161,6 +162,7 @@ class Product extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  // Lấy giá trị option VD: Ram -> 8gb, SSD -> 256
   public function getOptionValues($productID, $optionID) {
     $sql = "
         SELECT DISTINCT 
@@ -222,6 +224,7 @@ class Product extends Model {
     return $variants;
   }
 
+  // Lấy biến thể sản phẩm
   public function getProductVariants($productID) {
     $sql = 
       "SELECT 

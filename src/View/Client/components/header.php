@@ -57,28 +57,6 @@
  <!-- Navbar & Hero Start -->
  <div class="container-fluid nav-bar p-0">
      <div class="row gx-0 bg-primary px-5 align-items-center">
-         <div class="col-lg-3 d-none d-lg-block">
-             <nav class="navbar navbar-light position-relative" style="width: 250px;">
-                 <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
-                     data-bs-toggle="collapse" data-bs-target="#allCat">
-                     <h4 class="m-0"><i class="fa fa-bars me-2"></i>Tất cả danh mục</h4>
-                 </button>
-                 <div class="collapse navbar-collapse rounded-bottom" id="allCat">
-                     <div class="navbar-nav ms-auto py-0">
-                        <ul class="list-unstyled categories-bars">
-            
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Phụ kiện</a>
-                                        <span>(3)</span>
-                                    </div>
-                                </li>
-
-                        </ul>
-                     </div>
-                 </div>
-             </nav>
-         </div>
          <div class="col-12 col-lg-9">
              <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
                  <a href="/" class="navbar-brand d-block d-lg-none">
@@ -103,46 +81,12 @@
                              </div>
                          </div>
                          <a href="/contact" class="nav-item nav-link me-2">Liên hệ</a>
-                         <div class="nav-item dropdown d-block d-lg-none mb-3">
-                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
-                             <div class="dropdown-menu m-0">
-                                 <ul class="list-unstyled categories-bars">
-                                     <li>
-                                         <div class="categories-bars-item">
-                                             <a href="#">Phụ kiện</a>
-                                             <span>(3)</span>
-                                         </div>
-                                     </li>
-                                     <li>
-                                         <div class="categories-bars-item">
-                                             <a href="#">Điện tử & Máy tính</a>
-                                             <span>(5)</span>
-                                         </div>
-                                     </li>
-                                     <li>
-                                         <div class="categories-bars-item">
-                                             <a href="#">Laptops và máy tính để bàn</a>
-                                             <span>(2)</span>
-                                         </div>
-                                     </li>
-                                     <li>
-                                         <div class="categories-bars-item">
-                                             <a href="#">Điện thoại di động & Máy tính bảng</a>
-                                             <span>(8)</span>
-                                         </div>
-                                     </li>
-                                     <li>
-                                         <div class="categories-bars-item">
-                                             <a href="#">Điện thoại thông minh và TV thông minh</a>
-                                             <span>(5)</span>
-                                         </div>
-                                     </li>
-                                 </ul>
-                             </div>
-                         </div>
                      </div>
-                     <a href="" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0"><i
-                             class="fa fa-mobile-alt me-2"></i> +0123 456 7890</a>
+                     <div class="d-flex align-items-center">
+                         <a href="#" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3">
+                             <i class="fa fa-mobile-alt me-2"></i> +0123 456 7890
+                         </a>
+                     </div>
                  </div>
              </nav>
          </div>

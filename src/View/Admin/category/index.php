@@ -28,21 +28,28 @@
             <span class="ml-2">Tên</span>
           </th>
           <th>
+            <span class="ml-2">Số lượng sản phẩm</span>
+          </th>
+          <th>
             <span class="ml-4">Hàng động</span>
           </th>
         </tr>
       </thead>
       <tbody>
+        <?php foreach($categories as $index => $category): ?>
         <tr class="border-bottom">
           <td>
-            <div class="p-2">1</div>
+            <div class="p-2"><?= $index+1 ?></div>
           </td>
           <td>
             <div class="p-2 d-flex flex-row align-items-center mb-2">
               <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU</span>
+                <span class="d-block font-weight-bold"><?= $category["name"] ?></span>
               </div>
             </div>
+          </td>
+          <td>
+            <div class="p-2"><?= $category["product_count"] ?></div>
           </td>
           <td>
             <div class="p-2 icons">
@@ -57,102 +64,7 @@
             </div>
           </td>
         </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU</span>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#"
-                class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
+        <?php endforeach ?>
       </tbody>
     </table>
   </div>
