@@ -15,7 +15,7 @@ class Cart extends Model {
     return true;
   }
 
-  public function getUserCart($userId) {
+  public function getUserCart($userID) {
     $sql = "
       SELECT o.*, 
         COALESCE(SUM(od.price * od.quantity), 0) AS calculated_total
@@ -28,11 +28,11 @@ class Cart extends Model {
     ";
 
     $stmt = $this->connection->prepare($sql);
-    $stmt->execute([$userId]);
+    $stmt->execute([$userID]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getCartItems($userId) {
+  public function getCartItems($userID) {
     $sql = "
       SELECT 
         od.id AS order_detail_id,
@@ -48,7 +48,7 @@ class Cart extends Model {
         pv.discount_price,
 
         GROUP_CONCAT(
-            CONCAT(o.name, ':', ov.name)
+            CONCAT(o.name, ': ', ov.name)
             ORDER BY o.id SEPARATOR ' - '
         ) AS config_display
 
@@ -68,7 +68,46 @@ class Cart extends Model {
     ";
 
     $stmt = $this->connection->prepare($sql);
-    $stmt->execute([$userId]);
+    $stmt->execute([$userID]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getOrderItems($orderID) {
+    $sql = "
+      SELECT 
+        od.id AS order_detail_id,
+        od.product_id,
+        od.variant_id,
+        od.price,
+        od.quantity,
+
+        p.name AS product_name,
+        p.base_image,
+
+        pv.sku_id,
+        pv.discount_price,
+
+        GROUP_CONCAT(
+            CONCAT(o.name, ': ', ov.name)
+            ORDER BY o.id SEPARATOR ' - '
+        ) AS config_display
+
+      FROM orders ord
+      LEFT JOIN order_details od ON ord.id = od.order_id
+      LEFT JOIN products p ON od.product_id = p.id
+      LEFT JOIN product_variants pv ON od.variant_id = pv.id
+      LEFT JOIN variant_values vv ON pv.id = vv.variant_id AND vv.product_id = p.id
+      LEFT JOIN options o ON vv.option_id = o.id
+      LEFT JOIN option_values ov ON vv.value_id = ov.id
+
+      WHERE od.order_id = ? 
+
+      GROUP BY od.id, p.id, pv.id
+      ORDER BY od.created_at DESC
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$orderID]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 

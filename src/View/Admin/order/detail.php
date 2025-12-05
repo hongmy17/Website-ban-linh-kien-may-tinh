@@ -1,105 +1,162 @@
 <!-- Thông tin đơn hàng -->
-<div class="card p-4 mb-4">
-  <div class="row">
-    <!-- Thông tin chung -->
-    <div class="col-md-6">
-      <h5 class="mb-3">Thông tin chung</h5>
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-body p-4 p-lg-5">
+    <div class="row g-5">
+      <!-- Thông tin chung -->
+      <div class="col-lg-6">
+        <h5 class="fw-bold text-primary mb-4">
+          <i class="bi bi-info-circle"></i>Thông tin chung
+        </h5>
 
-      <div class="mb-3">
-        <label class="form-label">Trạng thái</label>
-        <input type="text" class="form-control" value="Đang vận chuyển" readonly>
+        <div class="row g-3">
+          <div class="col-sm-4"><label class="form-label fw-medium text-muted">Trạng thái</label></div>
+          <div class="col-sm-8">
+            <span class="badge fs-6 px-3 py-2 <?= $order['is_paid'] ? 'bg-success' : 'bg-warning text-dark' ?>">
+              <?= $order['is_paid'] ? 'Đã thanh toán' : 'Chưa thanh toán' ?>
+            </span>
+          </div>
+
+          <div class="col-sm-4"><label class="form-label fw-medium text-muted">Khách hàng</label></div>
+          <div class="col-sm-8"><span class="fw-semibold">Công Xum</span></div>
+
+          <div class="col-sm-4"><label class="form-label fw-medium text-muted">Ngày đặt hàng</label></div>
+          <div class="col-sm-8"><span class="text-dark"><?= htmlspecialchars($order['updated_at']) ?></span></div>
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Khách hàng</label>
-        <input type="text" class="form-control" value="Công Xum" readonly>
+      <!-- Thông tin người nhận -->
+      <div class="col-lg-6">
+        <h5 class="fw-bold text-primary mb-4">
+          <i class="bi bi-truck"></i>Thông tin người nhận
+        </h5>
+
+        <div class="row g-3">
+          <div class="col-sm-4"><label class="form-label fw-medium text-muted">Họ tên</label></div>
+          <div class="col-sm-8"><span class="fw-semibold">Quang Đồng</span></div>
+
+          <div class="col-sm-4"><label class="form-label fw-medium text-muted">Số điện thoại</label></div>
+          <div class="col-sm-8"><span class="fw-semibold">0123456789</span></div>
+
+          <div class="col-sm-4"><label class="form-label fw-medium text-muted">Địa chỉ</label></div>
+          <div class="col-sm-8"><span class="text-dark"><?= htmlspecialchars($order['address']) ?></span></div>
+        </div>
       </div>
-
-      <div class="mb-3">
-        <label class="form-label">Ngày đặt hàng</label>
-        <input type="text" class="form-control" value="10/15/2024, 12:30 PM" readonly>
-      </div>
-    </div>
-
-    <!-- Thông tin người nhận -->
-    <div class="col-md-6">
-      <h5 class="mb-3">Thông tin người nhận</h5>
-
-      <p><strong>Họ tên:</strong> Quang Đồng</p>
-      <p><strong>Số điện thoại:</strong> 0123456789</p>
-      <p><strong>Địa chỉ:</strong> 123 Đường ABC, Khu dân cư..., Quận 1, TP.HCM</p>
     </div>
   </div>
 </div>
 
+<!-- Chi tiết đơn hàng - Bảng trái + Tổng tiền phải (trong 1 card duy nhất) -->
+<div class="card shadow-sm border-0 overflow-hidden">
+  <div class="card-header bg-white border-0 py-4">
+    <h4 class="mb-0 fw-bold text-dark">
+      Danh sách sản phẩm
+    </h4>
+  </div>
 
-<!-- Chi tiết đơn hàng -->
-<h4>Danh sách sản phẩm</h4>
+  <div class="card-body p-0">
+    <div class="row g-0">
+      <!-- CỘT TRÁI: Danh sách sản phẩm -->
+      <div class="col-lg-8">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th class="ps-4" width="50">STT</th>
+                <th class="ps-3">Sản phẩm</th>
+                <th width="130" class="text-end pe-4">Đơn giá</th>
+                <th width="90" class="text-center">SL</th>
+                <th width="140" class="text-end pe-4">Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($orderItems as $index => $item): 
+                $price = $item['discount_price'] ?? $item['price'];
+                $subtotal = $price * $item['quantity'];
+              ?>
+                <tr>
+                  <td class="ps-4 text-muted"><?= $index + 1 ?></td>
+                  <td class="py-3">
+                    <div class="d-flex align-items-center">
+                      <img src="/upload/product/<?= htmlspecialchars($item['base_image']) ?>" 
+                           width="64" height="64" 
+                           class="rounded-3 me-3 object-fit-cover border" 
+                           alt="<?= htmlspecialchars($item['product_name']) ?>">
+                      <div>
+                        <a href="/admin/product/info?id=<?= $item['product_id'] ?>" 
+                           class="text-decoration-none text-dark fw-semibold mb-1 hover-text-primary product-name-2">
+                          <?= htmlspecialchars($item['product_name']) ?>
+                        </a>
+                        <?php if (!empty($item['config_display'])): ?>
+                          <small class="text-muted d-block">
+                            <?= nl2br(htmlspecialchars(str_replace(' - ', "\n", $item['config_display']))) ?>
+                          </small>
+                        <?php endif; ?>
+                        <?php if ($item['sku_id']): ?>
+                          <small class="text-muted">Mã: <?= htmlspecialchars($item['sku_id']) ?></small>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-end pe-4 text-secondary"><?= number_format($price) ?> ₫</td>
+                  <td class="text-center fw-bold text-dark">x<?= $item['quantity'] ?></td>
+                  <td class="text-end pe-4 fw-bold"><?= number_format($subtotal) ?> ₫</td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<div class="mt-3">
-  <form action="" method="post">
-    <table class="table table-borderless table-responsive card-1">
-      <thead>
-        <tr class="border-bottom">
-          <th><span class="ml-1">STT</span></th>
-          <th><span class="ml-2">Sản phẩm</span></th>
-          <th><span class="ml-2">Giá</span></th>
-          <th><span class="ml-2">Số lượng</span></th>
-        </tr>
-      </thead>
+      <!-- CỘT PHẢI: Tổng tiền (cố định bên phải, đẹp lung linh) -->
+      <div class="col-lg-4 bg-light border-start">
+        <div class="p-4">
+          <div class="bg-white rounded-4 shadow-sm p-4 h-100 d-flex flex-column justify-content-between">
+            <?php 
+              $subtotal = $order['subtotal'] ?? $order['total'];
+              $discount = $order['discount'] ?? 0;
+              $shipping = $order['shipping_fee'] ?? 0;
+            ?>
 
-      <tbody>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <a href="#"
-              class="p-2 d-flex flex-row align-items-center mb-2 text-decoration-none text-reset">
-              <img src="/public/assets/images/admin/default-product-image.png" width="40"
-                class="me-3 rounded-circle" />
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU Intel Core i5 14400F</span>
+            <div>
+              <div class="d-flex justify-content-between mb-3 text-muted fw-medium">
+                <span>Tạm tính</span>
+                <span><?= number_format($subtotal) ?> ₫</span>
               </div>
-            </a>
-          </td>
-          <td>
-            <div class="p-2">2,295,000₫</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-column">1</div>
-          </td>
-        </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <a href="#"
-              class="p-2 d-flex flex-row align-items-center mb-2 text-decoration-none text-reset">
-              <img src="/public/assets/images/admin/default-product-image.png" width="40"
-                class="me-3 rounded-circle" />
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">CPU Intel Core i5 14400F</span>
-              </div>
-            </a>
-          </td>
-          <td>
-            <div class="p-2">2,295,000₫</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-column">1</div>
-          </td>
-        </tr>
-      </tbody>
 
-      <tfoot>
-        <tr class="border-top">
-          <td colspan="2"></td>
-          <td class="fw-bold">Tổng tiền:</td>
-          <td class="fw-bold">4,590,000₫</td>
-        </tr>
-      </tfoot>
-    </table>
-  </form>
+              <?php if ($discount > 0): ?>
+              <div class="d-flex justify-content-between mb-3">
+                <span class="text-success">Giảm giá</span>
+                <span class="text-success fw-bold">-<?= number_format($discount) ?> ₫</span>
+              </div>
+              <?php endif; ?>
+
+              <div class="d-flex justify-content-between mb-3 text-muted fw-medium">
+                <span>Phí vận chuyển</span>
+                <span>30,000 ₫</span>
+              </div>
+            </div>
+
+            <div>
+              <hr class="my-4">
+
+              <div class="d-flex justify-content-between align-items-end mb-4">
+                <span class="fs-5 fw-bold text-dark">Tổng thanh toán</span>
+                <span class="fs-4 fw-bold text-danger">
+                  <?= number_format($order['total'] + 30000) ?> ₫
+                </span>
+              </div>
+
+              <div class="text-center">
+                <?php if ($order['is_paid']): ?>
+                  <span class="badge bg-success fs-6 px-4 py-2 w-100">Đã thanh toán</span>
+                <?php else: ?>
+                  <span class="badge bg-danger text-white fs-6 px-4 py-2 w-100">Chưa thanh toán</span>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

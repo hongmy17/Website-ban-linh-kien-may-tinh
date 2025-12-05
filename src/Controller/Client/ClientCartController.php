@@ -9,9 +9,9 @@ use App\Model\OrderDetail;
 
 class ClientCartController {
   public function index() {
-    $userId = 1;
+    $userID = 1;
 
-    // if (!$userId) {
+    // if (!$userID) {
     //   header('Location: /login');
     //   exit;
     // }
@@ -20,13 +20,13 @@ class ClientCartController {
     $orderModel = new Order();
     $orderDetailModel = new OrderDetail();
 
-    $cartInfo = $cartModel->getUserCart($userId);
+    $cartInfo = $cartModel->getUserCart($userID);
 
     // if (!$cartInfo) {
-    //   $cartInfo = $orderModel->getOrCreateCart($userId);
+    //   $cartInfo = $orderModel->getOrCreateCart($userID);
     // }
 
-    $cartItems = $cartModel->getCartItems($userId);
+    $cartItems = $cartModel->getCartItems($userID);
 
     $calculatedTotal = 0;
     foreach ($cartItems as $item) {
@@ -41,7 +41,7 @@ class ClientCartController {
     
     $viewer = new Viewer();
     echo $viewer->renderClient([
-      "pageTitle" => "Giỏ hàng của bạn",
+      "title" => "Giỏ hàng của bạn",
       "pageName" => "cart/index.php",
       "cartItems" => $cartItems,           
       "cartTotal" => $calculatedTotal,

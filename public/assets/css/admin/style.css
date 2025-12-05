@@ -12246,3 +12246,13 @@ body {
   max-width: 350px; /* Điều chỉnh theo layout */
   white-space: normal;
 }
+
+.product-name-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Đổi thành 2 nếu muốn 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px; /* Điều chỉnh theo layout */
+  white-space: normal;
+}

@@ -11,10 +11,10 @@
           <span class="ml-2">Người mua</span>
         </th>
         <th>
-          <span class="ml-2">Trạng thái</span>
+          <span class="ml-2">Tổng tiền</span>
         </th>
         <th>
-          <span class="ml-2">Tổng tiền</span>
+          <span class="ml-2">Trạng thái</span>
         </th>
         <th>
           <span class="ml-4">Hàng động</span>
@@ -22,39 +22,41 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="border-bottom">
-        <td>
-          <div class="p-2">1</div>
-        </td>
-        <td>
-          <a href="#"
-            class="p-2 d-flex flex-row align-items-center mb-2 text-decoration-none text-reset">
-            <img src="/public/assets/images/admin/default-user-image.webp" width="40"
-              class="me-3 rounded-circle" />
-            <div class="d-flex flex-column ml-2">
-              <span class="d-block font-weight-bold">Nguyễn Đặng Hồng Mỹ</span>
-              <small class="text-muted">example@gmail.com</small>
-            </div>
-          </a>
-        </td>
-        <td>
-          <div class="p-2">
-            <span class="status text-success">&bull;</span> Đã thanh toán
-          </div>
-        </td>
-        <td>
-          <div class="p-2">
-            4,590,000₫
-          </div>
-        </td>
-        <td>
-          <div class="p-2 icons">
-            <a href="#" class="edit text-decoration-none mx-3">
-              <i class="fas fa-info"></i>
+      <?php foreach ($orders as $index => $order): ?>
+        <tr class="border-bottom">
+          <td>
+            <div class="p-2"><?= $index + 1; ?></div>
+          </td>
+          <td>
+            <a href="/admin/user/info?id=<?= $order["user_id"]; ?>"
+              class="p-2 d-flex flex-row align-items-center mb-2 text-decoration-none text-reset">
+              <img src="/upload/user/<?= $order["avatar"]; ?>" width="40"
+                class="me-3 rounded-circle" />
+              <div class="d-flex flex-column ml-2">
+                <span class="d-block font-weight-bold"><?= $order["user_name"]; ?></span>
+                <small class="text-muted"><?= $order["email"]; ?></small>
+              </div>
             </a>
-          </div>
-        </td>
-      </tr>
+          </td>
+          <td>
+            <div class="p-2">
+              <?= number_format($order["total"], 0, ',') ?>₫
+            </div>
+          </td>
+          <td>
+            <div class="p-2">
+              <?= $order["is_paid"] ? "Đã thanh toán" : "Chưa thanh toán"; ?>
+            </div>
+          </td>
+          <td>
+            <div class="p-2 icons">
+              <a href="/admin/order/detail?id=<?= $order["id"]; ?>" class="edit text-decoration-none mx-3">
+                <i class="fas fa-info"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      <?php endforeach; ?>
     </tbody>
   </table>
 

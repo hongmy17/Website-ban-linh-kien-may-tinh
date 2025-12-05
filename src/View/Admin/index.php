@@ -15,7 +15,7 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
     crossorigin="anonymous"></script>
-  <link rel="shortcut icon" href="/public/assets/images/favicon1.png" />
+    <link rel="icon" type="image/x-icon" href="/public/assets/images/admin/favicon.png">
 </head>
 
 <body class="sb-nav-fixed">

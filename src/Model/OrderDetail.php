@@ -43,19 +43,19 @@ class OrderDetail extends Model
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function removeFromCart($orderDetailId, $userId) {
+  public function removeFromCart($orderDetailId, $userID) {
     $sql = "
       DELETE od FROM order_details od
       JOIN orders o ON od.order_id = o.id
       WHERE od.id = ? AND o.user_id = ? AND o.is_paid = 0
     ";
     $stmt = $this->connection->prepare($sql);
-    return $stmt->execute([$orderDetailId, $userId]);
+    return $stmt->execute([$orderDetailId, $userID]);
   }
 
-  public function updateQuantity($orderDetailId, $quantity, $userId) {
+  public function updateQuantity($orderDetailId, $quantity, $userID) {
     if ($quantity <= 0) {
-      return $this->removeFromCart($orderDetailId, $userId);
+      return $this->removeFromCart($orderDetailId, $userID);
     }
 
     $sql = "
@@ -65,6 +65,6 @@ class OrderDetail extends Model
       WHERE od.id = ? AND o.user_id = ? AND o.is_paid = 0
     ";
     $stmt = $this->connection->prepare($sql);
-    return $stmt->execute([$quantity, $orderDetailId, $userId]);
+    return $stmt->execute([$quantity, $orderDetailId, $userID]);
   }
 }
