@@ -13,6 +13,7 @@ class AdminProductController {
 
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
+      "title" => "Danh sách sản phẩm",
       "pageName" => "product/index.php",
       "products" => $products,
     ]);
@@ -20,36 +21,63 @@ class AdminProductController {
 
   public function add() {
     $viewer = new Viewer();
-    echo $viewer->renderAdmin(["pageName" => "product/add-form.php"]);
+    echo $viewer->renderAdmin([
+      "title" => "Thêm sản phẩm",
+      "pageName" => "product/add-form.php",
+    ]);
   }
 
   public function edit() {
-    $viewer = new Viewer();
-    echo $viewer->renderAdmin(["pageName" => "product/edit-form.php"]);
-  }
-
-  public function info() {
-    $productModel = new Product();
-    $product = $productModel->find($_GET["id"]);
-
-    if (!$product) {
-        die("Sản phẩm không tồn tại!");
-    }
-
     $categoryModel = new Category();
-    $category = $categoryModel->find($product["category_id"]) ?: ['name' => 'Chưa có danh mục'];
+    $categories = $categoryModel->findAll();
 
-    $optionsID = $productModel->getOptionsID($product["id"]);
-    $optionsWithValues = $productModel->getOptionsName($optionsID); // đã fix
-    $variants = $productModel->getProductVariantsWithOptions($product["id"]);
+    $productModel = new Product();
+    $productID = $_GET["id"];
+
+    $product = $productModel->getProductDetail($productID);
+    $options  = $productModel->getProductOptions($productID);
+    $variants = $productModel->getVariantsForAdminEdit($productID);
+    $optionValues = [];
+    foreach ($options as $opt) {
+      $optionValues[$opt['id']] = $productModel->getOptionValues($productID, $opt['id']);
+    }
 
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
+      "title" => $product["name"],
+      "pageName" => "product/edit-form.php",
+      "product" => $product,
+      "options" => $options,
+      "variants" => $variants,
+      "optionValues" => $optionValues,
+      "categories" => $categories,
+    ]);
+  }
+
+  public function info() {
+    $categoryModel = new Category();
+    $categories = $categoryModel->findAll();
+
+    $productModel = new Product();
+    $productID = $_GET["id"];
+
+    $product = $productModel->getProductDetail($productID);
+    $options  = $productModel->getProductOptions($productID);
+    $variants = $productModel->getVariantsForAdminEdit($productID);
+    $optionValues = [];
+    foreach ($options as $opt) {
+      $optionValues[$opt['id']] = $productModel->getOptionValues($productID, $opt['id']);
+    }
+
+    $viewer = new Viewer();
+    echo $viewer->renderAdmin([
+      "title" => $product["name"],
       "pageName" => "product/info.php",
       "product" => $product,
-      "category" => $category,
-      "optionsWithValues" => $optionsWithValues,
-      "variants" => $variants, // có thể là []
+      "options" => $options,
+      "variants" => $variants,
+      "optionValues" => $optionValues,
+      "categories" => $categories,
     ]);
   }
 }

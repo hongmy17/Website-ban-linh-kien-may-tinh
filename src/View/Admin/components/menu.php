@@ -43,7 +43,6 @@
           <nav class="sb-sidenav-menu-nested nav">
             <a class="nav-link" href="/admin/product/add">Thêm sản phẩm</a>
             <a class="nav-link" href="/admin/product">Danh sách sản phẩm</a>
-            <a class="nav-link" href="/admin/product/edit">Chỉnh sửa sản phẩm</a>
           </nav>
         </div>
 

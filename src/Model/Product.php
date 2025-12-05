@@ -121,31 +121,6 @@ class Product extends Model {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
-  
-  public function getOptionsID($productID) {
-    $sql = "SELECT option_id FROM product_options WHERE product_id = ?";
-    $stmt = $this->connection->prepare($sql);
-    $stmt->execute([$productID]);
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
-  }
-
-  public function getOptionsName($optionIDs) {
-    if (empty($optionIDs)) {
-      return [];
-    }
-
-    $placeholders = str_repeat('?,', count($optionIDs) - 1) . '?';
-    $sql = "SELECT id, name FROM options WHERE id IN ($placeholders) ORDER BY id";
-
-    $stmt = $this->connection->prepare($sql);
-    $stmt->execute($optionIDs);
-
-    $result = [];
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-      $result[$row['id']] = $row['name'];
-    }
-    return $result;
-  }
 
   // Lấy option VD: Ram, SSD, CPU
   public function getProductOptions($productID) {
@@ -224,59 +199,49 @@ class Product extends Model {
     return $variants;
   }
 
-  // Lấy biến thể sản phẩm
-  public function getProductVariants($productID) {
-    $sql = 
-      "SELECT 
-            pv.id,
-            pv.sku_id,
-            pv.price,
-            pv.discount_price,
-            pv.quantity_in_stock,
-            pv.is_default
-        FROM product_variants pv
-        WHERE pv.product_id = ?
-          AND pv.is_active = 1
-        ORDER BY pv.price ASC
-      ";
-
-    $stmt = $this->connection->prepare($sql);
-    $stmt->execute([$productID]);
-    
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-  }
-
-  public function getProductVariantsWithOptions($productID) {
+  public function getVariantsForAdminEdit($productID) {
     $sql = "
-        SELECT 
-            pv.id,
-            pv.sku_id,
-            pv.price,
-            pv.discount_price,
-            pv.quantity_in_stock,
-            pv.is_default,
-            
-            GROUP_CONCAT(
-                CONCAT(o.name, ':', ov.name) 
-                ORDER BY o.id SEPARATOR ' / '
-            ) AS config_display
-
-        FROM product_variants pv
-        LEFT JOIN variant_values vv ON pv.id = vv.variant_id
-        LEFT JOIN options o ON vv.option_id = o.id
-        LEFT JOIN option_values ov ON vv.value_id = ov.id
-        
-        WHERE pv.product_id = ? 
-          AND pv.is_active = 1
-          
-        GROUP BY pv.id
-        ORDER BY pv.price ASC
+      SELECT 
+        pv.id,
+        pv.sku_id,
+        pv.price,
+        pv.discount_price,
+        pv.quantity_in_stock,
+        pv.is_default,
+        GROUP_CONCAT(CONCAT(vv.option_id, ':', vv.value_id) SEPARATOR ',') AS map
+      FROM product_variants pv
+      LEFT JOIN variant_values vv ON pv.id = vv.variant_id
+      WHERE pv.product_id = ? AND pv.is_active = 1
+      GROUP BY pv.id
+      ORDER BY pv.is_default DESC, pv.price ASC
     ";
 
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$productID]);
-    
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $variants = [];
+    foreach ($rows as $row) {
+        $map = [];
+        if ($row["map"]) {
+            foreach (explode(",", $row["map"]) as $pair) {
+                $tmp = explode(":", $pair);
+                $map[(int)$tmp[0]] = (int)$tmp[1];
+            }
+        }
+
+        $variants[] = [
+          "id" => (int)$row["id"],
+          "sku_id" => $row["sku_id"] ?? "",
+          "price" => (float)$row["price"],
+          "discount_price" => $row["discount_price"] ? (float)$row["discount_price"] : null,
+          "quantity_in_stock" => (int)$row["quantity_in_stock"],
+          "is_default" => (bool)$row["is_default"],
+          "values" => $map // [option_id => value_id]
+        ];
+    }
+
+    return $variants;
   }
 
   public function getRelatedProductsWithCategory($productID, $categoryID) {

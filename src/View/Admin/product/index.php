@@ -31,6 +31,9 @@
             <span class="ml-2">Giá</span>
           </th>
           <th>
+            <span class="ml-2">Đã bán</span>
+          </th>
+          <th>
             <span class="ml-4">Hàng động</span>
           </th>
         </tr>
@@ -63,12 +66,17 @@
             </div>
           </td>
           <td>
+            <div class="p-2">
+              <?= $product["sold"]; ?>
+            </div>
+          </td>
+          <td>
             <div class="p-2 icons">
               <a href="/admin/product/info?id=<?= $product["id"]; ?>"
                 class="edit text-decoration-none">
                 <i class="fas fa-info"></i>
               </a>
-              <a href="#"
+              <a href="/admin/product/edit?id=<?= $product["id"]; ?>"
                 class="edit text-decoration-none">
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
