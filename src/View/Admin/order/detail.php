@@ -17,7 +17,7 @@
           </div>
 
           <div class="col-sm-4"><label class="form-label fw-medium text-muted">Khách hàng</label></div>
-          <div class="col-sm-8"><span class="fw-semibold">Công Xum</span></div>
+          <div class="col-sm-8"><span class="fw-semibold"><?= $buyer["name"]; ?></span></div>
 
           <div class="col-sm-4"><label class="form-label fw-medium text-muted">Ngày đặt hàng</label></div>
           <div class="col-sm-8"><span class="text-dark"><?= htmlspecialchars($order['updated_at']) ?></span></div>
@@ -32,10 +32,10 @@
 
         <div class="row g-3">
           <div class="col-sm-4"><label class="form-label fw-medium text-muted">Họ tên</label></div>
-          <div class="col-sm-8"><span class="fw-semibold">Quang Đồng</span></div>
+          <div class="col-sm-8"><span class="fw-semibold"><?= $order["receiver_name"]; ?></span></div>
 
           <div class="col-sm-4"><label class="form-label fw-medium text-muted">Số điện thoại</label></div>
-          <div class="col-sm-8"><span class="fw-semibold">0123456789</span></div>
+          <div class="col-sm-8"><span class="fw-semibold"><?= $order["receiver_phone"]; ?></span></div>
 
           <div class="col-sm-4"><label class="form-label fw-medium text-muted">Địa chỉ</label></div>
           <div class="col-sm-8"><span class="text-dark"><?= htmlspecialchars($order['address']) ?></span></div>

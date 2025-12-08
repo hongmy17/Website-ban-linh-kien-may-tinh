@@ -12,17 +12,25 @@ class AdminCategoryController {
 
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
+      "title" => "Danh sách danh mục",
       "pageName" => "category/index.php",
-      "categories" => $categories]);
+      "categories" => $categories
+    ]);
   }
 
   public function add() {
     $viewer = new Viewer();
-    echo $viewer->renderAdmin(["pageName" => "category/add-form.php"]);
+    echo $viewer->renderAdmin([
+      "title" => "Thêm danh mục",
+      "pageName" => "category/add-form.php"
+    ]);
   }
 
   public function edit() {
     $viewer = new Viewer();
-    echo $viewer->renderAdmin(["pageName" => "category/edit-form.php"]);
+    echo $viewer->renderAdmin([
+      "title" => "Sửa danh mục",
+      "pageName" => "category/edit-form.php",
+    ]);
   }
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title><?= $title ?? "Electro - Electronics Website Template";?></title>
+    <title><?= $title ?? "Trang chủ";?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="icon" type="image/x-icon" href="/public/assets/images/client/favicon.png">
 

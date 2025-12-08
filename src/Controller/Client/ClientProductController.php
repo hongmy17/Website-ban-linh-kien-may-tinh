@@ -9,20 +9,21 @@ use App\Model\Category;
 class ClientProductController {
   public function index() {
     $productModel = new Product();
+    $products = $productModel->findAll();
 
     $categoryModel = new Category();
     $categoriesWithCount = $categoryModel->getCategoriesWithCount();
     $popularProducts = $productModel->getPopularProducts(6);
 
     // Cấu hình phân trang
-    $perPage = 6; // số sản phẩm mỗi trang
-    $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-    $categoryId = $_GET['category'] ?? null; // lọc theo danh mục (tùy chọn)
+    // $perPage = 6; // số sản phẩm mỗi trang
+    // $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+    // $categoryId = $_GET['category'] ?? null; // lọc theo danh mục (tùy chọn)
 
     // Lấy dữ liệu phân trang
-    $products = $productModel->getPaginatedProducts($page, $perPage, $categoryId);
-    $totalProducts = $productModel->getTotalProducts($categoryId);
-    $totalPages = ceil($totalProducts / $perPage);
+    // $products = $productModel->getPaginatedProducts($page, $perPage, $categoryId);
+    // $totalProducts = $productModel->getTotalProducts($categoryId);
+    // $totalPages = ceil($totalProducts / $perPage);
 
     $viewer = new Viewer();
     echo $viewer->renderClient([
@@ -31,11 +32,11 @@ class ClientProductController {
       "products" => $products,
       "categoriesWithCount" => $categoriesWithCount,
       "popularProducts" => $popularProducts,
-      "currentPage"  => $page,
-      "totalPages"   => $totalPages,
-      "totalProducts"=> $totalProducts,
-      "perPage"      => $perPage,
-      "categoryId"   => $categoryId,
+      // "currentPage"  => $page,
+      // "totalPages"   => $totalPages,
+      // "totalProducts"=> $totalProducts,
+      // "perPage"      => $perPage,
+      // "categoryId"   => $categoryId,
     ]);
   }
 
@@ -60,7 +61,7 @@ class ClientProductController {
 
     $viewer = new Viewer();
     echo $viewer->renderClient([
-      "title" => $product["name"],
+      "title" => "Chi tiết sản phẩm - " . $product["name"],
       "pageName" => "product/detail.php",
       "categoriesWithCount" => $categoriesWithCount,
       "product" => $product,

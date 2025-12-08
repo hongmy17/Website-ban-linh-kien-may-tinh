@@ -4,9 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    Bảng điều khiển
-  </title>
+  <title><?= $title ?? "Bảng điều khiển";?></title>
   <!-- Bootstrap CSS 5.1.3 -->
   <link href="/public/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
   <!-- wysiwyg-editor 4.1.3 -->

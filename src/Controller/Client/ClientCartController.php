@@ -52,6 +52,9 @@ class ClientCartController {
   
   public function checkOut() {
     $viewer = new Viewer();
-    echo $viewer->renderClient(["pageName" => "cart/check-out.php"]);
+    echo $viewer->renderClient([
+      "title" => "Thanh toán",
+      "pageName" => "cart/check-out.php",
+    ]);
   }
 }

@@ -24,12 +24,18 @@ class ClientAccountController
     public function login()
     {
         $viewer = new Viewer();
-        echo $viewer->renderClient(["pageName" => "account/login.php"]);
+        echo $viewer->renderClient([
+            "title" => "Đăng nhập",
+            "pageName" => "account/login.php"
+        ]);
     }
 
     public function register()
     {
         $viewer = new Viewer();
-        echo $viewer->renderClient(["pageName" => "account/register.php"]);
+        echo $viewer->renderClient([
+            "title" => "Đăng ký",
+            "pageName" => "account/register.php",
+        ]);
     }
 }

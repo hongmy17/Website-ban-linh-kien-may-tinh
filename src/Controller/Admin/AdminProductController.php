@@ -44,7 +44,7 @@ class AdminProductController {
 
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
-      "title" => $product["name"],
+      "title" => "Sửa sản phẩm - " . $product["name"],
       "pageName" => "product/edit-form.php",
       "product" => $product,
       "options" => $options,
@@ -71,7 +71,7 @@ class AdminProductController {
 
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
-      "title" => $product["name"],
+      "title" => "Thông tin sản phẩm - " . $product["name"],
       "pageName" => "product/info.php",
       "product" => $product,
       "options" => $options,

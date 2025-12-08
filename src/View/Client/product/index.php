@@ -118,10 +118,9 @@
                                 </div>
                             <?php endforeach; ?>
 
-                            <?php if ($totalPages > 1): ?>
+                            <!-- <?php if ($totalPages > 1): ?>
                                 <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="pagination d-flex justify-content-center mt-5">
-                                        <!-- Previous -->
                                         <a href="?page=<?= max(1, $currentPage - 1) ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" 
                                         class="rounded <?= $currentPage <= 1 ? 'disabled' : '' ?>">&laquo;</a>
 
@@ -143,7 +142,6 @@
                                             <a href="?page=<?= $totalPages ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" class="rounded"><?= $totalPages ?></a>
                                         <?php endif; ?>
 
-                                        <!-- Next -->
                                         <a href="?page=<?= min($totalPages, $currentPage + 1) ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" 
                                         class="rounded <?= $currentPage >= $totalPages ? 'disabled' : '' ?>">&raquo;</a>
                                     </div>
@@ -153,7 +151,7 @@
                             <div class="text-center text-muted mb-4">
                                 Hiển thị <?= count($products) ?> trong tổng số <?= $totalProducts ?> sản phẩm
                                 <?php if ($categoryId): ?> (đang lọc theo danh mục)<?php endif; ?>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,9 @@ use App\Framework\Viewer;
 class ClientContactController {
   public function index() {
     $viewer = new Viewer();
-    echo $viewer->renderClient(["pageName" => "contact/index.php"]);
+    echo $viewer->renderClient([
+      "title" => "Liên hệ",
+      "pageName" => "contact/index.php",
+    ]);
   }
 }

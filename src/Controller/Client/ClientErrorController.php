@@ -7,6 +7,9 @@ use App\Framework\Viewer;
 class ClientErrorController {
   public function notFound() {
     $viewer = new Viewer();
-    echo $viewer->renderClient(["pageName" => "error/404.php"]);
+    echo $viewer->renderClient([
+      "title" => "404",
+      "pageName" => "error/404.php",
+    ]);
   }
 }

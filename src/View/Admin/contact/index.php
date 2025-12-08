@@ -68,17 +68,17 @@
                             </div>
                         </td>
                         <td>
-                        <div class="p-2 d-flex flex-row align-items-center mb-2">
-                            <img
-                                src="/upload/user/<?= $contact['avatar'] ?>"
-                                width="40"
-                                class="me-3 rounded-circle" />
-                            <div class="d-flex flex-column ml-2">
-                                <span class="d-block font-weight-bold"><?= $contact['user_name'] ?></span>
-                                <small class="text-muted"><?= $contact['user_email'] ?></small>
-                            </div>
-                        </div>
-                    </td>
+                            <a href="/admin/user/info?id=<?= $contact["process_by"]; ?>" class="p-2 d-flex flex-row align-items-center mb-2 text-decoration-none">
+                                <img
+                                    src="/upload/user/<?= $contact['avatar'] ?>"
+                                    width="40"
+                                    class="me-3 rounded-circle" />
+                                <div class="d-flex flex-column ml-2">
+                                    <span class="d-block font-weight-bold text-dark"><?= $contact['user_name'] ?></span>
+                                    <small class="text-muted"><?= $contact['user_email'] ?></small>
+                                </div>
+                            </a>
+                        </td>
                         <td>
                             <div class="p-2 icons">
                                 <a href="#" class="edit text-decoration-none">
