@@ -21,6 +21,8 @@ use App\Controller\Admin\AdminUserController;
 use App\Controller\Admin\AdminProductController;
 use App\Controller\Admin\AdminCategoryController;
 use App\Controller\Admin\AdminOrderController;
+use App\Controller\Admin\AdminContactController;
+
 
 $router = new Router();
 
@@ -65,6 +67,9 @@ $router->add("/admin/product/info", ["controller" => AdminProductController::cla
 $router->add("/admin/category", ["controller" => AdminCategoryController::class, "action" => "index"]);
 $router->add("/admin/category/add", ["controller" => AdminCategoryController::class, "action" => "add"]);
 $router->add("/admin/category/edit", ["controller" => AdminCategoryController::class, "action" => "edit"]);
+
+// Contact
+$router->add("/admin/contact", ["controller" => AdminContactController::class, "action" => "index"]);
 
 // Order
 $router->add("/admin/order", ["controller" => AdminOrderController::class, "action" => "index"]);

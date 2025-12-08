@@ -56,6 +56,17 @@
             <a class="nav-link" href="/admin/order">Danh sách đơn hàng</a>
           </nav>
         </div>
+
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts5">
+          <div class="sb-nav-link-icon"><i class="fas fa-money-check-alt"></i></i></div>
+          Liên hệ
+          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+        </a>
+        <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+          <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="/admin/contact">Danh sách liên hệ</a>
+          </nav>
+        </div>
       </div>
     </div>
   </nav>
