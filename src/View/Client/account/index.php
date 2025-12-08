@@ -12,7 +12,7 @@
                         <!-- Cột trái: Avatar siêu to khổng lồ + viền gradient đẹp -->
                         <div class="col-lg-4 text-center">
                             <div class="position-relative d-inline-block">
-                                <img src="https://i.pinimg.com/736x/7b/b4/7b/7bb47bed6ee479dde60bad88b35c0cd4.jpg"
+                                <img src="/upload/user/<?= $user["avatar"]; ?>"
                                      class="rounded-circle border border-5 border-white shadow-lg"
                                      alt="Avatar"
                                      width="220"
@@ -27,9 +27,11 @@
 
                         <!-- Cột phải: Thông tin + nút -->
                         <div class="col-lg-8">
-                            <h2 class="fw-bold text-dark mb-1">Nguyễn Văn A</h2>
+                            <h2 class="fw-bold text-dark mb-1"><?= $user["name"]; ?></h2>
                             <p class="text-primary fw-medium mb-4">
-                                <span class="badge bg-primary text-white px-3 py-2 rounded-pill">Thành viên VIP</span>
+                                <span class="badge bg-primary text-white px-3 py-2 rounded-pill">
+                                    <?= $user["is_admin"] ? "Admin" : "Người dùng"; ?>
+                                </span>
                             </p>
 
                             <div class="row g-3 mb-4">
@@ -38,7 +40,7 @@
                                         <i class="bi bi-envelope-fill text-primary me-3"></i>
                                         <div>
                                             <small class="text-muted d-block">Email</small>
-                                            <strong>nguyenvana@example.com</strong>
+                                            <strong><?= $user["email"]; ?></strong>
                                         </div>
                                     </div>
                                 </div>
