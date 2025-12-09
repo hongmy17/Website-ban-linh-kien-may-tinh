@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Model\Product;
 use App\Model\Category;
 use App\Framework\Viewer;
+use GuzzleHttp\Handler\Proxy;
 
 class AdminProductController
 {
@@ -185,6 +186,16 @@ class AdminProductController
       "optionValues" => $optionValues,
       "categories" => $categories,
     ]);
+  }
+
+  public function delete()
+  {
+    $productID = $_GET["id"];
+    $productModel = new Product();
+    $productModel->delete($productID);
+
+    header("Location: /admin/product");
+    exit;
   }
 
   public function deleteVariant()

@@ -392,16 +392,16 @@ class Product extends Model
     return (int)$stmt->fetchColumn();
   }
 
-  public function hasDefaultVariant($productID): bool
+  public function hasDefaultVariant($productID)
   {
     $sql = "SELECT 1 
             FROM product_variants 
-            WHERE product_id = :product_id 
+            WHERE product_id = ?
               AND is_default = 1 
             LIMIT 1";
 
     $stmt = $this->connection->prepare($sql);
-    $stmt->execute(['product_id' => $productID]);
+    $stmt->execute([$productID]);
 
     return $stmt->fetchColumn() !== false;
   }
@@ -545,6 +545,46 @@ class Product extends Model
       $variantData["id"],
       $productID
     ]);
+  }
+
+  public function hasVariant($productID)
+  {
+    $sql = "
+      SELECT 1
+      FROM product_variants
+      WHERE product_id = ?
+      LIMIT 1
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$productID]);
+
+    return $stmt->fetchColumn() !== false;
+  }
+
+
+  public function delete($productID)
+  {
+    $this->deleteProductOptions($productID);
+    $this->deleteProduct($productID);
+  }
+
+  public function deleteProduct($productID)
+  {
+    if ($this->hasVariant($productID)) {
+      echo "<script>confirm('Không thể xóa sản phẩm có biến thể!')</script>" ;
+      return;
+    }
+
+    $sql = "DELETE FROM {$this->table} WHERE id = ?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$productID]);
+  }
+
+  public function deleteProductOptions($productID) {
+    $sql = "DELETE FROM product_options WHERE product_id = ?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$productID]);
   }
 
   public function deleteProductValues($variantID)

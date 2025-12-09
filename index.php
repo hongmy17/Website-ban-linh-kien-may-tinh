@@ -59,12 +59,13 @@ $router->add("/admin/user/info", ["controller" => AdminUserController::class, "a
 $router->add("/admin/product", ["controller" => AdminProductController::class, "action" => "index"]);
 $router->add("/admin/product/add", ["controller" => AdminProductController::class, "action" => "add"]);
 $router->add("/admin/product/store", ["controller" => AdminProductController::class, "action" => "store"]);
+$router->add("/admin/product/storeVariant", ["controller" => AdminProductController::class, "action" => "storeVariant"]);
 $router->add("/admin/product/edit", ["controller" => AdminProductController::class, "action" => "edit"]);
 $router->add("/admin/product/update", ["controller" => AdminProductController::class, "action" => "update"]);
-$router->add("/admin/product/storeVariant", ["controller" => AdminProductController::class, "action" => "storeVariant"]);
 $router->add("/admin/product/updateVariant", ["controller" => AdminProductController::class, "action" => "updateVariant"]);
-$router->add("/admin/product/deleteVariant", ["controller" => AdminProductController::class, "action" => "deleteVariant"]);
 $router->add("/admin/product/info", ["controller" => AdminProductController::class, "action" => "info"]);
+$router->add("/admin/product/delete", ["controller" => AdminProductController::class, "action" => "delete"]);
+$router->add("/admin/product/deleteVariant", ["controller" => AdminProductController::class, "action" => "deleteVariant"]);
 
 // Category
 $router->add("/admin/category", ["controller" => AdminCategoryController::class, "action" => "index"]);

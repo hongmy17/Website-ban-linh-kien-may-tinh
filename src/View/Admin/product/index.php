@@ -80,7 +80,7 @@
                 class="edit text-decoration-none">
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
-              <a href="#"
+              <a href="/admin/product/delete?id=<?= $product["id"]; ?>"
                 class="edit text-decoration-none">
                 <i class="fa fa-trash text-danger"></i>
               </a>

@@ -209,7 +209,7 @@
             <a
               href="/admin/product/deleteVariant?product_id=<?= $product["id"]; ?>&variant_id=<?= $variant["id"]; ?>" type="button" class="btn btn-outline-danger btn-sm remove-variant"
               data-id="<?= $variant['id'] ?>"
-              onclick="return confirm('<?= $variant['is_default'] ? 'Không thể xóa biến thể mặc định!' : 'Xóa biến thể này? Dữ liệu sẽ mất vĩnh viễn!' ?>');">
+              onclick="return confirm('<?= $variant['is_default'] ? 'Không thể xóa biến thể mặc định!' : 'Bạn có chắc muốn xóa biến thể này? Dữ liệu sẽ mất vĩnh viễn!' ?>');">
               <i class="bi bi-trash"></i> Xóa biến thể
             </a>
 
