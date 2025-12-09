@@ -19,6 +19,16 @@ class Product extends Model
     return true;
   }
 
+  public function getLatestProductID()
+  {
+    $sql = "SELECT MAX(id) AS last_id FROM products";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute();
+
+    $result = $stmt->fetchColumn();
+    return $result;
+  }
+
   public function getProductDetail($productID)
   {
     $sql = "
@@ -128,6 +138,13 @@ class Product extends Model
 
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getFullOptions()
+  {
+    $sql = "SELECT * FROM options";
+    $rows = $this->connection->query($sql);
+    return $rows->fetchAll(PDO::FETCH_ASSOC);
   }
 
   // Lấy option VD: Ram, SSD, CPU
@@ -375,12 +392,31 @@ class Product extends Model
     return (int)$stmt->fetchColumn();
   }
 
+  public function hasDefaultVariant($productID): bool
+  {
+    $sql = "SELECT 1 
+            FROM product_variants 
+            WHERE product_id = :product_id 
+              AND is_default = 1 
+            LIMIT 1";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute(['product_id' => $productID]);
+
+    return $stmt->fetchColumn() !== false;
+  }
+
   public function storeAndGetVariantID($productID, $variantData)
   {
+    $isDefault = 1;
+    if ($this->hasDefaultVariant($productID)) {
+      $isDefault = 0;
+    }
+
     $sql = "
       INSERT INTO product_variants 
         (product_id, sku_id, price, discount_price, quantity_in_stock, is_default, is_active, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, 0, 1, NOW(), NOW())
+        VALUES (?, ?, ?, ?, ?, ?, 1, NOW(), NOW())
     ";
 
     $stmt = $this->connection->prepare($sql);
@@ -390,10 +426,55 @@ class Product extends Model
       $variantData['price'],
       $variantData['discount_price'] ?: null,
       $variantData['quantity'],
+      $isDefault,
     ]);
 
     $variantID = $this->connection->lastInsertId();
     return $variantID;
+  }
+
+  public function storeAndGetProductID($productData)
+  {
+    $sql = "
+      INSERT INTO products
+        (name, base_image, base_price, base_discount_price, description, view, sold, category_id, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, 0, 0, ?, NOW(), NOW())
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $productData["name"],
+      $productData["base_image"] ?? null,
+      $productData["base_price"],
+      $productData["base_discount_price"] ?: null,
+      $productData["description"] ?? "",
+      $productData["category_id"],
+    ]);
+
+    $productID = $this->connection->lastInsertId();
+    return $productID;
+  }
+
+  public function storeProductOptions($productID, $options)
+  {
+    $sql = "
+      INSERT INTO product_options
+        (product_id, option_id)
+        VALUES (?, ?)
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    foreach ($options as $opt) {
+      $stmt->execute([$productID, $opt]);
+    }
+  }
+
+  public function store($productData, $options)
+  {
+    $productID = $this->storeAndGetProductID($productData);
+    if ($options != NULL) {
+      $this->storeProductOptions($productID, $options);
+    }
   }
 
   public function storeVariantValue($variantID, $productID, $options)
@@ -419,6 +500,8 @@ class Product extends Model
 
   public function update($productID, $productData)
   {
+    $newImage = $productData["base_image"] ?? null;
+
     $sql = "
       UPDATE products SET 
         name = ?, 
@@ -426,7 +509,7 @@ class Product extends Model
         base_price = ?, 
         base_discount_price = ?, 
         category_id = ?, 
-        base_image = COALESCE(?, base_image),
+        base_image = COALESCE(NULLIF(?, ''), base_image),
         updated_at = NOW()
       WHERE id = ?
     ";
@@ -438,7 +521,7 @@ class Product extends Model
       $productData["base_price"],
       $productData["base_discount_price"] ?: null,
       $productData["category_id"],
-      $productData["base_image"] ?? null,
+      $newImage,
       $productID
     ]);
   }
@@ -466,14 +549,14 @@ class Product extends Model
 
   public function deleteProductValues($variantID)
   {
-    $sql = "DELETE FROM variant_values WHERE variant_id = ?"; 
+    $sql = "DELETE FROM variant_values WHERE variant_id = ?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$variantID]);
   }
 
   public function deleteProductVariant($variantID)
   {
-    $sql = "DELETE FROM product_variants WHERE id = ?"; 
+    $sql = "DELETE FROM product_variants WHERE id = ?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$variantID]);
   }

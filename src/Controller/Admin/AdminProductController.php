@@ -23,11 +23,45 @@ class AdminProductController
 
   public function add()
   {
+    $categoryModel = new Category();
+    $categories = $categoryModel->findAll();
+
+    $productModel = new Product();
+    $fullOptions = $productModel->getFullOptions();
+
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
       "title" => "Thêm sản phẩm",
       "pageName" => "product/add-form.php",
+      "categories" => $categories,
+      "fullOptions" => $fullOptions,
     ]);
+  }
+
+  public function store()
+  {
+    $productModel = new Product();
+
+    $productData = [
+      "name" => trim($_POST["name"]),
+      "description" => $_POST["description"] ?? "",
+      "base_price" => (float)$_POST["base_price"],
+      "base_discount_price" => $_POST["base_discount_price"] ? (float)$_POST["base_discount_price"] : null,
+      "category_id" => (int)$_POST["category_id"],
+      "base_image" => $_FILES["base_image"]["name"] ?? null,
+    ];
+
+    if (!empty($_FILES["base_image"]["name"])) {
+      $target = "upload/product/" . basename($_FILES["base_image"]["name"]);
+      move_uploaded_file($_FILES["base_image"]["tmp_name"], $target);
+    }
+
+    $options = $_POST["options"];
+    $productModel->store($productData, $options);
+    $productID = $productModel->getLatestProductID();
+
+    header("Location: /admin/product/edit?id=$productID");
+    exit;
   }
 
   public function storeVariant()

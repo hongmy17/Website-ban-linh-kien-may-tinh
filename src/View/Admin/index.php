@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $title ?? "Bảng điều khiển";?></title>
+  <title><?= $title ?? "Bảng điều khiển"; ?></title>
   <!-- Bootstrap CSS 5.1.3 -->
   <link href="/public/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
   <!-- wysiwyg-editor 4.1.3 -->
@@ -13,7 +13,7 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
     crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="/public/assets/images/admin/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/public/assets/images/admin/favicon.png">
 </head>
 
 <body class="sb-nav-fixed">
@@ -24,9 +24,6 @@
 
     <div id="layoutSidenav_content">
       <div class="container-fluid p-4">
-        <!-- @include('admin.components.error-alert')
-        @include('admin.components.success-alert') -->
-
         <?php require_once $pageName; ?>
       </div>
     </div>

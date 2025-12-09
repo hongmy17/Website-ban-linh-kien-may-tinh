@@ -1,10 +1,11 @@
-<form action="/admin/product/update?id=<?= $product["id"]; ?>" method="post" class="container rounded" style="padding: 50px 0;">
+<form action="/admin/product/update?id=<?= $product["id"]; ?>" method="post" class="container rounded" style="padding: 50px 0;" enctype="multipart/form-data">
   <div class="bg-white">
     <div class="row align-items-center account-form">
       <div class="col-md-6 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-          <img width="300px" id="avatar"
+          <img width="300px" id="base_image"
             src="/upload/product/<?= $product["base_image"]; ?>" />
+          <input type="file" style="width: 200px;" class="mt-4" name="base_image" />
         </div>
       </div>
       <div class="col-md-6 border-right">
@@ -57,9 +58,9 @@
               <p class="field-message mb-0"></p>
             </div>
           </div>
-          <div class="row mt-3">
-            <div class="col-md-12 text-end">
-              <button type="submit" class="btn btn-primary">Lưu</button>
+          <div class="row mt-5">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary profile-button" style="background-color: #333">Lưu</button>
             </div>
           </div>
         </div>
@@ -227,6 +228,11 @@
   <?php endif; ?>
 </div>
 
+
+<script src="/public/features/loadImageFromInput.js"></script>
+<script>
+  loadImageFromInput("input[name='base_image']", "#base_image");
+</script>
 <script>
   // Chuyển dữ liệu PHP sang JS một cách an toàn (PHP thuần)
   const options = <?= json_encode($options, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
@@ -313,10 +319,6 @@
 
         <div class="row mt-4">
           <div class="col-12 text-end">
-            <button type="button" class="btn btn-outline-success btn-sm me-2 set-default">
-              <i class="bi bi-check-circle"></i> Đặt làm mặc định
-            </button>
-
             <button type="button" class="btn btn-outline-danger btn-sm remove-variant" onclick="removeTempVariant(${variantIndex})">
               <i class="bi bi-trash"></i> Xóa biến thể
             </button>
