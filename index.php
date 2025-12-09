@@ -14,7 +14,6 @@ use App\Controller\Client\ClientErrorController;
 use App\Controller\Client\ClientCartController;
 use App\Controller\Client\ClientAccountController;
 
-
 // Admin
 use App\Controller\Admin\AdminDashboardController;
 use App\Controller\Admin\AdminUserController;
@@ -22,7 +21,6 @@ use App\Controller\Admin\AdminProductController;
 use App\Controller\Admin\AdminCategoryController;
 use App\Controller\Admin\AdminOrderController;
 use App\Controller\Admin\AdminContactController;
-
 
 $router = new Router();
 
@@ -61,6 +59,8 @@ $router->add("/admin/user/info", ["controller" => AdminUserController::class, "a
 $router->add("/admin/product", ["controller" => AdminProductController::class, "action" => "index"]);
 $router->add("/admin/product/add", ["controller" => AdminProductController::class, "action" => "add"]);
 $router->add("/admin/product/edit", ["controller" => AdminProductController::class, "action" => "edit"]);
+$router->add("/admin/product/update", ["controller" => AdminProductController::class, "action" => "update"]);
+$router->add("/admin/product/updateVariant", ["controller" => AdminProductController::class, "action" => "updateVariant"]);
 $router->add("/admin/product/info", ["controller" => AdminProductController::class, "action" => "info"]);
 
 // Category

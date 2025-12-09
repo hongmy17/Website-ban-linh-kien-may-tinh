@@ -1,21 +1,26 @@
 <?php
 
 namespace App\Model;
+
 use Exception;
 use PDO;
 
-class Product extends Model {
+class Product extends Model
+{
   protected $table = "products";
 
-  public function getTableName(): string {
+  public function getTableName(): string
+  {
     return $this->table;
   }
 
-  public function validate(array $data): bool {
+  public function validate(array $data): bool
+  {
     return true;
   }
 
-  public function getProductDetail($productID) {
+  public function getProductDetail($productID)
+  {
     $sql = "
         SELECT 
             p.*, c.name AS category_name
@@ -30,7 +35,8 @@ class Product extends Model {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getProductWithCategories($limit = null, $offset = 0) {
+  public function getProductWithCategories($limit = null, $offset = 0)
+  {
     $sql = "
       SELECT 
         p.id,
@@ -46,7 +52,7 @@ class Product extends Model {
     ";
 
     if ($limit !== null) {
-        $sql .= " LIMIT :offset, :limit";
+      $sql .= " LIMIT :offset, :limit";
     }
 
     $stmt = $this->connection->prepare($sql);
@@ -60,7 +66,8 @@ class Product extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getLatestProduct($limit = null, $offset = 0) {
+  public function getLatestProduct($limit = null, $offset = 0)
+  {
     $sql = "
       SELECT 
         p.id,
@@ -77,7 +84,7 @@ class Product extends Model {
     ";
 
     if ($limit !== null) {
-        $sql .= " LIMIT :offset, :limit";
+      $sql .= " LIMIT :offset, :limit";
     }
 
     $stmt = $this->connection->prepare($sql);
@@ -91,7 +98,8 @@ class Product extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getBestSellerProducts($limit = null, $offset = 0) {
+  public function getBestSellerProducts($limit = null, $offset = 0)
+  {
     $sql = "
       SELECT 
         p.id,
@@ -108,7 +116,7 @@ class Product extends Model {
     ";
 
     if ($limit !== null) {
-        $sql .= " LIMIT :offset, :limit";
+      $sql .= " LIMIT :offset, :limit";
     }
 
     $stmt = $this->connection->prepare($sql);
@@ -123,7 +131,8 @@ class Product extends Model {
   }
 
   // Lấy option VD: Ram, SSD, CPU
-  public function getProductOptions($productID) {
+  public function getProductOptions($productID)
+  {
     $sql = "
         SELECT DISTINCT o.id, o.name AS option_name
         FROM options o
@@ -138,7 +147,8 @@ class Product extends Model {
   }
 
   // Lấy giá trị option VD: Ram -> 8gb, SSD -> 256
-  public function getOptionValues($productID, $optionID) {
+  public function getOptionValues($productID, $optionID)
+  {
     $sql = "
         SELECT DISTINCT 
             ov.id AS value_id,
@@ -157,7 +167,22 @@ class Product extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getVariantsForJavascript($productID) {
+  public function getOptionFullValues($optionID)
+  {
+    $sql = "
+      SELECT 
+        id as value_id,
+        name as value_name
+      FROM option_values 
+      WHERE option_id = ?
+    ";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$optionID]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getVariantsForJavascript($productID)
+  {
     $sql = "
         SELECT 
             pv.id,
@@ -178,28 +203,29 @@ class Product extends Model {
 
     $variants = [];
     foreach ($rows as $row) {
-        $map = [];
-        if ($row['map']) {
-            foreach (explode(',', $row['map']) as $pair) {
-                $tmp = explode(':', $pair);
-                $map[$tmp[0]] = (int)$tmp[1];
-            }
+      $map = [];
+      if ($row['map']) {
+        foreach (explode(',', $row['map']) as $pair) {
+          $tmp = explode(':', $pair);
+          $map[$tmp[0]] = (int)$tmp[1];
         }
+      }
 
-        $variants[] = [
-            'id'      => (int)$row['id'],
-            'price'   => (float)$row['price'],
-            'discount_price'=> $row['discount_price'] ? (float)$row['discount_price'] : null,
-            'stock'   => (int)$row['stock'],
-            'default' => (bool)$row['is_default'],
-            'values'  => $map // ví dụ: [1=>12, 2=>5, 3=>10
-        ];
+      $variants[] = [
+        'id'      => (int)$row['id'],
+        'price'   => (float)$row['price'],
+        'discount_price' => $row['discount_price'] ? (float)$row['discount_price'] : null,
+        'stock'   => (int)$row['stock'],
+        'default' => (bool)$row['is_default'],
+        'values'  => $map // ví dụ: [1=>12, 2=>5, 3=>10
+      ];
     }
 
     return $variants;
   }
 
-  public function getVariantsForAdminEdit($productID) {
+  public function getVariantsForAdminEdit($productID)
+  {
     $sql = "
       SELECT 
         pv.id,
@@ -222,29 +248,30 @@ class Product extends Model {
 
     $variants = [];
     foreach ($rows as $row) {
-        $map = [];
-        if ($row["map"]) {
-            foreach (explode(",", $row["map"]) as $pair) {
-                $tmp = explode(":", $pair);
-                $map[(int)$tmp[0]] = (int)$tmp[1];
-            }
+      $map = [];
+      if ($row["map"]) {
+        foreach (explode(",", $row["map"]) as $pair) {
+          $tmp = explode(":", $pair);
+          $map[(int)$tmp[0]] = (int)$tmp[1];
         }
+      }
 
-        $variants[] = [
-          "id" => (int)$row["id"],
-          "sku_id" => $row["sku_id"] ?? "",
-          "price" => (float)$row["price"],
-          "discount_price" => $row["discount_price"] ? (float)$row["discount_price"] : null,
-          "quantity_in_stock" => (int)$row["quantity_in_stock"],
-          "is_default" => (bool)$row["is_default"],
-          "values" => $map // [option_id => value_id]
-        ];
+      $variants[] = [
+        "id" => (int)$row["id"],
+        "sku_id" => $row["sku_id"] ?? "",
+        "price" => (float)$row["price"],
+        "discount_price" => $row["discount_price"] ? (float)$row["discount_price"] : null,
+        "quantity_in_stock" => (int)$row["quantity_in_stock"],
+        "is_default" => (bool)$row["is_default"],
+        "values" => $map // [option_id => value_id]
+      ];
     }
 
     return $variants;
   }
 
-  public function getRelatedProductsWithCategory($productID, $categoryID) {
+  public function getRelatedProductsWithCategory($productID, $categoryID)
+  {
     $sql = "
       SELECT 
         p.*, c.name AS category_name
@@ -253,14 +280,15 @@ class Product extends Model {
       WHERE p.category_id = ?
         AND p.id != ?
     ";
-    
+
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$categoryID, $productID]);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getPopularProducts($limit) {
+  public function getPopularProducts($limit)
+  {
     $limit = (int)$limit;
     if ($limit <= 0) $limit = 5;
 
@@ -279,15 +307,17 @@ class Product extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function increaseView($productID) {
+  public function increaseView($productID)
+  {
     $sql = "UPDATE products SET view = view + 1 WHERE id = ?";
 
     $stmt = $this->connection->prepare($sql);
-    
+
     return $stmt->execute([$productID]);
   }
 
-  public function getPaginatedProducts($page = 1, $perPage = 6, $categoryId = null) {
+  public function getPaginatedProducts($page = 1, $perPage = 6, $categoryId = null)
+  {
     $page    = (int)$page;
     $perPage = (int)$perPage;
     if ($page < 1) $page = 1;
@@ -329,7 +359,8 @@ class Product extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getTotalProducts($categoryId = null) {
+  public function getTotalProducts($categoryId = null)
+  {
     $sql = "SELECT COUNT(*) FROM products p";
 
     $params = [];
@@ -342,5 +373,52 @@ class Product extends Model {
     $stmt->execute($params);
 
     return (int)$stmt->fetchColumn();
+  }
+
+  public function update($productID, $productData)
+  {
+    $sql = "
+      UPDATE products SET 
+        name = ?, 
+        description = ?, 
+        base_price = ?, 
+        base_discount_price = ?, 
+        category_id = ?, 
+        base_image = COALESCE(?, base_image),
+        updated_at = NOW()
+      WHERE id = ?
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    return $stmt->execute([
+      $productData["name"],
+      $productData["description"] ?? "",
+      $productData["base_price"],
+      $productData["base_discount_price"] ?: null,
+      $productData["category_id"],
+      $productData["base_image"] ?? null,
+      $productID
+    ]);
+  }
+
+  public function updateVariant($productID, $variantData)
+  {
+    $sql = "
+      UPDATE product_variants SET
+        price = ?,
+        discount_price = ?,
+        quantity_in_stock = ?,
+        updated_at = NOW()
+      WHERE id = ? AND product_id = ?
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $variantData["price"],
+      $variantData["discount_price"] ?: null,
+      $variantData["quantity"],
+      $variantData["id"],
+      $productID
+    ]);
   }
 }
