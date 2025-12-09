@@ -152,4 +152,15 @@ class AdminProductController
       "categories" => $categories,
     ]);
   }
+
+  public function deleteVariant()
+  {
+    $productModel = new Product();
+    $productID = $_GET["product_id"];
+    $variantID = $_GET["variant_id"];
+
+    $productModel->deleteVariant($variantID);
+    header("Location: /admin/product/edit?id=$productID");
+    exit;
+  }
 }

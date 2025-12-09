@@ -463,4 +463,24 @@ class Product extends Model
       $productID
     ]);
   }
+
+  public function deleteProductValues($variantID)
+  {
+    $sql = "DELETE FROM variant_values WHERE variant_id = ?"; 
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$variantID]);
+  }
+
+  public function deleteProductVariant($variantID)
+  {
+    $sql = "DELETE FROM product_variants WHERE id = ?"; 
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$variantID]);
+  }
+
+  public function deleteVariant($variantID)
+  {
+    $this->deleteProductValues($variantID);
+    $this->deleteProductVariant($variantID);
+  }
 }

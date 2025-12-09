@@ -205,10 +205,12 @@
             <?php endif; ?>
 
             <!-- Nút Xóa -->
-            <button type="button" class="btn btn-outline-danger btn-sm remove-variant"
-              data-id="<?= $variant['id'] ?>">
+            <a
+              href="/admin/product/deleteVariant?product_id=<?= $product["id"]; ?>&variant_id=<?= $variant["id"]; ?>" type="button" class="btn btn-outline-danger btn-sm remove-variant"
+              data-id="<?= $variant['id'] ?>"
+              onclick="return confirm('<?= $variant['is_default'] ? 'Không thể xóa biến thể mặc định!' : 'Xóa biến thể này? Dữ liệu sẽ mất vĩnh viễn!' ?>');">
               <i class="bi bi-trash"></i> Xóa biến thể
-            </button>
+            </a>
 
             <!-- Nút Lưu -->
             <button type="submit" class="btn btn-outline-primary btn-sm ms-2 save-variant"
@@ -251,6 +253,7 @@
 
     const template = document.createElement('form');
     template.className = 'border rounded p-4 mb-4 position-relative variant-item';
+    template.id = 'variant-' + variantIndex;
     template.style.cssText = 'border: 1px solid #ddd; background: #fff;';
     template.setAttribute('method', 'POST');
     template.setAttribute('action', '/admin/product/storeVariant?product_id=<?= $product["id"]; ?>');
@@ -314,7 +317,7 @@
               <i class="bi bi-check-circle"></i> Đặt làm mặc định
             </button>
 
-            <button type="button" class="btn btn-outline-danger btn-sm remove-variant">
+            <button type="button" class="btn btn-outline-danger btn-sm remove-variant" onclick="removeTempVariant(${variantIndex})">
               <i class="bi bi-trash"></i> Xóa biến thể
             </button>
 
@@ -342,6 +345,12 @@
     }
 
     variantIndex++;
+  }
+
+  function removeTempVariant(id) {
+    const tempVariant = document.querySelector(`#variant-${id}`);
+    tempVariant.remove();
+    variantIndex--;
   }
 
   function escapeHtml(text) {
