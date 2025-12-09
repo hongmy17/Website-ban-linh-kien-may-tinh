@@ -375,6 +375,48 @@ class Product extends Model
     return (int)$stmt->fetchColumn();
   }
 
+  public function storeAndGetVariantID($productID, $variantData)
+  {
+    $sql = "
+      INSERT INTO product_variants 
+        (product_id, sku_id, price, discount_price, quantity_in_stock, is_default, is_active, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, 0, 1, NOW(), NOW())
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $productID,
+      $variantData['sku_id'] ?? '',
+      $variantData['price'],
+      $variantData['discount_price'] ?: null,
+      $variantData['quantity'],
+    ]);
+
+    $variantID = $this->connection->lastInsertId();
+    return $variantID;
+  }
+
+  public function storeVariantValue($variantID, $productID, $options)
+  {
+    $sql = "
+      INSERT INTO variant_values 
+        (variant_id, product_id, option_id, value_id) 
+        VALUES (?, ?, ?, ?)
+    ";
+    $stmt = $this->connection->prepare($sql);
+    foreach ($options as $optionID => $valueID) {
+      if ($valueID) {
+        $stmt->execute([$variantID, $productID, $optionID, $valueID]);
+      }
+    }
+  }
+
+  public function storeVariant($productID, $variantData)
+  {
+    $variantID = $this->storeAndGetVariantID($productID, $variantData);
+    $this->storeVariantValue($variantID, $productID, $variantData["options"]);
+  }
+
   public function update($productID, $productData)
   {
     $sql = "

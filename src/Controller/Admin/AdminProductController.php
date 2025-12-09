@@ -30,6 +30,24 @@ class AdminProductController
     ]);
   }
 
+  public function storeVariant()
+  {
+    $productID = $_GET["product_id"];
+    $productModel = new Product();
+
+    $variantData = [
+      "sku_id" => $_POST["sku_id"],
+      "price" => (float)$_POST["price"],
+      "discount_price" => $_POST["discount_price"] ? (float)$_POST["discount_price"] : null,
+      "quantity" => (int)$_POST["quantity"],
+      "options" => $_POST["variants"]["options"],
+    ];
+
+    $productModel->storeVariant($productID, $variantData);
+    header("Location: /admin/product/edit?id=$productID");
+    exit;
+  }
+
   public function edit()
   {
     $categoryModel = new Category();

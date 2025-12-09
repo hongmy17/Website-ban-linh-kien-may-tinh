@@ -240,50 +240,20 @@
       addBtn.addEventListener('click', function(e) {
         e.preventDefault();
         addNewVariant();
+        scrollToEnd();
       });
     }
-
-    // Xử lý nút xóa biến thể (dùng event delegation)
-    document.addEventListener('click', function(e) {
-      const removeBtn = e.target.closest('.remove-variant');
-      if (removeBtn) {
-        removeBtn.closest('.variant-item').remove();
-        updateVariantCount();
-      }
-
-      // Xử lý nút "Đặt làm mặc định" (chỉ hiệu ứng giao diện)
-      const defaultBtn = e.target.closest('.set-default');
-      if (defaultBtn) {
-        // Bỏ hết default cũ
-        document.querySelectorAll('.variant-item').forEach(item => {
-          item.style.border = '1px solid #ddd';
-          item.style.background = '#fff';
-          const oldBadge = item.querySelector('.default-badge');
-          if (oldBadge) oldBadge.remove();
-        });
-
-        // Đánh dấu cái mới
-        const item = defaultBtn.closest('.variant-item');
-        item.style.border = '2px solid #28a745';
-        item.style.background = '#f8fff9';
-
-        const badge = document.createElement('span');
-        badge.className = 'position-absolute top-0 end-0 badge bg-success default-badge';
-        badge.style.transform = 'translateY(-50%)';
-        badge.style.fontSize = '0.8rem';
-        badge.textContent = 'Mặc định';
-        item.appendChild(badge);
-      }
-    });
   });
 
   function addNewVariant() {
     const container = document.querySelector('#variants');
     if (!container) return;
 
-    const template = document.createElement('div');
+    const template = document.createElement('form');
     template.className = 'border rounded p-4 mb-4 position-relative variant-item';
     template.style.cssText = 'border: 1px solid #ddd; background: #fff;';
+    template.setAttribute('method', 'POST');
+    template.setAttribute('action', '/admin/product/storeVariant?product_id=<?= $product["id"]; ?>');
 
     let optionsHtml = '';
     options.forEach(opt => {
@@ -297,7 +267,7 @@
             <div class="mb-3">
                 <label class="form-label fw-semibold">${escapeHtml(opt.option_name)}</label>
                 <select class="form-select variant-option-select"
-                        name="variants[${variantIndex}][options][${opt.id}]"
+                        name="variants[options][${opt.id}]"
                         data-option-id="${opt.id}" required>
                     ${selectHtml}
                 </select>
@@ -316,34 +286,42 @@
         <div class="row mt-3">
             <div class="col-md-6">
                 <label class="labels">SKU</label>
-                <input type="text" class="form-control" name="variants[${variantIndex}][sku_id]" required>
+                <input type="text" class="form-control" name="sku_id" required>
             </div>
             <div class="col-md-6">
-                <label class="labels">Giá bán</label>
-                <input type="number" class="form-control" name="variants[${variantIndex}][price]" required>
-            </div>
+            <label class="labels">Giá bán</label>
+            <input type="number" class="form-control"
+              name="price" required>
+          </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-md-6">
-                <label class="labels">Giá giảm (khuyến mãi)</label>
-                <input type="number" class="form-control" name="variants[${variantIndex}][discount_price]">
+              <label class="labels">Giá giảm (khuyến mãi)</label>
+              <input type="number" class="form-control"
+                name="discount_price">
             </div>
             <div class="col-md-6">
-                <label class="labels">Tồn kho</label>
-                <input type="number" class="form-control" min="0" name="variants[${variantIndex}][quantity]" required>
+              <label class="labels">Tồn kho</label>
+              <input type="number" class="form-control" min="0"
+                name="quantity" required>
             </div>
         </div>
 
         <div class="row mt-4">
-            <div class="col-12 text-end">
-                <button type="button" class="btn btn-outline-success btn-sm me-2 set-default">
-                    Đặt làm mặc định
-                </button>
-                <button type="button" class="btn btn-outline-danger btn-sm remove-variant">
-                    Xóa biến thể
-                </button>
-            </div>
+          <div class="col-12 text-end">
+            <button type="button" class="btn btn-outline-success btn-sm me-2 set-default">
+              <i class="bi bi-check-circle"></i> Đặt làm mặc định
+            </button>
+
+            <button type="button" class="btn btn-outline-danger btn-sm remove-variant">
+              <i class="bi bi-trash"></i> Xóa biến thể
+            </button>
+
+            <button type="submit" class="btn btn-outline-primary btn-sm ms-2 save-variant">
+              <i class="bi bi-save"></i> Lưu
+            </button>
+          </div>
         </div>
 
         <input type="hidden" name="variants[${variantIndex}][id]" value="">
@@ -364,22 +342,18 @@
     }
 
     variantIndex++;
-    updateVariantCount();
-  }
-
-  function updateVariantCount() {
-    const count = document.querySelectorAll('.variant-item').length;
-    const badge = document.querySelector('.badge.fs-6');
-    if (badge) {
-      badge.textContent = count + ' biến thể';
-      badge.classList.toggle('bg-primary', count > 0);
-      badge.classList.toggle('bg-secondary', count === 0);
-    }
   }
 
   function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+
+  function scrollToEnd() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 </script>
