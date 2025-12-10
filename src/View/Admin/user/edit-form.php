@@ -14,6 +14,7 @@
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="text-right">Chỉnh sửa thông tin</h4>
           </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Tên</label><input type="text" class="form-control"
@@ -25,6 +26,7 @@
               </p>
             </div>
           </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Email</label><input type="email" class="form-control"
@@ -36,6 +38,31 @@
               </p>
             </div>
           </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Địa chỉ</label><input type="text" class="form-control"
+                placeholder="Phường, thành phố" value="<?= $user['address'] ?>" name="address" />
+              <p class="field-message mb-0">
+                <!-- @error('email')
+                {{ $message }}
+                @enderror -->
+              </p>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Số điện thoại</label><input type="Number" class="form-control"
+                placeholder="0123456789" value="<?= $user['phone'] ?>" name="phone" />
+              <p class="field-message mb-0">
+                <!-- @error('email')
+                {{ $message }}
+                @enderror -->
+              </p>
+            </div>
+          </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Mật khẩu</label>
@@ -48,6 +75,7 @@
               </p>
             </div>
           </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Xác nhận mật khẩu</label>
@@ -60,6 +88,7 @@
               </p>
             </div>
           </div>
+
           <div class="row mt-2">
             <label for="is_admin" class="labels" style="width: unset">
               Quản trị

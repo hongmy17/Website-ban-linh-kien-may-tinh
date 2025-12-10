@@ -31,6 +31,12 @@
             <span class="ml-2">Tên</span>
           </th>
           <th>
+            <span class="ml-2">Địa chỉ</span>
+          </th>
+          <th>
+            <span class="ml-2">SĐT</span>
+          </th>
+          <th>
             <span class="ml-2">Vai trò</span>
           </th>
           <th>
@@ -56,6 +62,23 @@
               </div>
             </div>
           </td>
+
+          <td>
+            <div class="p-2 d-flex flex-column">
+              <span>
+                <?= $user['address']; ?>
+              </span>
+            </div>
+          </td>
+          
+          <td>
+            <div class="p-2 d-flex flex-column">
+              <span>
+                <?= $user['phone']; ?>
+              </span>
+            </div>
+          </td>
+
           <td>
             <div class="p-2 d-flex flex-column">
               <span>
@@ -63,6 +86,7 @@
               </span>
             </div>
           </td>
+          
           <td>
             <div class="p-2 icons">
               <a href="/admin/user/info?id=<?= $user['id']; ?>" class="edit text-decoration-none">

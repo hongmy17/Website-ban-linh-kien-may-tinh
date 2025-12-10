@@ -1,44 +1,54 @@
 <?php
 
 namespace App\Model;
+
 use Exception;
 use PDO;
 
-class User extends Model {
+class User extends Model
+{
   protected $table = "users";
 
-  public function getTableName(): string {
+  public function getTableName(): string
+  {
     return $this->table;
   }
 
-  public function validate(array $data): bool {
+  public function validate(array $data): bool
+  {
     return true;
   }
 
-  public function update($id, $userData)  {
+  public function update($id, $userData)
+  {
     $newImage = $userData["avatar"] ?? null;
     $newPassword = $userData["password"] ?? null;
 
     $sql = "
       UPDATE users SET 
         name = ?, 
-        email = ?, 
+        email = ?,
+        address = ?, 
+        phone = ?, 
         avatar = COALESCE(NULLIF(?, ''), avatar),
         password = COALESCE(NULLIF(?, ''), password)
       WHERE id = ?
     ";
-    
+
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([
       $userData["name"],
       $userData["email"] ?? "",
+      $userData["address"],
+      $userData["phone"] ?? "",
       $newImage,
       $newPassword,
       $id
     ]);
   }
 
-  public function getUserNameBy($userID) {
+  public function getUserNameBy($userID)
+  {
     $sql = "SELECT name FROM users WHERE id = ?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$userID]);

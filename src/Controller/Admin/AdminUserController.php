@@ -22,6 +22,8 @@ class AdminUserController
 
   public function add()
   {
+    $userModel = new User();
+    $fullOptions = $userModel->getTableName();
     $viewer = new Viewer();
     echo $viewer->renderAdmin([
       "title" => "Thêm người dùng",
@@ -49,6 +51,8 @@ class AdminUserController
     $userData = [
       "name" => trim($_POST["name"]),
       "email" => $_POST["email"] ?? "",
+      "address" => trim($_POST["address"]),
+      "phone" => $_POST["phone"] ?? "",
       "password" => $_POST["password"] ?? "",
       "avatar" => $_FILES["avatar"]["name"] ?? null,
     ];

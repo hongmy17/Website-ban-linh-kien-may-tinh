@@ -27,6 +27,7 @@
               <p class="field-message mb-0"></p>
             </div>
           </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Email</label><input
@@ -39,6 +40,33 @@
               <p class="field-message mb-0"></p>
             </div>
           </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Địa chỉ</label><input
+                readonly
+                type="text"
+                class="form-control"
+                placeholder="Phường, Thành phố"
+                name="address"
+                value="<?= $user['address']; ?>" />
+              <p class="field-message mb-0"></p>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Số điện thoại</label><input
+                readonly
+                type="Number"
+                class="form-control"
+                placeholder="Phường, Thành phố"
+                name="phone"
+                value="<?= $user['phone']; ?>" />
+              <p class="field-message mb-0"></p>
+            </div>
+          </div>
+
           <div class="row mt-2">
             <label for="is_admin" class="labels" style="width: unset">Quản trị</label>
             <input

@@ -34,6 +34,7 @@
               </p>
             </div>
           </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Email</label><input
@@ -49,6 +50,39 @@
               </p>
             </div>
           </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Địa chỉ</label><input
+                type="text"
+                class="form-control"
+                placeholder="VD: Phường, Thành Phố"
+                name="address"
+                value="" />
+              <p class="field-message mb-0">
+                <!-- @error('address')
+                {{ $message }}
+                @enderror -->
+              </p>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Số điện thoại</label><input
+                type="Number"
+                class="form-control"
+                placeholder="VD: 0123456789"
+                name="phone"
+                value="" />
+              <p class="field-message mb-0">
+                <!-- @error('phone')
+                {{ $message }}
+                @enderror -->
+              </p>
+            </div>
+          </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Mật khẩu</label>
@@ -60,6 +94,7 @@
               </p>
             </div>
           </div>
+
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Xác nhận mật khẩu</label>
@@ -71,6 +106,7 @@
               </p>
             </div>
           </div>
+
           <div class="mt-5 text-center">
             <button
               class="btn btn-primary profile-button"
