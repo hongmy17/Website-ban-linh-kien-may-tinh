@@ -15,6 +15,29 @@ class User extends Model {
     return true;
   }
 
+  public function update($id, $userData)  {
+    $newImage = $userData["avatar"] ?? null;
+    $newPassword = $userData["password"] ?? null;
+
+    $sql = "
+      UPDATE users SET 
+        name = ?, 
+        email = ?, 
+        avatar = COALESCE(NULLIF(?, ''), avatar),
+        password = COALESCE(NULLIF(?, ''), password)
+      WHERE id = ?
+    ";
+    
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $userData["name"],
+      $userData["email"] ?? "",
+      $newImage,
+      $newPassword,
+      $id
+    ]);
+  }
+
   public function getUserNameBy($userID) {
     $sql = "SELECT name FROM users WHERE id = ?";
     $stmt = $this->connection->prepare($sql);

@@ -7,7 +7,7 @@
             class="rounded-circle"
             width="250px"
             id="avatar"
-            src="/public/assets/images/admin/default-user-image.webp" />
+            src="/upload/user/<?= $user['avatar']; ?>" />
         </div>
       </div>
       <div class="col-md-6 border-right">
@@ -23,7 +23,7 @@
                 class="form-control"
                 placeholder="Mỹ"
                 name="name"
-                value="Nguyễn Đặng Hồng Mỹ" />
+                value="<?= $user['name']; ?>" />
               <p class="field-message mb-0"></p>
             </div>
           </div>
@@ -35,7 +35,7 @@
                 class="form-control"
                 placeholder="example@gmail.com"
                 name="email"
-                value="example@gmail.com" />
+                value="<?= $user['email']; ?>" />
               <p class="field-message mb-0"></p>
             </div>
           </div>

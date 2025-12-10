@@ -54,6 +54,8 @@ $router->add("/admin/user", ["controller" => AdminUserController::class, "action
 $router->add("/admin/user/add", ["controller" => AdminUserController::class, "action" => "add"]);
 $router->add("/admin/user/edit", ["controller" => AdminUserController::class, "action" => "edit"]);
 $router->add("/admin/user/info", ["controller" => AdminUserController::class, "action" => "info"]);
+$router->add("/admin/user/update", ["controller" => AdminUserController::class, "action" => "update"]);
+
 
 // Product
 $router->add("/admin/product", ["controller" => AdminProductController::class, "action" => "index"]);

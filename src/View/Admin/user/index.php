@@ -39,35 +39,36 @@
         </tr>
       </thead>
       <tbody>
+        <?php foreach($users as $index => $user): ?>
         <tr class="border-bottom">
           <td>
-            <div class="p-2">1</div>
+            <div class="p-2"><?= $index + 1; ?></div>
           </td>
           <td>
             <div class="p-2 d-flex flex-row align-items-center mb-2">
               <img
-                src="/public/assets/images/admin/default-user-image.webp"
+                src="/upload/user/<?= $user['avatar'] ?>"
                 width="40"
                 class="me-3 rounded-circle" />
               <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">Nguyễn Đặng Hồng Mỹ</span>
-                <small class="text-muted">example@gmail.com</small>
+                <span class="d-block font-weight-bold"><?= $user['name']; ?></span>
+                <small class="text-muted"><?= $user['email']; ?></small>
               </div>
             </div>
           </td>
           <td>
             <div class="p-2 d-flex flex-column">
               <span>
-                Khách hàng
+                <?= $user['is_admin'] ? 'Admin' : 'Khach hang' ?>
               </span>
             </div>
           </td>
           <td>
             <div class="p-2 icons">
-              <a href="#" class="edit text-decoration-none">
+              <a href="/admin/user/info?id=<?= $user['id']; ?>" class="edit text-decoration-none">
                 <i class="fas fa-info"></i>
               </a>
-              <a href="#" class="edit text-decoration-none">
+              <a href="/admin/user/edit?id=<?= $user['id']; ?>" class="edit text-decoration-none">
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
               <a href="#" class="edit text-decoration-none">
@@ -76,117 +77,7 @@
             </div>
           </td>
         </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <img
-                src="/public/assets/images/admin/default-user-image.webp"
-                width="40"
-                class="me-3 rounded-circle" />
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">Nguyễn Đặng Hồng Mỹ</span>
-                <small class="text-muted">example@gmail.com</small>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-column">
-              <span>
-                Khách hàng
-              </span>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#" class="edit text-decoration-none">
-                <i class="fas fa-info"></i>
-              </a>
-              <a href="#" class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#" class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <img
-                src="/public/assets/images/admin/default-user-image.webp"
-                width="40"
-                class="me-3 rounded-circle" />
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">Nguyễn Đặng Hồng Mỹ</span>
-                <small class="text-muted">example@gmail.com</small>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-column">
-              <span>
-                Khách hàng
-              </span>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#" class="edit text-decoration-none">
-                <i class="fas fa-info"></i>
-              </a>
-              <a href="#" class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#" class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr class="border-bottom">
-          <td>
-            <div class="p-2">1</div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-row align-items-center mb-2">
-              <img
-                src="/public/assets/images/admin/default-user-image.webp"
-                width="40"
-                class="me-3 rounded-circle" />
-              <div class="d-flex flex-column ml-2">
-                <span class="d-block font-weight-bold">Nguyễn Đặng Hồng Mỹ</span>
-                <small class="text-muted">example@gmail.com</small>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 d-flex flex-column">
-              <span>
-                Khách hàng
-              </span>
-            </div>
-          </td>
-          <td>
-            <div class="p-2 icons">
-              <a href="#" class="edit text-decoration-none">
-                <i class="fas fa-info"></i>
-              </a>
-              <a href="#" class="edit text-decoration-none">
-                <i class="fas fa-pen text-warning mx-2"></i>
-              </a>
-              <a href="#" class="edit text-decoration-none">
-                <i class="fa fa-trash text-danger"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
+        <?php endforeach ?>
       </tbody>
     </table>
 

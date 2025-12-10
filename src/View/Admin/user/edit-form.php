@@ -1,11 +1,11 @@
 <div class="container rounded" style="padding: 50px 0;">
   <div class="bg-white">
-    <form action="#" method="post"
+    <form action="/admin/user/update?id=<?= $user['id'] ?>" method="post"
       class="row align-items-center edit-form" enctype="multipart/form-data">
       <div class="col-md-6 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
           <img class="rounded-circle" width="250px" id="avatar"
-            src="/public/assets/images/admin/default-user-image.webp" />
+            src="/upload/user/<?= $user['avatar'] ?>" />
           <input type="file" style="width: 200px;" class="mt-4" name="avatar" />
         </div>
       </div>
@@ -17,7 +17,7 @@
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Tên</label><input type="text" class="form-control"
-                placeholder="Mỹ" value="Nguyễn Đặng Hồng Mỹ" name="name" />
+                placeholder="Mỹ" value="<?= $user['name'] ?>" name="name" />
               <p class="field-message mb-0">
                 <!-- @error('name')
                 {{ $message }}
@@ -28,7 +28,7 @@
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Email</label><input type="email" class="form-control"
-                placeholder="example@gmail.com" value="example@gmail.com" name="email" />
+                placeholder="example@gmail.com" value="<?= $user['email'] ?>" name="email" />
               <p class="field-message mb-0">
                 <!-- @error('email')
                 {{ $message }}
@@ -77,3 +77,7 @@
     </form>
   </div>
 </div>
+<script src="/public/features/loadImageFromInput.js"></script>
+<script>
+  loadImageFromInput("input[name='avatar']", "#avatar");
+</script>

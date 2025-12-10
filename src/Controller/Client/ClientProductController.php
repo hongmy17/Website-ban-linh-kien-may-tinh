@@ -9,7 +9,7 @@ use App\Model\Category;
 class ClientProductController {
   public function index() {
     $productModel = new Product();
-    $products = $productModel->findAll();
+    $products = $productModel->getProductWithCategories();
 
     $categoryModel = new Category();
     $categoriesWithCount = $categoryModel->getCategoriesWithCount();
