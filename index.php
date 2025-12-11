@@ -43,6 +43,7 @@ $router->add("/cart/add", ["controller" => ClientCartController::class, "action"
 $router->add("/cart/update", ["controller" => ClientCartController::class, "action" => "update"]);
 $router->add("/cart/delete", ["controller" => ClientCartController::class, "action" => "delete"]);
 $router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
+$router->add("/cart/pay", ["controller" => ClientCartController::class, "action" => "pay"]);
 
 // Account
 $router->add("/account/login", ["controller" => ClientAccountController::class, "action" => "login"]);

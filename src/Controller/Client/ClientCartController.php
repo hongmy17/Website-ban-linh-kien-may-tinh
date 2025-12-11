@@ -22,23 +22,12 @@ class ClientCartController
     $cartInfo = $cartModel->getUserCart($userID);
     $cartItems = $cartModel->getCartItems($userID);
 
-    $calculatedTotal = 0;
-    foreach ($cartItems as $item) {
-      $price = $item['discount_price'] ?? $item['price'];
-      $calculatedTotal += $price * $item['quantity'];
-    }
-
-    if ($cartInfo && $cartInfo['calculated_total'] != $calculatedTotal) {
-      $cartModel->recalculateTotal($cartInfo['id']);
-      $cartInfo['total'] = $calculatedTotal;
-    }
-
     $viewer = new Viewer();
     echo $viewer->renderClient([
       "title" => "Giỏ hàng của bạn",
       "pageName" => "cart/index.php",
       "cartItems" => $cartItems,
-      "cartTotal" => $calculatedTotal,
+      "cartTotal" => $cartInfo["total"],
       "orderID" => $cartInfo["id"] ?? null,
       "itemCount" => count($cartItems),
     ]);
@@ -96,10 +85,40 @@ class ClientCartController
 
   public function checkOut()
   {
+    $userID = 1;
+
+    // if (!$userID) {
+    //   header('Location: /login');
+    //   exit;
+    // }
+
+    $cartModel = new Cart();
+    $cartInfo = $cartModel->getUserCart($userID);
+    $cartItems = $cartModel->getCartItems($userID);
+
     $viewer = new Viewer();
     echo $viewer->renderClient([
       "title" => "Thanh toán",
       "pageName" => "cart/check-out.php",
+      "cartItems" => $cartItems,
+      "cartTotal" => $cartInfo["total"],
+      "orderID" => $cartInfo["id"] ?? null,
     ]);
+  }
+
+  public function pay()
+  {
+    $orderID = (int) $_GET["order_id"];
+    $cartModel = new Cart();
+
+    $checkOutData = [
+      "receiver_name" => $_POST["name"],
+      "address" => $_POST["address"],
+      "receiver_phone" => $_POST["phone"],
+    ];
+
+    $cartModel->pay($orderID, $checkOutData);
+    header("Location: /cart");
+    exit;
   }
 }

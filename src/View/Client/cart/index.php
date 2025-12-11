@@ -147,7 +147,7 @@
                             <a href="/profile/address" class="text-decoration-underline ms-2">Thay đổi</a>
                         </div>
 
-                        <a href="/cart/checkout"
+                        <a href="/cart/check-out"
                             class="btn btn-primary btn-lg rounded-pill w-100 py-3 text-uppercase shadow hover-lift position-relative overflow-hidden">
                             <i class="fas fa-credit-card me-2"></i>
                             Tiến hành thanh toán

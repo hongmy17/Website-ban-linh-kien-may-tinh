@@ -167,4 +167,25 @@ class Cart extends Model
       $orderModel->deleteOrder($orderData["orderID"]);
     }
   }
+
+  public function pay($orderID, $checkOutData)
+  {
+    $sql = "
+      UPDATE orders
+      SET 
+        is_paid = 1,
+        address = ?,
+        receiver_name = ?,
+        receiver_phone = ?
+      WHERE id = ?
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $checkOutData["address"],
+      $checkOutData["receiver_name"],
+      $checkOutData["receiver_phone"],
+      $orderID,
+    ]);
+  }
 }
