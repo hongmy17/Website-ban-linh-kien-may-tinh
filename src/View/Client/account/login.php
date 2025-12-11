@@ -9,7 +9,7 @@
           style="background: linear-gradient(135deg, rgba(253,126,20,0.2) 0%, transparent 70%);"></div>
       </div>
 
-      <!-- Bên phải: Form đăng nhập - căn dọc hoàn hảo -->
+      <!-- Bên phải: Form đăng دخ -->
       <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center px-4 py-5 px-xl-5">
         <div class="w-100" style="max-width: 420px;">
 
@@ -27,36 +27,62 @@
             <p class="text-muted">Nhập thông tin để tiếp tục mua sắm</p>
           </div>
 
-          <form action="xuly_login.php" method="POST" class="needs-validation" novalidate>
+          <!-- Thông báo lỗi chung (từ flash hoặc session) -->
+          <?php if (!empty($errors['general'] ?? '')): ?>
+            <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+              <strong>Lỗi:</strong> <?= htmlspecialchars($errors['general']) ?>
+              <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
+            </div>
+          <?php endif; ?>
 
+          <!-- Thông báo thành công (ví dụ: đăng xuất thành công) -->
+          <?php if ($success = $_SESSION['success_message'] ?? ''): ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+              <?= htmlspecialchars($success) ?>
+              <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
+            </div>
+            <?php unset($_SESSION['success_message']); ?>
+          <?php endif; ?>
+
+          <form action="/account/postLogin" method="POST" class="needs-validation" novalidate>
             <!-- Email -->
             <div class="mb-4">
               <label class="form-label fw-semibold text-dark mb-2">Email</label>
               <div class="position-relative">
-                <input type="email" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light"
-                  name="username" placeholder="example@gmail.com" style="height: 58px; padding-left: 3.2rem;" required
-                  autofocus>
+                <input type="email" name="email" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light
+                                              <?= isset($errors['email']) ? 'is-invalid' : '' ?>"
+                  placeholder="example@gmail.com" style="height: 58px; padding-left: 3.2rem;"
+                  value="<?= htmlspecialchars($old['email'] ?? '') ?>" required autofocus>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-envelope fs-5"></i>
                 </span>
+                <?php if (isset($errors['email'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($errors['email']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Vui lòng nhập email hợp lệ!</div>
+                <?php endif; ?>
               </div>
-              <div class="invalid-feedback">Vui lòng nhập email hợp lệ!</div>
             </div>
 
             <!-- Mật khẩu -->
             <div class="mb-4">
               <label class="form-label fw-semibold text-dark mb-2">Mật khẩu</label>
               <div class="position-relative">
-                <input type="password" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light"
-                  name="password" placeholder="••••••••" style="height: 58px; padding-left: 3.2rem;" required>
+                <input type="password" name="password" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light
+                                              <?= isset($errors['password']) ? 'is-invalid' : '' ?>"
+                  placeholder="••••••••" style="height: 58px; padding-left: 3.2rem;" required>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-lock fs-5"></i>
                 </span>
+                <?php if (isset($errors['password'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($errors['password']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
+                <?php endif; ?>
               </div>
-              <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
             </div>
 
-            <!-- Remember + Quên mật khẩu (căn đều 2 bên) -->
+            <!-- Remember + Quên mật khẩu -->
             <div class="d-flex justify-content-between align-items-center mb-4">
               <div class="form-check mb-0">
                 <input class="form-check-input" type="checkbox" id="remember" name="remember">
@@ -64,7 +90,7 @@
                   Ghi nhớ đăng nhập
                 </label>
               </div>
-              <a href="#" class="small fw-semibold text-decoration-none" style="color: #FD7E14;">
+              <a href="/forgot-password" class="small fw-semibold text-decoration-none" style="color: #FD7E14;">
                 Quên mật khẩu?
               </a>
             </div>
@@ -73,8 +99,7 @@
             <div class="d-grid mb-4">
               <button type="submit" class="btn btn-lg fw-bold rounded-3 text-white shadow-lg" style="height: 58px; 
                                            background: linear-gradient(90deg, #FD7E14 0%, #ff8f26 100%);
-                                           border: none;
-                                           font-size: 1.1rem;">
+                                           border: none; font-size: 1.1rem;">
                 Đăng Nhập Ngay
               </button>
             </div>
@@ -103,10 +128,26 @@
                 <i class="bi bi-facebook fs-4"></i>
               </a>
             </div>
-
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Bootstrap Validation Script -->
+<script>
+  (() => {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>

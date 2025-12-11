@@ -11,12 +11,12 @@ class ClientCartController
 {
   public function index()
   {
-    $userID = 1;
+    $userID = $_SESSION["user_id"] ?? NULL;
 
-    // if (!$userID) {
-    //   header('Location: /login');
-    //   exit;
-    // }
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
 
     $cartModel = new Cart();
     $cartInfo = $cartModel->getUserCart($userID);
@@ -27,7 +27,7 @@ class ClientCartController
       "title" => "Giỏ hàng của bạn",
       "pageName" => "cart/index.php",
       "cartItems" => $cartItems,
-      "cartTotal" => $cartInfo["total"],
+      "cartTotal" => $cartInfo["total"] ?? 0,
       "orderID" => $cartInfo["id"] ?? null,
       "itemCount" => count($cartItems),
     ]);
@@ -35,7 +35,12 @@ class ClientCartController
 
   public function add()
   {
-    $userID = 1;
+    $userID = $_SESSION["user_id"] ?? NULL;
+
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
     $cartModel = new Cart();
 
     $orderData = [
@@ -52,6 +57,12 @@ class ClientCartController
 
   public function update()
   {
+    $userID = $_SESSION["user_id"] ?? NULL;
+
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
     $cartModel = new Cart();
 
     $orderData = [
@@ -67,6 +78,12 @@ class ClientCartController
 
   public function delete()
   {
+    $userID = $_SESSION["user_id"] ?? NULL;
+
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
     $cartModel = new Cart();
 
     $orderData = [
@@ -85,12 +102,12 @@ class ClientCartController
 
   public function checkOut()
   {
-    $userID = 1;
+    $userID = $_SESSION["user_id"] ?? NULL;
 
-    // if (!$userID) {
-    //   header('Location: /login');
-    //   exit;
-    // }
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
 
     $cartModel = new Cart();
     $cartInfo = $cartModel->getUserCart($userID);
@@ -108,6 +125,13 @@ class ClientCartController
 
   public function pay()
   {
+    $userID = $_SESSION["user_id"] ?? NULL;
+
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
+
     $orderID = (int) $_GET["order_id"];
     $cartModel = new Cart();
 

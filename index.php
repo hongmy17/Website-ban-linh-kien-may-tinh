@@ -3,8 +3,12 @@
 require_once "vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+session_start();
 
 use App\Router;
+
+// Auth
+use App\Middleware\AuthAdmin;
 
 // Client
 use App\Controller\Client\ClientHomeController;
@@ -48,42 +52,54 @@ $router->add("/cart/pay", ["controller" => ClientCartController::class, "action"
 // Account
 $router->add("/account", ["controller" => ClientAccountController::class, "action" => "index"]);
 $router->add("/account/login", ["controller" => ClientAccountController::class, "action" => "login"]);
+$router->add("/account/postLogin", ["controller" => ClientAccountController::class, "action" => "postLogin"]);
 $router->add("/account/register", ["controller" => ClientAccountController::class, "action" => "register"]);
 $router->add("/account/postRegister", ["controller" => ClientAccountController::class, "action" => "postRegister"]);
+$router->add("/account/logout", ["controller" => ClientAccountController::class, "action" => "logout"]);
 
-// Admin
-$router->add("/admin", ["controller" => AdminDashboardController::class, "action" => "index"]);
+$adminRoutes = [
+  // admin
+  "/admin" => ["controller" => AdminDashboardController::class, "action" => "index"],
 
-// User
-$router->add("/admin/user", ["controller" => AdminUserController::class, "action" => "index"]);
-$router->add("/admin/user/add", ["controller" => AdminUserController::class, "action" => "add"]);
-$router->add("/admin/user/edit", ["controller" => AdminUserController::class, "action" => "edit"]);
-$router->add("/admin/user/info", ["controller" => AdminUserController::class, "action" => "info"]);
-$router->add("/admin/user/update", ["controller" => AdminUserController::class, "action" => "update"]);
+  // User
+  "/admin/user" => ["controller" => AdminUserController::class, "action" => "index"],
+  "/admin/user/add" => ["controller" => AdminUserController::class, "action" => "add"],
+  "/admin/user/edit" => ["controller" => AdminUserController::class, "action" => "edit"],
+  "/admin/user/info" => ["controller" => AdminUserController::class, "action" => "info"],
+  "/admin/user/update" => ["controller" => AdminUserController::class, "action" => "update"],
 
-// Product
-$router->add("/admin/product", ["controller" => AdminProductController::class, "action" => "index"]);
-$router->add("/admin/product/add", ["controller" => AdminProductController::class, "action" => "add"]);
-$router->add("/admin/product/store", ["controller" => AdminProductController::class, "action" => "store"]);
-$router->add("/admin/product/storeVariant", ["controller" => AdminProductController::class, "action" => "storeVariant"]);
-$router->add("/admin/product/edit", ["controller" => AdminProductController::class, "action" => "edit"]);
-$router->add("/admin/product/update", ["controller" => AdminProductController::class, "action" => "update"]);
-$router->add("/admin/product/updateVariant", ["controller" => AdminProductController::class, "action" => "updateVariant"]);
-$router->add("/admin/product/info", ["controller" => AdminProductController::class, "action" => "info"]);
-$router->add("/admin/product/delete", ["controller" => AdminProductController::class, "action" => "delete"]);
-$router->add("/admin/product/deleteVariant", ["controller" => AdminProductController::class, "action" => "deleteVariant"]);
+  // Product
+  "/admin/product" => ["controller" => AdminProductController::class, "action" => "index"],
+  "/admin/product/add" => ["controller" => AdminProductController::class, "action" => "add"],
+  "/admin/product/store" => ["controller" => AdminProductController::class, "action" => "store"],
+  "/admin/product/storeVariant" => ["controller" => AdminProductController::class, "action" => "storeVariant"],
+  "/admin/product/edit" => ["controller" => AdminProductController::class, "action" => "edit"],
+  "/admin/product/update" => ["controller" => AdminProductController::class, "action" => "update"],
+  "/admin/product/updateVariant" => ["controller" => AdminProductController::class, "action" => "updateVariant"],
+  "/admin/product/info" => ["controller" => AdminProductController::class, "action" => "info"],
+  "/admin/product/delete" => ["controller" => AdminProductController::class, "action" => "delete"],
+  "/admin/product/deleteVariant" => ["controller" => AdminProductController::class, "action" => "deleteVariant"],
 
-// Category
-$router->add("/admin/category", ["controller" => AdminCategoryController::class, "action" => "index"]);
-$router->add("/admin/category/add", ["controller" => AdminCategoryController::class, "action" => "add"]);
-$router->add("/admin/category/edit", ["controller" => AdminCategoryController::class, "action" => "edit"]);
+  // Category
+  "/admin/category" => ["controller" => AdminCategoryController::class, "action" => "index"],
+  "/admin/category/add" => ["controller" => AdminCategoryController::class, "action" => "add"],
+  "/admin/category/edit" => ["controller" => AdminCategoryController::class, "action" => "edit"],
 
-// Contact
-$router->add("/admin/contact", ["controller" => AdminContactController::class, "action" => "index"]);
+  // Contact
+  "/admin/contact" => ["controller" => AdminContactController::class, "action" => "index"],
 
-// Order
-$router->add("/admin/order", ["controller" => AdminOrderController::class, "action" => "index"]);
-$router->add("/admin/order/detail", ["controller" => AdminOrderController::class, "action" => "detail"]);
+  // Order
+  "/admin/order" => ["controller" => AdminOrderController::class, "action" => "index"],
+  "/admin/order/detail" => ["controller" => AdminOrderController::class, "action" => "detail"],
+];
+
+foreach ($adminRoutes as $path => $config) {
+  $router->add(
+    $path,
+    $config,
+    [AuthAdmin::class]
+  );
+}
 
 $uri = $_SERVER["REQUEST_URI"];
 $path = parse_url($uri, PHP_URL_PATH);

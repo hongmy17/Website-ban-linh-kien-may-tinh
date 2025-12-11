@@ -9,7 +9,13 @@ class ClientAccountController
 {
   public function index()
   {
-    $userID = 1;
+    $userID = $_SESSION["user_id"] ?? NULL;
+
+    if (!$userID) {
+      header('Location: /account/login');
+      exit;
+    }
+
     $userModel = new User();
     $user = $userModel->find($userID);
 
@@ -78,6 +84,52 @@ class ClientAccountController
 
     $userModel->create($userData);
     header("Location: /account/login");
+    exit;
+  }
+
+  public function postLogin()
+  {
+    $userModel = new User();
+
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    $errors = [];
+    $old = ['email' => $email];
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $errors['email'] = 'Email không hợp lệ.';
+    }
+
+    $user = $userModel->getUserByEmail($email);
+
+    if (!$user || !password_verify($password, $user['password'])) {
+      $errors['general'] = 'Email hoặc mật khẩu không đúng!';
+    } elseif ($user['status'] ?? 'active' !== 'active') {
+      $errors['general'] = 'Tài khoản của bạn đã bị khóa.';
+    }
+
+    if ($errors) {
+      $_SESSION['login_errors'] = $errors;
+      $_SESSION['login_old'] = $old;
+      header("Location: /account/login");
+      exit;
+    }
+
+    session_regenerate_id(true);
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['user_name'] = $user['name'];
+    $_SESSION['is_admin'] = $user['is_admin'];
+
+    header("Location: /");
+    exit;
+  }
+
+  public function logout()
+  {
+    $_SESSION = [];
+    session_destroy();
+    header("Location: /");
     exit;
   }
 }
