@@ -1,96 +1,167 @@
-<div class="container px-4 py-5">
-    <div class="login-wrapper bg-white rounded-4 shadow-lg overflow-hidden" style="max-width: 1100px; margin: 0 auto;">
-        <div class="row g-0">
+<div class="container px-4 py-5 min-vh-100 d-flex align-items-center">
+  <div class="login-wrapper bg-white rounded-4 shadow-xl overflow-hidden w-100"
+    style="max-width: 1100px; margin: 0 auto;">
+    <div class="row g-0">
 
-            <!-- Bên trái: Hình ảnh full + overlay cam nhẹ (rất sang) -->
-            <div class="col-lg-6 position-relative p-0">
-                <!-- Ẩn trên mobile nếu muốn gọn -->
-                <img src="/public/assets/images/client/loginimage.jpg"
-                    alt="DXM Store - Chào mừng bạn"
-                    class="w-100 h-100 object-fit-cover">
+      <!-- Bên trái: Hình ảnh -->
+      <div class="col-lg-6 d-none my-auto d-lg-block">
+        <img src="/public/assets/images/client/loginimage.jpg" alt="DXM Store - Chào mừng bạn"
+          class="w-100 object-fit-cover">
+      </div>
 
-                <!-- Overlay + chữ chào (tùy chọn bật lại nếu muốn) -->
+      <!-- Bên phải: Form Đăng Ký -->
+      <div class="col-lg-6 col-12 d-flex align-items-center px-4 py-5 px-xl-5">
+        <div class="w-100" style="max-width: 460px; margin: 0 auto;">
 
+          <div class="text-center mb-5 d-lg-none">
+            <h3 class="fw-bold" style="color: #FD7E14;">DXM Store</h3>
+          </div>
+
+          <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark" style="font-size: 2.1rem; letter-spacing: -0.5px;">Đăng Ký</h2>
+            <p class="text-muted mt-2">Tạo tài khoản để bắt đầu mua sắm</p>
+          </div>
+
+          <!-- Hiển thị lỗi tổng quát (nếu có) -->
+          <?php if (!empty($error)): ?>
+            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+              <strong>Lỗi:</strong><br>
+              <?= nl2br(htmlspecialchars($error)) ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          <?php endif; ?>
+
+          <!-- Hiển thị thông báo thành công (nếu có) -->
+          <?php if (!empty($_SESSION['success_message'] ?? '')): ?>
+            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+              <?= htmlspecialchars($_SESSION['success_message']) ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php unset($_SESSION['success_message']); ?>
+          <?php endif; ?>
+
+          <form action="/account/postRegister" method="POST" class="needs-validation" novalidate>
+            <!-- Họ và tên -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark">Họ và tên</label>
+              <div class="position-relative">
+                <input type="text"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['name']) ? 'is-invalid' : '' ?>"
+                  name="name" placeholder="Nguyễn Đặng Hồng Mỹ" style="padding-left: 3rem; height: 56px;"
+                  value="<?= htmlspecialchars($old['name'] ?? '') ?>" required>
+                <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                  <i class="bi bi-person"></i>
+                </span>
+                <?php if (isset($errors['name'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($errors['name']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
+                <?php endif; ?>
+              </div>
             </div>
 
-            <!-- Bên phải: Form đăng nhập (gọn, đẹp, hiện đại) -->
-            <div class="col-lg-6 col-12 login-form px-4 py-5 px-xl-5">
-                <div class="text-center mb-4">
-                    <h2 class="fw-bold text-dark" style="font-size: 2rem;">Đăng Ký</h2>
-                    <p class="text-muted">Nhập thông tin để tiếp tục đăng ký</p>
-                </div>
-
-                <form action="xuly_login.php" method="POST" class="needs-validation" novalidate>
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Họ và Tên</label>
-                        <input type="text"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="username"
-                            placeholder="Vui lòng nhập Họ và Tên"
-                            required autofocus>
-                        <div class="invalid-feedback">Vui lòng nhập Họ và Tên !</div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Nhập Email </label>
-                        <input type="password"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="password"
-                            placeholder="Nhập Email"
-                            required>
-                        <div class="invalid-feedback">Vui lòng nhập Email!</div>
-                    </div>
-
-
-
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Nhập Số Điện Thoại </label>
-                        <input type="password"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="password"
-                            placeholder="Nhập Số Điện Thoại"
-                            required>
-                        <div class="invalid-feedback">Vui lòng nhập Số Điện Thoại!</div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Nhập Mật Khẩu </label>
-                        <input type="password"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="password"
-                            placeholder="Nhập Mật Khẩu"
-                            required>
-                        <div class="invalid-feedback">Vui lòng nhập Mật Khẩu!</div>
-                    </div>
-
-
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Nhập lại Mật Khẩu </label>
-                        <input type="password"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="password"
-                            placeholder="Nhập Lại Mật Khẩu"
-                            required>
-                        <div class="invalid-feedback">Vui lòng nhập lại Mật Khẩu!</div>
-                    </div>
-
-
-
-                   
-
-                    <button type="submit"
-                        class="btn btn-lg w-100 fw-600 rounded-3 text-white shadow-sm   "
-                        style="background: #FD7E14; padding: 0.9rem; font-size: 1.1rem;">
-                         Đăng ký 
-                    </button>
-
-                    <div class="text-center mt-4">
-                        <span class="text-muted">Đã có tài khoản?</span>
-                        <a href="register.php" class="fw-600 ms-1" style="color: #FD7E14; text-decoration: none;">
-                            Đăng Nhập Ngay
-                        </a>
-                    </div>
-                </form>
+            <!-- Email -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark">Email</label>
+              <div class="position-relative">
+                <input type="email"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['email']) ? 'is-invalid' : '' ?>"
+                  name="email" placeholder="you@example.com" style="padding-left: 3rem; height: 56px;"
+                  value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
+                <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                  <i class="bi bi-envelope"></i>
+                </span>
+                <?php if (isset($errors['email'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($errors['email']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Email không hợp lệ!</div>
+                <?php endif; ?>
+              </div>
             </div>
+
+            <!-- Mật khẩu -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark">Mật khẩu</label>
+              <div class="position-relative">
+                <input type="password"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['password']) ? 'is-invalid' : '' ?>"
+                  name="password" placeholder="••••••••" style="padding-left: 3rem; height: 56px;" required
+                  minlength="6">
+                <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                  <i class="bi bi-lock"></i>
+                </span>
+                <?php if (isset($errors['password'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($errors['password']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Mật khẩu phải ít nhất 6 ký tự!</div>
+                <?php endif; ?>
+              </div>
+            </div>
+
+            <!-- Nhập lại mật khẩu -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark">Nhập lại mật khẩu</label>
+              <div class="position-relative">
+                <input type="password"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['password_confirm']) ? 'is-invalid' : '' ?>"
+                  name="password_confirm" placeholder="••••••••" style="padding-left: 3rem; height: 56px;" required>
+                <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                  <i class="bi bi-lock"></i>
+                </span>
+                <?php if (isset($errors['password_confirm'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($errors['password_confirm']) ?></div>
+                <?php endif; ?>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-lg w-100 fw-bold rounded-3 text-white shadow-lg" style="background: linear-gradient(90deg, #FD7E14 0%, #ff8f26 100%);
+                                       padding: 0.95rem; font-size: 1.1rem; border: none;">
+              Tạo Tài Khoản
+            </button>
+
+            <div class="text-center mt-4">
+              <span class="text-muted">Đã có tài khoản?</span>
+              <a href="/account/login" class="fw-bold ms-2 text-decoration-none" style="color: #FD7E14;">
+                Đăng nhập ngay
+              </a>
+            </div>
+          </form>
+
+          <div class="text-center position-relative my-4">
+            <hr class="text-muted">
+            <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">
+              Hoặc
+            </span>
+          </div>
+
+          <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="btn btn-outline-secondary rounded-circle shadow-sm">
+              <i class="bi bi-google fs-4"></i>
+            </a>
+            <a href="#" class="btn btn-outline-secondary rounded-circle shadow-sm">
+              <i class="bi bi-facebook fs-4"></i>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+<!-- Bootstrap 5 Validation Script -->
+<script>
+  // Tắt validate mặc định của HTML5 để dùng Bootstrap
+  (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>

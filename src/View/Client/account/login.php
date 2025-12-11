@@ -1,70 +1,112 @@
-<div class="container px-4 py-5">
-    <div class="login-wrapper bg-white rounded-4 shadow-lg overflow-hidden" style="max-width: 1100px; margin: 0 auto;">
-        <div class="row g-0">
+<div class="container px-4 py-5 min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="login-wrapper bg-white rounded-4 shadow-xl overflow-hidden w-100" style="max-width: 1100px;">
+    <div class="row g-0">
 
-            <!-- Bên trái: Hình ảnh full + overlay cam nhẹ (rất sang) -->
-            <div class="col-lg-6 position-relative p-0">
-                <!-- Ẩn trên mobile nếu muốn gọn -->
-                <img src="/public/assets/images/client/loginimage.jpg"
-                    alt="DXM Store - Chào mừng bạn"
-                    class="w-100 h-100 object-fit-cover">
+      <!-- Bên trái: Hình ảnh (chỉ hiện desktop) -->
+      <div class="col-lg-6 d-none my-auto d-lg-block position-relative">
+        <img src="/public/assets/images/client/loginimage.jpg" alt="DXM Store" class="w-100 object-fit-cover">
+        <div class="position-absolute inset-0"
+          style="background: linear-gradient(135deg, rgba(253,126,20,0.2) 0%, transparent 70%);"></div>
+      </div>
 
-                <!-- Overlay + chữ chào (tùy chọn bật lại nếu muốn) -->
+      <!-- Bên phải: Form đăng nhập - căn dọc hoàn hảo -->
+      <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center px-4 py-5 px-xl-5">
+        <div class="w-100" style="max-width: 420px;">
 
+          <!-- Logo trên mobile -->
+          <div class="text-center mb-5 d-lg-none">
+            <h3 class="fw-bold" style="color: #FD7E14; font-size: 2rem;">DXM Store</h3>
+            <p class="text-muted small">Chào mừng bạn trở lại</p>
+          </div>
+
+          <!-- Tiêu đề -->
+          <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.1rem; letter-spacing: -0.5px;">
+              Đăng Nhập
+            </h2>
+            <p class="text-muted">Nhập thông tin để tiếp tục mua sắm</p>
+          </div>
+
+          <form action="xuly_login.php" method="POST" class="needs-validation" novalidate>
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark mb-2">Email</label>
+              <div class="position-relative">
+                <input type="email" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light"
+                  name="username" placeholder="example@gmail.com" style="height: 58px; padding-left: 3.2rem;" required
+                  autofocus>
+                <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                  <i class="bi bi-envelope fs-5"></i>
+                </span>
+              </div>
+              <div class="invalid-feedback">Vui lòng nhập email hợp lệ!</div>
             </div>
 
-            <!-- Bên phải: Form đăng nhập (gọn, đẹp, hiện đại) -->
-            <div class="col-lg-6 col-12 login-form px-4 py-5 px-xl-5">
-                <div class="text-center mb-4">
-                    <h2 class="fw-bold text-dark" style="font-size: 2rem;">Đăng Nhập</h2>
-                    <p class="text-muted">Nhập thông tin để tiếp tục mua sắm</p>
-                </div>
-
-                <form action="xuly_login.php" method="POST" class="needs-validation" novalidate>
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Email hoặc Tên đăng nhập</label>
-                        <input type="text"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="username"
-                            placeholder="Nhập email hoặc tên đăng nhập"
-                            required autofocus>
-                        <div class="invalid-feedback">Vui lòng nhập tên đăng nhập hoặc email!</div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label fw-500">Mật khẩu</label>
-                        <input type="password"
-                            class="form-control form-control-lg rounded-3 border-2"
-                            name="password"
-                            placeholder="Nhập mật khẩu"
-                            required>
-                        <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                            <label class="form-check-label small text-muted" for="remember">
-                                Ghi nhớ đăng nhập
-                            </label>
-                        </div>
-                        <a href="#" class="small fw-600" style="color: #FD7E14;">Quên mật khẩu?</a>
-                    </div>
-
-                    <button type="submit"
-                        class="btn btn-lg w-100 fw-600 rounded-3 text-white shadow-sm   "
-                        style="background: #FD7E14; padding: 0.9rem; font-size: 1.1rem;">
-                        Đăng Nhập Ngay
-                    </button>
-
-                    <div class="text-center mt-4">
-                        <span class="text-muted">Chưa có tài khoản?</span>
-                        <a href="register.php" class="fw-600 ms-1" style="color: #FD7E14; text-decoration: none;">
-                            Đăng ký miễn phí
-                        </a>
-                    </div>
-                </form>
+            <!-- Mật khẩu -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark mb-2">Mật khẩu</label>
+              <div class="position-relative">
+                <input type="password" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light"
+                  name="password" placeholder="••••••••" style="height: 58px; padding-left: 3.2rem;" required>
+                <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                  <i class="bi bi-lock fs-5"></i>
+                </span>
+              </div>
+              <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
             </div>
+
+            <!-- Remember + Quên mật khẩu (căn đều 2 bên) -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                <label class="form-check-label text-muted small" for="remember">
+                  Ghi nhớ đăng nhập
+                </label>
+              </div>
+              <a href="#" class="small fw-semibold text-decoration-none" style="color: #FD7E14;">
+                Quên mật khẩu?
+              </a>
+            </div>
+
+            <!-- Nút đăng nhập -->
+            <div class="d-grid mb-4">
+              <button type="submit" class="btn btn-lg fw-bold rounded-3 text-white shadow-lg" style="height: 58px; 
+                                           background: linear-gradient(90deg, #FD7E14 0%, #ff8f26 100%);
+                                           border: none;
+                                           font-size: 1.1rem;">
+                Đăng Nhập Ngay
+              </button>
+            </div>
+
+            <!-- Đăng ký -->
+            <div class="text-center mb-5">
+              <span class="text-muted me-2">Chưa có tài khoản?</span>
+              <a href="/account/register" class="fw-bold text-decoration-none" style="color: #FD7E14;">
+                Đăng ký miễn phí
+              </a>
+            </div>
+
+            <!-- Divider + Đăng nhập nhanh -->
+            <div class="text-center position-relative mb-4">
+              <hr class="text-muted">
+              <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">
+                Hoặc
+              </span>
+            </div>
+
+            <div class="d-flex justify-content-center gap-3">
+              <a href="#" class="btn btn-outline-secondary rounded-circle shadow-sm">
+                <i class="bi bi-google fs-4"></i>
+              </a>
+              <a href="#" class="btn btn-outline-secondary rounded-circle shadow-sm">
+                <i class="bi bi-facebook fs-4"></i>
+              </a>
+            </div>
+
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>

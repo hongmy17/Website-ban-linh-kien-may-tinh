@@ -19,6 +19,22 @@ class User extends Model
     return true;
   }
 
+  public function create($userData)
+  {
+    $sql = "
+      INSERT INTO users
+      (name, email, password)
+      VALUES (?, ?, ?)
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $userData["name"],
+      $userData["email"],
+      $userData["password"],
+    ]);
+  }
+
   public function update($id, $userData)
   {
     $newImage = $userData["avatar"] ?? null;
@@ -53,5 +69,13 @@ class User extends Model
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$userID]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function getUserByEmail($email)
+  {
+    $sql = "SELECT * FROM users WHERE email = ? LIMIT 1";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$email]);
+    return $stmt->fetch();
   }
 }
