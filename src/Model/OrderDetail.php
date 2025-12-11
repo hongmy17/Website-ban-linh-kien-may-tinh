@@ -39,10 +39,10 @@ class OrderDetail extends Model
 
       $stmt = $this->connection->prepare($sql);
       $stmt->execute([
-        $orderData["orderID"], 
-        $orderData["productID"], 
-        $orderData["variantID"], 
-        $orderData["price"], 
+        $orderData["orderID"],
+        $orderData["productID"],
+        $orderData["variantID"],
+        $orderData["price"],
         $orderData["quantity"]
       ]);
 
@@ -66,30 +66,30 @@ class OrderDetail extends Model
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function removeFromCart($orderDetailID, $userID)
+  public function deleteItem($orderData)
   {
-    $sql = "
-      DELETE od FROM order_details od
-      JOIN orders o ON od.order_id = o.id
-      WHERE od.id = ? AND o.user_id = ? AND o.is_paid = 0
-    ";
-    $stmt = $this->connection->prepare($sql);
-    return $stmt->execute([$orderDetailID, $userID]);
-  }
+    $variantID = $orderData["variantID"];
 
-  public function updateQuantity($orderDetailID, $quantity, $userID)
-  {
-    if ($quantity <= 0) {
-      return $this->removeFromCart($orderDetailID, $userID);
+    if ($variantID === null) {
+      $sql = "DELETE FROM order_details WHERE id = ? AND order_id = ? AND product_id = ? AND variant_id IS NULL";
+      $params = [$orderData["orderDetailID"], $orderData["orderID"], $orderData["productID"]];
+    } else {
+      $sql = "DELETE FROM order_details WHERE id = ? AND order_id = ? AND product_id = ? AND variant_id = ?";
+      $params = [$orderData["orderDetailID"], $orderData["orderID"], $orderData["productID"], $variantID];
     }
 
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute($params);
+  }
+
+  public function updateQuantity($orderDetailID, $quantity)
+  {
     $sql = "
-      UPDATE order_details od
-      JOIN orders o ON od.order_id = o.id
-      SET od.quantity = ?
-      WHERE od.id = ? AND o.user_id = ? AND o.is_paid = 0
+      UPDATE order_details
+      SET quantity = ?
+      WHERE id = ?
     ";
     $stmt = $this->connection->prepare($sql);
-    return $stmt->execute([$quantity, $orderDetailID, $userID]);
+    $stmt->execute([$quantity, $orderDetailID]);
   }
 }

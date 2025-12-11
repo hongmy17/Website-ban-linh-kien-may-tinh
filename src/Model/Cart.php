@@ -120,19 +120,18 @@ class Cart extends Model
   public function recalculateTotal($orderID)
   {
     $sql = "
-      UPDATE orders o
-      JOIN (
-        SELECT order_id, COALESCE(SUM(price * quantity), 0) AS new_total
-        FROM order_details
-        WHERE order_id = ?
-        GROUP BY order_id
-      ) od ON o.id = od.order_id
-      SET o.total = od.new_total
-      WHERE o.id = ?
+        UPDATE orders 
+        INNER JOIN (
+            SELECT order_id, COALESCE(SUM(price * quantity), 0) AS new_total
+            FROM order_details
+            WHERE order_id = ?
+            GROUP BY order_id
+        ) AS od ON orders.id = od.order_id
+        SET orders.total = od.new_total
     ";
 
     $stmt = $this->connection->prepare($sql);
-    return $stmt->execute([$orderID, $orderID]);
+    return $stmt->execute([$orderID]);
   }
 
   public function add($userID, $orderData)
@@ -145,5 +144,27 @@ class Cart extends Model
 
     $orderDetailModel->addToCart($orderData);
     $this->recalculateTotal($orderData["orderID"]);
+  }
+
+  public function update($orderData)
+  {
+    $orderDetailModel = new OrderDetail();
+    $orderDetailModel->updateQuantity($orderData["orderDetailID"], $orderData["quantity"]);
+    $this->recalculateTotal($orderData["orderID"]);
+  }
+
+  public function delete($orderData)
+  {
+    $orderModel = new Order();
+    $orderDetailModel = new OrderDetail();
+
+    $orderDetailModel->deleteItem($orderData);
+    $hasItem = $orderModel->hasItem($orderData["orderID"]);
+
+    if ($hasItem) {
+      $this->recalculateTotal($orderData["orderID"]);
+    } else {
+      $orderModel->deleteOrder($orderData["orderID"]);
+    }
   }
 }

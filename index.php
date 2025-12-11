@@ -40,6 +40,8 @@ $router->add("/404-error", ["controller" => ClientErrorController::class, "actio
 // Cart
 $router->add("/cart", ["controller" => ClientCartController::class, "action" => "index"]);
 $router->add("/cart/add", ["controller" => ClientCartController::class, "action" => "add"]);
+$router->add("/cart/update", ["controller" => ClientCartController::class, "action" => "update"]);
+$router->add("/cart/delete", ["controller" => ClientCartController::class, "action" => "delete"]);
 $router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
 
 // Account

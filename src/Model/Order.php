@@ -60,4 +60,26 @@ class Order extends Model
       'is_paid' => 0,
     ];
   }
+
+  public function deleteOrder($orderID)
+  {
+    $sql = "DELETE FROM orders WHERE id = ?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$orderID]);
+  }
+
+  public function hasItem($orderID)
+  {
+    $sql = "
+      SELECT 1
+      FROM order_details
+      WHERE order_id = ?
+      LIMIT 1
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$orderID]);
+
+    return $stmt->fetchColumn() !== false;
+  }
 }

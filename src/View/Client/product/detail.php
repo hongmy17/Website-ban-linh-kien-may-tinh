@@ -14,7 +14,7 @@
                         <?php
                         foreach ($categoriesWithCount as $category):
                             if ($category["product_count"] > 0):
-                        ?>
+                                ?>
                                 <li>
                                     <div class="categories-item">
                                         <a href="#" class="text-dark">
@@ -24,7 +24,7 @@
                                         <span>(<?= $category["product_count"]; ?>)</span>
                                     </div>
                                 </li>
-                        <?php
+                                <?php
                             endif;
                         endforeach;
                         ?>
@@ -35,7 +35,8 @@
                     <?php foreach ($popularProducts as $popularProduct): ?>
                         <a href="/product/detail?id=<?= $popularProduct["id"]; ?>" class="featured-product-item">
                             <div class="rounded me-4 product-card-sm" style="width: 100px; height: 100px;">
-                                <img src="/upload/product/<?= $popularProduct["base_image"]; ?>" class="img-fluid rounded" alt="Image">
+                                <img src="/upload/product/<?= $popularProduct["base_image"]; ?>" class="img-fluid rounded"
+                                    alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2 product-name-sm"><?= $popularProduct["name"]; ?></h6>
@@ -61,7 +62,8 @@
                             <div class="single-item"
                                 data-dot="<img class='img-fluid' src='/upload/product/<?= $product["base_image"]; ?>' alt=''>">
                                 <div class="single-inner bg-light rounded">
-                                    <img src="/upload/product/<?= $product["base_image"]; ?>" class="img-fluid rounded" alt="Image">
+                                    <img src="/upload/product/<?= $product["base_image"]; ?>" class="img-fluid rounded"
+                                        alt="Image">
                                 </div>
                             </div>
                             <!-- <div class="single-item"
@@ -97,7 +99,8 @@
                         </div>
                     </div>
 
-                    <form action="/cart/add?product_id=<?= $product["id"]; ?>" method="post" class="col-xl-6" id="product-detail">
+                    <form action="/cart/add?product_id=<?= $product["id"]; ?>" method="post" class="col-xl-6"
+                        id="product-detail">
                         <h4 class="fw-bold mb-3"><?= htmlspecialchars($product['name']) ?></h4>
                         <p class="mb-3">Thể loại: <?= htmlspecialchars($product['category_name']) ?></p>
 
@@ -106,8 +109,10 @@
                             <div class="variant-selector mb-4 p-3 border rounded bg-light">
                                 <?php foreach ($options as $opt): ?>
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold text-dark"><?= htmlspecialchars($opt['option_name']) ?></label>
-                                        <select class="form-select variant-select" data-option-id="<?= $opt['id'] ?>" name="options[<?= $opt["id"]; ?>]">
+                                        <label
+                                            class="form-label fw-bold text-dark"><?= htmlspecialchars($opt['option_name']) ?></label>
+                                        <select class="form-select variant-select" data-option-id="<?= $opt['id'] ?>"
+                                            name="options[<?= $opt["id"]; ?>]">
                                             <option value="">-- Chọn <?= strtolower($opt['option_name']) ?> --</option>
                                             <?php foreach ($optionValues[$opt['id']] as $val): ?>
                                                 <option value="<?= $val['value_id'] ?>">
@@ -124,7 +129,8 @@
                         <!-- GIÁ - SẼ TỰ ĐỘNG CẬP NHẬT -->
                         <div class="mb-3">
                             <span id="variant-price-new" class="fw-bold text-dark" style="font-size:22px;"></span>
-                            <span id="variant-price-old" class="text-muted text-decoration-line-through me-2" style="font-size:18px;"></span>
+                            <span id="variant-price-old" class="text-muted text-decoration-line-through me-2"
+                                style="font-size:18px;"></span>
                             <input type="text" id="hidden-price" class="d-none" name="hidden_price" value="0" readonly>
                         </div>
 
@@ -135,13 +141,14 @@
                         </div>
 
                         <!-- SỐ LƯỢNG - GIỮ NGUYÊN CỦA BẠN -->
-                        <div class="input-group quantity mb-5" style="width: 130px;">
+                        <div class="input-group quantity mb-4" style="width: 130px;">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border px-2 mx-2" value="1" id="quantity" name="quantity" min="1">
+                            <input type="text" class="form-control form-control-sm text-center border-0 px-2 mx-2"
+                                value="1" id="quantity" name="quantity" min="1">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
                                     <i class="fa fa-plus"></i>
@@ -159,8 +166,8 @@
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
-                                <button class="nav-link active border-white border-bottom-0" type="button"
-                                    role="tab" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                                <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
+                                    id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
                                     aria-controls="nav-about" aria-selected="true">Mô tả</button>
                                 <button class="nav-link border-white border-bottom-0" type="button" role="tab"
                                     id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
@@ -168,16 +175,15 @@
                             </div>
                         </nav>
                         <div class="tab-content mb-5">
-                            <div class="tab-pane active" id="nav-about" role="tabpanel"
-                                aria-labelledby="nav-about-tab">
+                            <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
                                 <?= $product["description"]; ?>
                             </div>
 
-                            <div class="tab-pane" id="nav-mission" role="tabpanel"
-                                aria-labelledby="nav-mission-tab">
+                            <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                                 <div class="d-flex">
-                                    <img src="/public/assets/images/client/avatar.jpg" class="img-fluid rounded-circle p-3"
-                                        style="width: 100px; height: 100px;" alt="">
+                                    <img src="/public/assets/images/client/avatar.jpg"
+                                        class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;"
+                                        alt="">
                                     <div class="">
                                         <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
                                         <div class="d-flex justify-content-between">
@@ -262,20 +268,25 @@
                     <div class="related-item rounded">
                         <div class="related-item-inner border rounded">
                             <div class="related-item-inner-item product-card">
-                                <img src="/upload/product/<?= $relatedProduct["base_image"]; ?>" class="img-fluid w-100 rounded-top" alt="">
+                                <img src="/upload/product/<?= $relatedProduct["base_image"]; ?>"
+                                    class="img-fluid w-100 rounded-top" alt="">
                                 <div class="related-new">Mới</div>
                                 <div class="related-details">
-                                    <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>"><i class="fa fa-eye fa-1x"></i></a>
+                                    <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>"><i
+                                            class="fa fa-eye fa-1x"></i></a>
                                 </div>
                             </div>
                             <div class="text-center rounded-bottom p-4">
                                 <div class="product-meta-new">
-                                    <span class="meta-view"><i class="fas fa-eye"></i> <?= number_format($relatedProduct["view"]) ?></span>
-                                    <span class="meta-sold"><i class="fas fa-shopping-cart"></i> <?= number_format($relatedProduct["sold"]) ?></span>
+                                    <span class="meta-view"><i class="fas fa-eye"></i>
+                                        <?= number_format($relatedProduct["view"]) ?></span>
+                                    <span class="meta-sold"><i class="fas fa-shopping-cart"></i>
+                                        <?= number_format($relatedProduct["sold"]) ?></span>
                                 </div>
 
                                 <a href="#" class="d-block mb-2"><?= $relatedProduct["category_name"]; ?></a>
-                                <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>" class="h4 product-name"><?= $relatedProduct["name"]; ?></a>
+                                <a href="/product/detail?id=<?= $relatedProduct["id"]; ?>"
+                                    class="h4 product-name"><?= $relatedProduct["name"]; ?></a>
 
                                 <?php if (!empty($relatedProduct['base_discount_price']) && $relatedProduct['base_discount_price'] > 0): ?>
                                     <del class="me-2 fs-5">
@@ -295,7 +306,7 @@
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
-            </div>
+        </div>
     </div>
 </div>
 <!-- Related Product End -->
@@ -330,8 +341,8 @@
 
         // TRƯỜNG HỢP 1: Sản phẩm KHÔNG có biến thể → dùng giá của sản phẩm chính
         if (variants.length === 0 || selects.length === 0) {
-            const basePrice = <?= (float)$product['base_price'] ?>;
-            const baseDiscount = <?= $product['base_discount_price'] && $product['base_discount_price'] > 0 ? (float)$product['base_discount_price'] : 'null' ?>;
+            const basePrice = <?= (float) $product['base_price'] ?>;
+            const baseDiscount = <?= $product['base_discount_price'] && $product['base_discount_price'] > 0 ? (float) $product['base_discount_price'] : 'null' ?>;
 
             if (baseDiscount && baseDiscount < basePrice) {
                 oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
@@ -414,15 +425,15 @@
         updateVariantInfo();
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Tăng
-        document.querySelector('.btn-plus').onclick = function() {
+        document.querySelector('.btn-plus').onclick = function () {
             let input = document.querySelector('input[name="quantity"]');
             input.value = parseInt(input.value) + 1;
         }
 
         // Giảm (không cho nhỏ hơn 1)
-        document.querySelector('.btn-minus').onclick = function() {
+        document.querySelector('.btn-minus').onclick = function () {
             let input = document.querySelector('input[name="quantity"]');
             if (parseInt(input.value) > 1) {
                 input.value = parseInt(input.value) - 1;

@@ -39,7 +39,7 @@ class ClientCartController
       "pageName" => "cart/index.php",
       "cartItems" => $cartItems,
       "cartTotal" => $calculatedTotal,
-      "cartOrderId" => $cartInfo["id"] ?? null,
+      "orderID" => $cartInfo["id"] ?? null,
       "itemCount" => count($cartItems),
     ]);
   }
@@ -50,13 +50,46 @@ class ClientCartController
     $cartModel = new Cart();
 
     $orderData = [
-      "productID" => (int)$_GET["product_id"],
-      "variantID" => isset($_GET["variant_id"]) ? (int)$_GET["variant_id"] : NULL,
+      "productID" => (int) $_GET["product_id"],
+      "variantID" => isset($_GET["variant_id"]) ? (int) $_GET["variant_id"] : NULL,
       "price" => $_POST["hidden_price"],
       "quantity" => $_POST["quantity"] ?? 1,
     ];
 
     $cartModel->add($userID, $orderData);
+    header("Location: /cart");
+    exit;
+  }
+
+  public function update()
+  {
+    $cartModel = new Cart();
+
+    $orderData = [
+      "orderID" => (int) $_GET["order_id"],
+      "orderDetailID" => (int) $_GET["order_detail_id"],
+      "quantity" => (int) $_POST["quantity"],
+    ];
+
+    $cartModel->update($orderData);
+    header("Location: /cart");
+    exit;
+  }
+
+  public function delete()
+  {
+    $cartModel = new Cart();
+
+    $orderData = [
+      "orderID" => (int) $_GET["order_id"],
+      "orderDetailID" => (int) $_GET["order_detail_id"],
+      "productID" => (int) $_GET["product_id"],
+      "variantID" => !empty($_GET["variant_id"]) && $_GET["variant_id"] !== ""
+        ? (int) $_GET["variant_id"]
+        : NULL
+    ];
+
+    $cartModel->delete($orderData);
     header("Location: /cart");
     exit;
   }

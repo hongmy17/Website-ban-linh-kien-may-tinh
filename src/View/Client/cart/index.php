@@ -4,7 +4,7 @@
 
         <?php if (empty($cartItems)): ?>
             <div class="text-center py-5">
-                <img src="/public/assets/images//client/empty-cart.png" alt="Giỏ hàng trống" class="img-fluid mb-4"
+                <img src="/public/assets/images/client/empty-cart.png" alt="Giỏ hàng trống" class="img-fluid mb-4"
                     style="max-width: 200px;">
                 <h4>Giỏ hàng trống!</h4>
                 <a href="/product" class="btn btn-primary rounded-pill px-5 py-3">Tiếp tục mua sắm</a>
@@ -26,60 +26,71 @@
                             $price = $item['discount_price'] ?? $item['price'];
                             $subtotal = $price * $item['quantity'];
                             ?>
-                            <tr data-id="<?= $item['order_detail_id'] ?>">
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="/upload/product/<?= htmlspecialchars($item['base_image']) ?>"
-                                            class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;"
-                                            alt="<?= htmlspecialchars($item['product_name']); ?>">
-                                        <div class="ms-3">
-                                            <a href="/product/detail?id=<?= $item["product_id"]; ?>"
-                                                class="h5 mb-1 product-name-sm"><?= htmlspecialchars($item['product_name']) ?></a>
-                                            <?php if (!empty($item['config_display'])): ?>
-                                                <small class="text-muted">
-                                                    <?= nl2br(htmlspecialchars(str_replace(' - ', "\n", $item['config_display']))) ?>
-                                                </small>
-                                            <?php endif; ?>
-                                            <?php if ($item['sku_id']): ?>
-                                                <br><small class="text-muted">Mã: <?= htmlspecialchars($item['sku_id']) ?></small>
-                                            <?php endif; ?>
+                            <form
+                                action="/cart/update?order_id=<?= $orderID; ?>&order_detail_id=<?= $item['order_detail_id'] ?>"
+                                method="post">
+                                <tr data-id="<?= $item['order_detail_id'] ?>">
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <img src="/upload/product/<?= htmlspecialchars($item['base_image']) ?>"
+                                                class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;"
+                                                alt="<?= htmlspecialchars($item['product_name']); ?>">
+                                            <div class="ms-3">
+                                                <a href="/product/detail?id=<?= $item["product_id"]; ?>"
+                                                    class="h5 mb-1 product-name-sm"><?= htmlspecialchars($item['product_name']) ?></a>
+                                                <?php if (!empty($item['config_display'])): ?>
+                                                    <small class="text-muted">
+                                                        <?= nl2br(htmlspecialchars(str_replace(' - ', "\n", $item['config_display']))) ?>
+                                                    </small>
+                                                <?php endif; ?>
+                                                <?php if ($item['sku_id']): ?>
+                                                    <br><small class="text-muted">Mã:
+                                                        <?= htmlspecialchars($item['sku_id']) ?></small>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 py-4 fw-bold">
-                                        <?= number_format($price) ?> ₫
-                                    </p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity py-4" style="width: 120px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" type="button">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 py-4 fw-bold">
+                                            <?= number_format($price) ?> ₫
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity py-4" style="width: 120px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border"
+                                                    type="button">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control form-control-sm text-center border-0 qty-input"
+                                                value="<?= $item['quantity'] ?>" name="quantity">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border"
+                                                    type="button">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0 qty-input"
-                                            value="<?= $item['quantity'] ?>" readonly>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border" type="button">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 py-4 fw-bold text-primary">
-                                        <?= number_format($subtotal) ?> ₫
-                                    </p>
-                                </td>
-                                <td class="py-4">
-                                    <a href="/cart/remove?order_detail_id=<?= $item['order_detail_id'] ?>"
-                                        class="btn border btn-md rounded-pill px-4"
-                                        onclick="return confirm('Xóa sản phẩm này khỏi giỏ hàng?')">
-                                        <i class="fa fa-times"></i> Xóa
-                                    </a>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 py-4 fw-bold text-primary">
+                                            <?= number_format($subtotal) ?> ₫
+                                        </p>
+                                    </td>
+                                    <td class="py-4">
+                                        <button type="submit" class="btn border btn-md px-3 me-2">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </button>
+                                        <a href="/cart/delete?order_id=<?= $orderID; ?>&order_detail_id=<?= $item['order_detail_id'] ?>&product_id=<?= $item["product_id"] ?>&variant_id=<?= $item["variant_id"]; ?>"
+                                            class="btn border btn-md px-3"
+                                            onclick="return confirm('Xóa sản phẩm này khỏi giỏ hàng?')">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </form>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -157,3 +168,27 @@
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Tăng
+        document.querySelectorAll('.btn-plus').forEach(btn => {
+            btn.onclick = function () {
+                let input = this.parentElement.parentElement.querySelector('input[name="quantity"]');
+
+                input.value = parseInt(input.value) + 1;
+            }
+        })
+
+        // Giảm (không cho nhỏ hơn 1)
+        document.querySelectorAll('.btn-minus').forEach(btn => {
+            btn.onclick = function () {
+                let input = this.parentElement.parentElement.querySelector('input[name="quantity"]');
+
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
+        })
+    });
+</script>

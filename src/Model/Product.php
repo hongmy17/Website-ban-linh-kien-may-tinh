@@ -68,8 +68,8 @@ class Product extends Model
     $stmt = $this->connection->prepare($sql);
 
     if ($limit !== null) {
-      $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
-      $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+      $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+      $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
     }
 
     $stmt->execute();
@@ -100,8 +100,8 @@ class Product extends Model
     $stmt = $this->connection->prepare($sql);
 
     if ($limit !== null) {
-      $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
-      $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+      $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+      $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
     }
 
     $stmt->execute();
@@ -132,8 +132,8 @@ class Product extends Model
     $stmt = $this->connection->prepare($sql);
 
     if ($limit !== null) {
-      $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
-      $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+      $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+      $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
     }
 
     $stmt->execute();
@@ -224,17 +224,17 @@ class Product extends Model
       if ($row['map']) {
         foreach (explode(',', $row['map']) as $pair) {
           $tmp = explode(':', $pair);
-          $map[$tmp[0]] = (int)$tmp[1];
+          $map[$tmp[0]] = (int) $tmp[1];
         }
       }
 
       $variants[] = [
-        'id'      => (int)$row['id'],
-        'price'   => (float)$row['price'],
-        'discount_price' => $row['discount_price'] ? (float)$row['discount_price'] : null,
-        'stock'   => (int)$row['stock'],
-        'default' => (bool)$row['is_default'],
-        'values'  => $map // ví dụ: [1=>12, 2=>5, 3=>10
+        'id' => (int) $row['id'],
+        'price' => (float) $row['price'],
+        'discount_price' => $row['discount_price'] ? (float) $row['discount_price'] : null,
+        'stock' => (int) $row['stock'],
+        'default' => (bool) $row['is_default'],
+        'values' => $map // ví dụ: [1=>12, 2=>5, 3=>10
       ];
     }
 
@@ -269,17 +269,17 @@ class Product extends Model
       if ($row["map"]) {
         foreach (explode(",", $row["map"]) as $pair) {
           $tmp = explode(":", $pair);
-          $map[(int)$tmp[0]] = (int)$tmp[1];
+          $map[(int) $tmp[0]] = (int) $tmp[1];
         }
       }
 
       $variants[] = [
-        "id" => (int)$row["id"],
+        "id" => (int) $row["id"],
         "sku_id" => $row["sku_id"] ?? "",
-        "price" => (float)$row["price"],
-        "discount_price" => $row["discount_price"] ? (float)$row["discount_price"] : null,
-        "quantity_in_stock" => (int)$row["quantity_in_stock"],
-        "is_default" => (bool)$row["is_default"],
+        "price" => (float) $row["price"],
+        "discount_price" => $row["discount_price"] ? (float) $row["discount_price"] : null,
+        "quantity_in_stock" => (int) $row["quantity_in_stock"],
+        "is_default" => (bool) $row["is_default"],
         "values" => $map // [option_id => value_id]
       ];
     }
@@ -306,8 +306,9 @@ class Product extends Model
 
   public function getPopularProducts($limit)
   {
-    $limit = (int)$limit;
-    if ($limit <= 0) $limit = 5;
+    $limit = (int) $limit;
+    if ($limit <= 0)
+      $limit = 5;
 
     $sql = "
       SELECT 
@@ -335,10 +336,12 @@ class Product extends Model
 
   public function getPaginatedProducts($page = 1, $perPage = 6, $categoryId = null)
   {
-    $page    = (int)$page;
-    $perPage = (int)$perPage;
-    if ($page < 1) $page = 1;
-    if ($perPage < 1) $perPage = 12;
+    $page = (int) $page;
+    $perPage = (int) $perPage;
+    if ($page < 1)
+      $page = 1;
+    if ($perPage < 1)
+      $perPage = 12;
 
     $offset = ($page - 1) * $perPage;
 
@@ -360,7 +363,7 @@ class Product extends Model
 
     // Nếu có lọc theo danh mục
     if ($categoryId !== null) {
-      $categoryId = (int)$categoryId;
+      $categoryId = (int) $categoryId;
       $sql .= " WHERE p.category_id = ?";
       $params[] = $categoryId;
     }
@@ -383,13 +386,13 @@ class Product extends Model
     $params = [];
     if ($categoryId !== null) {
       $sql .= " WHERE p.category_id = ?";
-      $params[] = (int)$categoryId;
+      $params[] = (int) $categoryId;
     }
 
     $stmt = $this->connection->prepare($sql);
     $stmt->execute($params);
 
-    return (int)$stmt->fetchColumn();
+    return (int) $stmt->fetchColumn();
   }
 
   public function hasDefaultVariant($productID)
@@ -562,7 +565,6 @@ class Product extends Model
     return $stmt->fetchColumn() !== false;
   }
 
-
   public function delete($productID)
   {
     $this->deleteProductOptions($productID);
@@ -572,7 +574,7 @@ class Product extends Model
   public function deleteProduct($productID)
   {
     if ($this->hasVariant($productID)) {
-      echo "<script>confirm('Không thể xóa sản phẩm có biến thể!')</script>" ;
+      echo "<script>confirm('Không thể xóa sản phẩm có biến thể!')</script>";
       return;
     }
 
@@ -581,7 +583,8 @@ class Product extends Model
     $stmt->execute([$productID]);
   }
 
-  public function deleteProductOptions($productID) {
+  public function deleteProductOptions($productID)
+  {
     $sql = "DELETE FROM product_options WHERE product_id = ?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$productID]);
