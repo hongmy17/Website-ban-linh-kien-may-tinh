@@ -39,6 +39,7 @@ $router->add("/404-error", ["controller" => ClientErrorController::class, "actio
 
 // Cart
 $router->add("/cart", ["controller" => ClientCartController::class, "action" => "index"]);
+$router->add("/cart/add", ["controller" => ClientCartController::class, "action" => "add"]);
 $router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
 
 // Account
@@ -55,7 +56,6 @@ $router->add("/admin/user/add", ["controller" => AdminUserController::class, "ac
 $router->add("/admin/user/edit", ["controller" => AdminUserController::class, "action" => "edit"]);
 $router->add("/admin/user/info", ["controller" => AdminUserController::class, "action" => "info"]);
 $router->add("/admin/user/update", ["controller" => AdminUserController::class, "action" => "update"]);
-
 
 // Product
 $router->add("/admin/product", ["controller" => AdminProductController::class, "action" => "index"]);

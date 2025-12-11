@@ -1,21 +1,26 @@
 <?php
 
 namespace App\Model;
+
 use Exception;
 use PDO;
 
-class Order extends Model {
+class Order extends Model
+{
   protected $table = "orders";
 
-  public function getTableName(): string {
+  public function getTableName(): string
+  {
     return $this->table;
   }
 
-  public function validate(array $data): bool {
+  public function validate(array $data): bool
+  {
     return true;
   }
 
-  public function getOrdersWithUser() {
+  public function getOrdersWithUser()
+  {
     $sql = "
       SELECT 
         o.*,
@@ -29,7 +34,8 @@ class Order extends Model {
     return $rows->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getOrCreateCart($userID, $address = null) {
+  public function getOrCreateCart($userID)
+  {
     $cartModel = new Cart();
     $cart = $cartModel->getUserCart($userID);
 
@@ -37,18 +43,21 @@ class Order extends Model {
       return $cart;
     }
 
-    $sql = "INSERT INTO orders (user_id, total, is_paid, address) VALUES (?, 0, 0, ?)";
+    $sql = "
+      INSERT INTO orders 
+      (user_id, total, is_paid, address, receiver_name, receiver_phone) 
+      VALUES (?, 0, 0, NULL, NULL, NULL)
+    ";
     $stmt = $this->connection->prepare($sql);
-    $stmt->execute([$userID, $address ?? '']);
-    
-    $orderId = $this->connection->lastInsertId();
+    $stmt->execute([$userID]);
+
+    $orderID = $this->connection->lastInsertId();
 
     return [
-      'id' => $orderId,
+      'id' => $orderID,
       'user_id' => $userID,
       'total' => 0,
       'is_paid' => 0,
-      'address' => $address ?? '',
     ];
   }
 }

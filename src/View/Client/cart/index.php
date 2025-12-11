@@ -4,7 +4,8 @@
 
         <?php if (empty($cartItems)): ?>
             <div class="text-center py-5">
-                <img src="/public/assets/images//client/empty-cart.png" alt="Giỏ hàng trống" class="img-fluid mb-4" style="max-width: 200px;">
+                <img src="/public/assets/images//client/empty-cart.png" alt="Giỏ hàng trống" class="img-fluid mb-4"
+                    style="max-width: 200px;">
                 <h4>Giỏ hàng trống!</h4>
                 <a href="/product" class="btn btn-primary rounded-pill px-5 py-3">Tiếp tục mua sắm</a>
             </div>
@@ -21,65 +22,64 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($cartItems as $item): 
+                        <?php foreach ($cartItems as $item):
                             $price = $item['discount_price'] ?? $item['price'];
                             $subtotal = $price * $item['quantity'];
-                        ?>
-                        <tr data-id="<?= $item['order_detail_id'] ?>">
-                            <th scope="row">
-                                <div class="d-flex align-items-center">
-                                    <img src="/upload/product/<?= htmlspecialchars($item['base_image']) ?>"
-                                         class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;"
-                                         alt="<?= htmlspecialchars($item['product_name']); ?>">
-                                    <div class="ms-3">
-                                        <a href="/product/detail?id=<?= $item["product_id"]; ?>" class="h5 mb-1 product-name-sm"><?= htmlspecialchars($item['product_name']) ?></a>
-                                        <?php if (!empty($item['config_display'])): ?>
-                                            <small class="text-muted">
-                                                <?= nl2br(htmlspecialchars(str_replace(' - ', "\n", $item['config_display']))) ?>
-                                            </small>
-                                        <?php endif; ?>
-                                        <?php if ($item['sku_id']): ?>
-                                            <br><small class="text-muted">Mã: <?= htmlspecialchars($item['sku_id']) ?></small>
-                                        <?php endif; ?>
+                            ?>
+                            <tr data-id="<?= $item['order_detail_id'] ?>">
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/upload/product/<?= htmlspecialchars($item['base_image']) ?>"
+                                            class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;"
+                                            alt="<?= htmlspecialchars($item['product_name']); ?>">
+                                        <div class="ms-3">
+                                            <a href="/product/detail?id=<?= $item["product_id"]; ?>"
+                                                class="h5 mb-1 product-name-sm"><?= htmlspecialchars($item['product_name']) ?></a>
+                                            <?php if (!empty($item['config_display'])): ?>
+                                                <small class="text-muted">
+                                                    <?= nl2br(htmlspecialchars(str_replace(' - ', "\n", $item['config_display']))) ?>
+                                                </small>
+                                            <?php endif; ?>
+                                            <?php if ($item['sku_id']): ?>
+                                                <br><small class="text-muted">Mã: <?= htmlspecialchars($item['sku_id']) ?></small>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </th>
-                            <td>
-                                <p class="mb-0 py-4 fw-bold">
-                                    <?= number_format($price) ?> ₫
-                                </p>
-                            </td>
-                            <td>
-                                <div class="input-group quantity py-4" style="width: 120px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border" type="button">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
+                                </th>
+                                <td>
+                                    <p class="mb-0 py-4 fw-bold">
+                                        <?= number_format($price) ?> ₫
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="input-group quantity py-4" style="width: 120px;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm text-center border-0 qty-input"
+                                            value="<?= $item['quantity'] ?>" readonly>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border" type="button">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm text-center border-0 qty-input"
-                                           value="<?= $item['quantity'] ?>" readonly>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border" type="button">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="mb-0 py-4 fw-bold text-primary">
-                                    <?= number_format($subtotal) ?> ₫
-                                </p>
-                            </td>
-                            <td class="py-4">
-                                <form action="/cart/remove" method="POST" style="display:inline;">
-                                    <input type="hidden" name="id" value="<?= $item['order_detail_id'] ?>">
-                                    <button type="submit" class="btn border btn-md rounded-pill px-4"
-                                            onclick="return confirm('Xóa sản phẩm này khỏi giỏ hàng?')">
+                                </td>
+                                <td>
+                                    <p class="mb-0 py-4 fw-bold text-primary">
+                                        <?= number_format($subtotal) ?> ₫
+                                    </p>
+                                </td>
+                                <td class="py-4">
+                                    <a href="/cart/remove?order_detail_id=<?= $item['order_detail_id'] ?>"
+                                        class="btn border btn-md rounded-pill px-4"
+                                        onclick="return confirm('Xóa sản phẩm này khỏi giỏ hàng?')">
                                         <i class="fa fa-times"></i> Xóa
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                                    </a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -90,11 +90,9 @@
                 <!-- Cột hình ảnh bên trái (chỉ hiện trên màn hình lớn) -->
                 <div class="col-lg-6 col-xl-6 d-none d-lg-block">
                     <div class="position-relative rounded-3 overflow-hidden shadow-lg">
-                        <img src="/public/assets/images/client/cart-image.png" 
-                            alt="Giỏ hàng của bạn" 
-                            class="img-fluid w-100" 
-                            style="height: 540px; object-fit: cover; border-radius: 1rem;">
-                        <div class="position-absolute bottom-0 start-0 end-0 bg-gradient-dark p-4 text-white" 
+                        <img src="/public/assets/images/client/cart-image.png" alt="Giỏ hàng của bạn"
+                            class="img-fluid w-100" style="height: 540px; object-fit: cover; border-radius: 1rem;">
+                        <div class="position-absolute bottom-0 start-0 end-0 bg-gradient-dark p-4 text-white"
                             style="background: linear-gradient(transparent, rgba(0,0,0,0.7)); border-radius: 0 0 1rem 1rem;">
                             <h4 class="mb-0">
                                 <i class="fas fa-check-circle text-success me-2"></i>
@@ -124,7 +122,8 @@
                             <strong class="text-success">30.000 ₫</strong>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center py-4 mb-4 bg-soft-primary rounded px-3">
+                        <div
+                            class="d-flex justify-content-between align-items-center py-4 mb-4 bg-soft-primary rounded px-3">
                             <h4 class="mb-0 fw-bold">Thành tiền:</h4>
                             <h3 class="mb-0 text-primary fw-bold">
                                 <?= number_format($cartTotal + 30000) ?> ₫
@@ -138,7 +137,7 @@
                         </div>
 
                         <a href="/cart/checkout"
-                          class="btn btn-primary btn-lg rounded-pill w-100 py-3 text-uppercase shadow hover-lift position-relative overflow-hidden">
+                            class="btn btn-primary btn-lg rounded-pill w-100 py-3 text-uppercase shadow hover-lift position-relative overflow-hidden">
                             <i class="fas fa-credit-card me-2"></i>
                             Tiến hành thanh toán
                             <span class="position-absolute top-50 end-3 translate-middle-y opacity-50">
@@ -158,41 +157,3 @@
         <?php endif; ?>
     </div>
 </div>
-
-<!-- Script cập nhật số lượng bằng AJAX (tùy chọn, nâng cao trải nghiệm) -->
-<script>
-document.querySelectorAll('.btn-minus, .btn-plus').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const row = this.closest('tr');
-        const id = row.dataset.id;
-        let input = row.querySelector('.qty-input');
-        let current = parseInt(input.value);
-
-        if (this.classList.contains('btn-minus')) {
-            if (current > 1) current--;
-            else return; // không cho về 0
-        } else {
-            current++;
-        }
-
-        // Gửi AJAX cập nhật số lượng
-        fetch('/cart/update', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'id=' + id + '&quantity=' + current
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                input.value = current;
-                // Cập nhật thành tiền
-                const price = parseInt(row.querySelector('td:nth-child(2) p').textContent.replace(/[^0-9]/g,''));
-                row.querySelector('td:nth-child(4) p').textContent = new Intl.NumberFormat('vi-VN').format(price * current) + ' ₫';
-                location.reload(); // đơn giản nhất: reload để cập nhật tổng tiền
-            }
-        });
-    });
-});
-</script>

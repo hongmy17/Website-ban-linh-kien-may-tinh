@@ -7,8 +7,10 @@ use App\Model\Cart;
 use App\Model\Order;
 use App\Model\OrderDetail;
 
-class ClientCartController {
-  public function index() {
+class ClientCartController
+{
+  public function index()
+  {
     $userID = 1;
 
     // if (!$userID) {
@@ -17,15 +19,7 @@ class ClientCartController {
     // }
 
     $cartModel = new Cart();
-    $orderModel = new Order();
-    $orderDetailModel = new OrderDetail();
-
     $cartInfo = $cartModel->getUserCart($userID);
-
-    // if (!$cartInfo) {
-    //   $cartInfo = $orderModel->getOrCreateCart($userID);
-    // }
-
     $cartItems = $cartModel->getCartItems($userID);
 
     $calculatedTotal = 0;
@@ -38,19 +32,37 @@ class ClientCartController {
       $cartModel->recalculateTotal($cartInfo['id']);
       $cartInfo['total'] = $calculatedTotal;
     }
-    
+
     $viewer = new Viewer();
     echo $viewer->renderClient([
       "title" => "Giỏ hàng của bạn",
       "pageName" => "cart/index.php",
-      "cartItems" => $cartItems,           
+      "cartItems" => $cartItems,
       "cartTotal" => $calculatedTotal,
       "cartOrderId" => $cartInfo["id"] ?? null,
       "itemCount" => count($cartItems),
     ]);
   }
-  
-  public function checkOut() {
+
+  public function add()
+  {
+    $userID = 1;
+    $cartModel = new Cart();
+
+    $orderData = [
+      "productID" => (int)$_GET["product_id"],
+      "variantID" => isset($_GET["variant_id"]) ? (int)$_GET["variant_id"] : NULL,
+      "price" => $_POST["hidden_price"],
+      "quantity" => $_POST["quantity"] ?? 1,
+    ];
+
+    $cartModel->add($userID, $orderData);
+    header("Location: /cart");
+    exit;
+  }
+
+  public function checkOut()
+  {
     $viewer = new Viewer();
     echo $viewer->renderClient([
       "title" => "Thanh toán",

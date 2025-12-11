@@ -11,22 +11,22 @@
                 <div class="product-categories mb-4">
                     <h4>Danh mục sản phẩm</h4>
                     <ul class="list-unstyled">
-                        <?php 
-                            foreach ($categoriesWithCount as $category): 
-                                if ($category["product_count"] > 0):
+                        <?php
+                        foreach ($categoriesWithCount as $category):
+                            if ($category["product_count"] > 0):
                         ?>
-                            <li>
-                                <div class="categories-item">
-                                    <a href="#" class="text-dark">
-                                        <i class="fas fa-apple-alt text-secondary me-2"></i>
-                                        <?= $category["name"]; ?>
-                                    </a>
-                                    <span>(<?= $category["product_count"]; ?>)</span>
-                                </div>
-                            </li>
-                        <?php 
-                                endif;
-                            endforeach; 
+                                <li>
+                                    <div class="categories-item">
+                                        <a href="#" class="text-dark">
+                                            <i class="fas fa-apple-alt text-secondary me-2"></i>
+                                            <?= $category["name"]; ?>
+                                        </a>
+                                        <span>(<?= $category["product_count"]; ?>)</span>
+                                    </div>
+                                </li>
+                        <?php
+                            endif;
+                        endforeach;
                         ?>
                     </ul>
                 </div>
@@ -41,11 +41,11 @@
                                 <h6 class="mb-2 product-name-sm"><?= $popularProduct["name"]; ?></h6>
                                 <div class="d-flex mb-2">
                                     <h5 class="fw-bold me-2">
-                                        <?php 
-                                            $price = !empty($popularProduct["base_discount_price"]) && $popularProduct["base_discount_price"] > 0
-                                                ? $popularProduct["base_discount_price"]
-                                                : $popularProduct["base_price"];
-                                            echo number_format($price, 0, ','); 
+                                        <?php
+                                        $price = !empty($popularProduct["base_discount_price"]) && $popularProduct["base_discount_price"] > 0
+                                            ? $popularProduct["base_discount_price"]
+                                            : $popularProduct["base_price"];
+                                        echo number_format($price, 0, ',');
                                         ?> VNĐ
                                     </h5>
                                 </div>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6">
+                    <form action="/cart/add?product_id=<?= $product["id"]; ?>" method="post" class="col-xl-6" id="product-detail">
                         <h4 class="fw-bold mb-3"><?= htmlspecialchars($product['name']) ?></h4>
                         <p class="mb-3">Thể loại: <?= htmlspecialchars($product['category_name']) ?></p>
 
@@ -107,7 +107,7 @@
                                 <?php foreach ($options as $opt): ?>
                                     <div class="mb-3">
                                         <label class="form-label fw-bold text-dark"><?= htmlspecialchars($opt['option_name']) ?></label>
-                                        <select class="form-select variant-select" data-option-id="<?= $opt['id'] ?>">
+                                        <select class="form-select variant-select" data-option-id="<?= $opt['id'] ?>" name="options[<?= $opt["id"]; ?>]">
                                             <option value="">-- Chọn <?= strtolower($opt['option_name']) ?> --</option>
                                             <?php foreach ($optionValues[$opt['id']] as $val): ?>
                                                 <option value="<?= $val['value_id'] ?>">
@@ -125,6 +125,7 @@
                         <div class="mb-3">
                             <span id="variant-price-new" class="fw-bold text-dark" style="font-size:22px;"></span>
                             <span id="variant-price-old" class="text-muted text-decoration-line-through me-2" style="font-size:18px;"></span>
+                            <input type="text" id="hidden-price" class="d-none" name="hidden_price" value="0" readonly>
                         </div>
 
 
@@ -134,13 +135,13 @@
                         </div>
 
                         <!-- SỐ LƯỢNG - GIỮ NGUYÊN CỦA BẠN -->
-                        <div class="input-group quantity mb-5" style="width: 100px;">
+                        <div class="input-group quantity mb-5" style="width: 130px;">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1" id="quantity" readonly>
+                            <input type="text" class="form-control form-control-sm text-center border px-2 mx-2" value="1" id="quantity" name="quantity" min="1">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
                                     <i class="fa fa-plus"></i>
@@ -148,14 +149,13 @@
                             </div>
                         </div>
 
-                        <!-- NÚT THÊM GIỎ HÀNG - GIỮ NGUYÊN GIAO DIỆN CỦA BẠN -->
-                        <a href="#" id="add-to-cart"
-                        class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-white"
-                        style="background:#0d6efd;" disabled>
+                        <button type="submit" id="add-to-cart"
+                            class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-white"
+                            style="background:#0d6efd;" disabled>
                             <i class="fa fa-shopping-bag me-2"></i> Thêm vào giỏ hàng
-                        </a>
-                    </div>
-                    
+                        </button>
+                    </form>
+
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
@@ -219,22 +219,10 @@
                                         placeholder="Phản hồi của bạn *" spellcheck="false"></textarea>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="d-flex justify-content-between py-3 mb-5">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-3">Xĩn hãy để lại đánh giá:</p>
-                                        <div class="d-flex align-items-center" style="font-size: 12px;">
-                                            <i class="fa fa-star text-muted"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <a href="#"
-                                        class="btn btn-primary border border-secondary text-primary rounded-pill px-4 py-3">
-                                        Gửi phản hồi</a>
-                                </div>
+                            <div class="col-lg-12 text-end">
+                                <a href="#"
+                                    class="btn btn-primary border border-secondary text-primary rounded-pill px-4 py-3">
+                                    Gửi phản hồi</a>
                             </div>
                         </div>
                     </form>
@@ -307,123 +295,138 @@
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
-        </div>
+            </div>
     </div>
 </div>
 <!-- Related Product End -->
 
 <script>
-// Dữ liệu variant từ PHP (đã có $variants từ Controller)
-const variants = <?= json_encode($variants, JSON_UNESCAPED_UNICODE) ?>;
+    // Dữ liệu variant từ PHP (đã có $variants từ Controller)
+    const variants = <?= json_encode($variants, JSON_UNESCAPED_UNICODE) ?>;
 
-const priceEl  = document.getElementById('variant-price');
-const stockEl  = document.getElementById('variant-stock');
-const btnCart  = document.getElementById('add-to-cart');
+    const priceEl = document.getElementById('variant-price');
+    const stockEl = document.getElementById('variant-stock');
+    const btnCart = document.getElementById('add-to-cart');
+    const productDetailForm = document.getElementById('product-detail');
 
-function updateVariantInfo() {
-    const selected = {};
-    let allSelected = true;
+    function updateVariantInfo() {
+        const selected = {};
+        let allSelected = true;
 
-    // Nếu không có select nào → coi như đã chọn đủ (dành cho sản phẩm không có biến thể)
-    const selects = document.querySelectorAll('.variant-select');
-    if (selects.length === 0) {
-        allSelected = true;
-    } else {
-        selects.forEach(sel => {
-            if (!sel.value) allSelected = false;
-            selected[sel.dataset.optionId] = sel.value;
-        });
-    }
-
-    const oldPriceEl = document.getElementById('variant-price-old');
-    const newPriceEl = document.getElementById('variant-price-new');
-
-    // TRƯỜNG HỢP 1: Sản phẩm KHÔNG có biến thể → dùng giá của sản phẩm chính
-    if (variants.length === 0 || selects.length === 0) {
-        const basePrice = <?= (float)$product['base_price'] ?>;
-        const baseDiscount = <?= $product['base_discount_price'] && $product['base_discount_price'] > 0 ? (float)$product['base_discount_price'] : 'null' ?>;
-
-        if (baseDiscount && baseDiscount < basePrice) {
-            oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
-            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(baseDiscount) + ' ₫';
-            newPriceEl.style.color = '#d70018';
+        // Nếu không có select nào → coi như đã chọn đủ (dành cho sản phẩm không có biến thể)
+        const selects = document.querySelectorAll('.variant-select');
+        if (selects.length === 0) {
+            allSelected = true;
         } else {
-            oldPriceEl.textContent = '';
-            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
-            newPriceEl.style.color = '#d70018';
+            selects.forEach(sel => {
+                if (!sel.value) allSelected = false;
+                selected[sel.dataset.optionId] = sel.value;
+            });
         }
 
-        stockEl.innerHTML = '<strong class="text-primary">Có hàng</strong>';
-        btnCart.disabled = false;
-        btnCart.dataset.variantId = <?= $product['id'] ?>; // dùng product_id làm variant_id
-        return;
-    }
+        const oldPriceEl = document.getElementById('variant-price-old');
+        const newPriceEl = document.getElementById('variant-price-new');
+        const hiddenPrice = document.getElementById('hidden-price');
 
-    // TRƯỜNG HỢP 2: Có biến thể → xử lý như cũ
-    if (!allSelected) {
-        oldPriceEl.textContent = '';
-        newPriceEl.textContent = 'Vui lòng chọn cấu hình';
-        newPriceEl.style.color = '#666';
-        stockEl.innerHTML = '<strong class="text-warning">Chưa chọn</strong>';
-        btnCart.disabled = true;
-        return;
-    }
+        // TRƯỜNG HỢP 1: Sản phẩm KHÔNG có biến thể → dùng giá của sản phẩm chính
+        if (variants.length === 0 || selects.length === 0) {
+            const basePrice = <?= (float)$product['base_price'] ?>;
+            const baseDiscount = <?= $product['base_discount_price'] && $product['base_discount_price'] > 0 ? (float)$product['base_discount_price'] : 'null' ?>;
 
-    const found = variants.find(v => 
-        Object.keys(selected).every(key => v.values[key] == selected[key])
-    );
+            if (baseDiscount && baseDiscount < basePrice) {
+                oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
+                newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(baseDiscount) + ' ₫';
+                hiddenPrice.value = baseDiscount;
+                newPriceEl.style.color = '#d70018';
+            } else {
+                oldPriceEl.textContent = '';
+                newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(basePrice) + ' ₫';
+                hiddenPrice.value = basePrice;
+                newPriceEl.style.color = '#d70018';
+            }
 
-    if (found) {
-        if (found.discount_price && found.discount_price < found.price) {
-            oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.price) + ' ₫';
-            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.discount_price) + ' ₫';
-            newPriceEl.style.color = '#d70018';
-        } else {
-            oldPriceEl.textContent = '';
-            newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.price) + ' ₫';
-            newPriceEl.style.color = '#d70018';
-        }
-
-        if (found.stock > 0) {
-            stockEl.innerHTML = `<strong class="text-primary">${found.stock} tồn kho</strong>`;
+            stockEl.innerHTML = '<strong class="text-primary">Có hàng</strong>';
             btnCart.disabled = false;
-            btnCart.dataset.variantId = found.id;
+            btnCart.dataset.variantId = <?= $product['id'] ?>; // dùng product_id làm variant_id
+            return;
+        }
+
+        // TRƯỜNG HỢP 2: Có biến thể → xử lý như cũ
+        if (!allSelected) {
+            oldPriceEl.textContent = '';
+            newPriceEl.textContent = 'Vui lòng chọn cấu hình';
+            newPriceEl.style.color = '#666';
+            stockEl.innerHTML = '<strong class="text-warning">Chưa chọn</strong>';
+            btnCart.disabled = true;
+            return;
+        }
+
+        const found = variants.find(v =>
+            Object.keys(selected).every(key => v.values[key] == selected[key])
+        );
+
+        if (found) {
+            if (found.discount_price && found.discount_price < found.price) {
+                oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.price) + ' ₫';
+                newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.discount_price) + ' ₫';
+                hiddenPrice.value = found.discount_price;
+                newPriceEl.style.color = '#d70018';
+            } else {
+                oldPriceEl.textContent = '';
+                newPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(found.price) + ' ₫';
+                hiddenPrice.value = found.price;
+                newPriceEl.style.color = '#d70018';
+            }
+
+            if (found.stock > 0) {
+                stockEl.innerHTML = `<strong class="text-primary">${found.stock} tồn kho</strong>`;
+                btnCart.disabled = false;
+                btnCart.dataset.variantId = found.id;
+            } else {
+                stockEl.innerHTML = '<strong class="text-danger">Hết hàng</strong>';
+                btnCart.disabled = true;
+            }
+
+            productDetailForm.setAttribute("action", "/cart/add?product_id=<?= $product["id"]; ?>" + `&variant_id=${found.id}`);
         } else {
+            oldPriceEl.textContent = '';
+            newPriceEl.textContent = 'Không có cấu hình này';
+            newPriceEl.style.color = '#666';
             stockEl.innerHTML = '<strong class="text-danger">Hết hàng</strong>';
             btnCart.disabled = true;
         }
-    } else {
-        oldPriceEl.textContent = '';
-        newPriceEl.textContent = 'Không có cấu hình này';
-        newPriceEl.style.color = '#666';
-        stockEl.innerHTML = '<strong class="text-danger">Hết hàng</strong>';
-        btnCart.disabled = true;
     }
-}
 
-// Sự kiện khi thay đổi select
-document.querySelectorAll('.variant-select').forEach(el => {
-    el.addEventListener('change', updateVariantInfo);
-});
+    // Sự kiện khi thay đổi select
+    document.querySelectorAll('.variant-select').forEach(el => {
+        el.addEventListener('change', updateVariantInfo);
+    });
 
-// Load lần đầu: chọn biến thể mặc định (nếu có)
-document.addEventListener('DOMContentLoaded', () => {
-    const defaultVariant = variants.find(v => v.default === true);
-    if (defaultVariant) {
-        Object.entries(defaultVariant.values).forEach(([optId, valId]) => {
-            const select = document.querySelector(`.variant-select[data-option-id="${optId}"]`);
-            if (select) select.value = valId;
-        });
-    }
-    updateVariantInfo();
-});
+    // Load lần đầu: chọn biến thể mặc định (nếu có)
+    document.addEventListener('DOMContentLoaded', () => {
+        const defaultVariant = variants.find(v => v.default === true);
+        if (defaultVariant) {
+            Object.entries(defaultVariant.values).forEach(([optId, valId]) => {
+                const select = document.querySelector(`.variant-select[data-option-id="${optId}"]`);
+                if (select) select.value = valId;
+            });
+        }
+        updateVariantInfo();
+    });
 
-// Tăng giảm số lượng
-document.querySelector('.btn-minus').addEventListener('click', () => {
-    let qty = parseInt(document.getElementById('quantity').value);
-    if (qty > 1) document.getElementById('quantity').value = qty - 1;
-});
-document.querySelector('.btn-plus').addEventListener('click', () => {
-    document.getElementById('quantity').value = parseInt(document.getElementById('quantity').value) + 1;
-});
+    document.addEventListener("DOMContentLoaded", function() {
+        // Tăng
+        document.querySelector('.btn-plus').onclick = function() {
+            let input = document.querySelector('input[name="quantity"]');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        // Giảm (không cho nhỏ hơn 1)
+        document.querySelector('.btn-minus').onclick = function() {
+            let input = document.querySelector('input[name="quantity"]');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    });
 </script>

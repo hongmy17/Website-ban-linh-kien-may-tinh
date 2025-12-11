@@ -4,18 +4,22 @@ namespace App\Model;
 
 use PDO;
 
-class Cart extends Model {
+class Cart extends Model
+{
   protected $table = 'orders';
 
-  public function getTableName(): string {
+  public function getTableName(): string
+  {
     return $this->table;
   }
 
-  public function validate(array $data): bool {
+  public function validate(array $data): bool
+  {
     return true;
   }
 
-  public function getUserCart($userID) {
+  public function getUserCart($userID)
+  {
     $sql = "
       SELECT o.*, 
         COALESCE(SUM(od.price * od.quantity), 0) AS calculated_total
@@ -32,7 +36,8 @@ class Cart extends Model {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getCartItems($userID) {
+  public function getCartItems($userID)
+  {
     $sql = "
       SELECT 
         od.id AS order_detail_id,
@@ -72,7 +77,8 @@ class Cart extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getOrderItems($orderID) {
+  public function getOrderItems($orderID)
+  {
     $sql = "
       SELECT 
         od.id AS order_detail_id,
@@ -111,7 +117,8 @@ class Cart extends Model {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function recalculateTotal($orderId) {
+  public function recalculateTotal($orderID)
+  {
     $sql = "
       UPDATE orders o
       JOIN (
@@ -125,6 +132,18 @@ class Cart extends Model {
     ";
 
     $stmt = $this->connection->prepare($sql);
-    return $stmt->execute([$orderId, $orderId]);
+    return $stmt->execute([$orderID, $orderID]);
+  }
+
+  public function add($userID, $orderData)
+  {
+    $orderModel = new Order();
+    $orderDetailModel = new OrderDetail();
+
+    $cartInfo = $orderModel->getOrCreateCart($userID);
+    $orderData["orderID"] = $cartInfo["id"];
+
+    $orderDetailModel->addToCart($orderData);
+    $this->recalculateTotal($orderData["orderID"]);
   }
 }
