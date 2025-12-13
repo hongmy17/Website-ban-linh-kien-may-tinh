@@ -10,8 +10,7 @@
   <!-- wysiwyg-editor 4.1.3 -->
   <link href="/public/plugins/froala-editor/froala_editor.pkgd.min.css" rel="stylesheet" />
   <link href="/public/assets/css/admin/style.css" rel="stylesheet" />
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
     crossorigin="anonymous"></script>
   <link rel="icon" type="image/x-icon" href="/public/assets/images/admin/favicon.png">
 </head>
@@ -21,6 +20,8 @@
 
   <div id="layoutSidenav">
     <?= require_once "components/menu.php"; ?>
+    <?= require_once "components/success-alert.php"; ?>
+    <?= require_once "components/error-alert.php"; ?>
 
     <div id="layoutSidenav_content">
       <div class="container-fluid p-4">

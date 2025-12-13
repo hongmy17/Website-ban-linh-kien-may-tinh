@@ -27,37 +27,20 @@
             <p class="text-muted">Nhập thông tin để tiếp tục mua sắm</p>
           </div>
 
-          <!-- Thông báo lỗi chung (từ flash hoặc session) -->
-          <?php if (!empty($errors['general'] ?? '')): ?>
-            <div class="alert alert-danger alert-dismissible fade show small" role="alert">
-              <strong>Lỗi:</strong> <?= htmlspecialchars($errors['general']) ?>
-              <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
-            </div>
-          <?php endif; ?>
-
-          <!-- Thông báo thành công (ví dụ: đăng xuất thành công) -->
-          <?php if ($success = $_SESSION['success_message'] ?? ''): ?>
-            <div class="alert alert-success alert-dismissible fade show small" role="alert">
-              <?= htmlspecialchars($success) ?>
-              <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
-            </div>
-            <?php unset($_SESSION['success_message']); ?>
-          <?php endif; ?>
-
           <form action="/account/postLogin" method="POST" class="needs-validation" novalidate>
             <!-- Email -->
             <div class="mb-4">
               <label class="form-label fw-semibold text-dark mb-2">Email</label>
               <div class="position-relative">
                 <input type="email" name="email" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light
-                                              <?= isset($errors['email']) ? 'is-invalid' : '' ?>"
+                                              <?= isset($_SESSION["login_errors"]['email']) ? 'is-invalid' : '' ?>"
                   placeholder="example@gmail.com" style="height: 58px; padding-left: 3.2rem;"
-                  value="<?= htmlspecialchars($old['email'] ?? '') ?>" required autofocus>
+                  value="<?= htmlspecialchars($_SESSION["login_old"]['email'] ?? '') ?>" required autofocus>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-envelope fs-5"></i>
                 </span>
-                <?php if (isset($errors['email'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['email']) ?></div>
+                <?php if (isset($_SESSION["login_errors"]['email'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($_SESSION["login_errors"]['email']) ?></div>
                 <?php else: ?>
                   <div class="invalid-feedback">Vui lòng nhập email hợp lệ!</div>
                 <?php endif; ?>
@@ -69,16 +52,17 @@
               <label class="form-label fw-semibold text-dark mb-2">Mật khẩu</label>
               <div class="position-relative">
                 <input type="password" name="password" class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light
-                                              <?= isset($errors['password']) ? 'is-invalid' : '' ?>"
-                  placeholder="••••••••" style="height: 58px; padding-left: 3.2rem;" required>
+                  <?= isset($_SESSION["login_errors"]['general']) ? 'is-invalid' : '' ?>" placeholder="••••••••"
+                  style="height: 58px; padding-left: 3.2rem;" required>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-lock fs-5"></i>
                 </span>
-                <?php if (isset($errors['password'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['password']) ?></div>
+                <?php if (isset($_SESSION["login_errors"]['general'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($_SESSION["login_errors"]['general']) ?></div>
                 <?php else: ?>
                   <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
                 <?php endif; ?>
+
               </div>
             </div>
 
@@ -134,6 +118,11 @@
     </div>
   </div>
 </div>
+
+<?php
+unset($_SESSION['login_errors']);
+unset($_SESSION['login_old']);
+?>
 
 <!-- Bootstrap Validation Script -->
 <script>

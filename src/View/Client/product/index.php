@@ -6,22 +6,22 @@
                 <div class="product-categories mb-4">
                     <h4>Danh mục sản phẩm</h4>
                     <ul class="list-unstyled">
-                        <?php 
-                            foreach ($categoriesWithCount as $category): 
-                                if ($category["product_count"] > 0):
-                        ?>
-                            <li>
-                                <div class="categories-item">
-                                    <a href="#" class="text-dark">
-                                        <i class="fas fa-apple-alt text-secondary me-2"></i>
-                                        <?= $category["name"]; ?>
-                                    </a>
-                                    <span>(<?= $category["product_count"]; ?>)</span>
-                                </div>
-                            </li>
-                        <?php 
-                                endif;
-                            endforeach; 
+                        <?php
+                        foreach ($categoriesWithCount as $category):
+                            if ($category["product_count"] > 0):
+                                ?>
+                                <li>
+                                    <div class="categories-item">
+                                        <a href="#" class="text-dark">
+                                            <i class="fas fa-apple-alt text-secondary me-2"></i>
+                                            <?= $category["name"]; ?>
+                                        </a>
+                                        <span>(<?= $category["product_count"]; ?>)</span>
+                                    </div>
+                                </li>
+                            <?php
+                            endif;
+                        endforeach;
                         ?>
                     </ul>
                 </div>
@@ -30,17 +30,18 @@
                     <?php foreach ($popularProducts as $popularProduct): ?>
                         <a href="/product/detail?id=<?= $popularProduct["id"]; ?>" class="featured-product-item">
                             <div class="rounded me-4 product-card-sm" style="width: 100px; height: 100px;">
-                                <img src="/upload/product/<?= $popularProduct["base_image"]; ?>" class="img-fluid rounded" alt="Image">
+                                <img src="/upload/product/<?= $popularProduct["base_image"]; ?>" class="img-fluid rounded"
+                                    alt="Image">
                             </div>
                             <div>
                                 <h6 class="mb-2 product-name-sm"><?= $popularProduct["name"]; ?></h6>
                                 <div class="d-flex mb-2">
                                     <h5 class="fw-bold me-2">
-                                        <?php 
-                                            $price = !empty($popularProduct["base_discount_price"]) && $popularProduct["base_discount_price"] > 0
-                                                ? $popularProduct["base_discount_price"]
-                                                : $popularProduct["base_price"];
-                                            echo number_format($price, 0, ','); 
+                                        <?php
+                                        $price = !empty($popularProduct["base_discount_price"]) && $popularProduct["base_discount_price"] > 0
+                                            ? $popularProduct["base_discount_price"]
+                                            : $popularProduct["base_price"];
+                                        echo number_format($price, 0, ',');
                                         ?> VNĐ
                                     </h5>
                                 </div>
@@ -55,8 +56,7 @@
                         <div class="input-group w-100 mx-auto d-flex">
                             <input type="search" class="form-control p-3" placeholder="Từ khóa"
                                 aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i
-                                    class="fa fa-search"></i></span>
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
                     <div class="col-xl-4 text-end">
@@ -83,21 +83,26 @@
                                     <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
                                         <div class="product-item-inner border rounded">
                                             <div class="product-item-inner-item product-card">
-                                                <img src="/upload/product/<?= $product["base_image"]; ?>" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/upload/product/<?= $product["base_image"]; ?>"
+                                                    class="img-fluid w-100 rounded-top" alt="">
                                                 <div class="product-new">Mới</div>
                                                 <div class="product-details">
-                                                    <a href="/product/detail?id=<?= $product["id"]; ?>"><i class="fa fa-eye fa-1x"></i></a>
+                                                    <a href="/product/detail?id=<?= $product["id"]; ?>"><i
+                                                            class="fa fa-eye fa-1x"></i></a>
                                                 </div>
                                             </div>
                                             <div class="text-center rounded-bottom p-4">
                                                 <div class="product-meta-new">
-                                                    <span class="meta-view"><i class="fas fa-eye"></i> <?= number_format($product["view"]) ?></span>
-                                                    <span class="meta-sold"><i class="fas fa-shopping-cart"></i> <?= number_format($product["sold"]) ?></span>
+                                                    <span class="meta-view"><i class="fas fa-eye"></i>
+                                                        <?= number_format($product["view"]) ?></span>
+                                                    <span class="meta-sold"><i class="fas fa-shopping-cart"></i>
+                                                        <?= number_format($product["base_sold"]) ?></span>
                                                 </div>
-                                                
+
                                                 <a href="#" class="d-block mb-2"><?= $product["category_name"]; ?></a>
-                                                <a href="/product/detail?id=<?= $product["id"]; ?>" class="h5 product-name"><?= $product["name"]; ?></a>
-                                                
+                                                <a href="/product/detail?id=<?= $product["id"]; ?>"
+                                                    class="h5 product-name"><?= $product["name"]; ?></a>
+
                                                 <?php if (!empty($product['base_discount_price']) && $product['base_discount_price'] > 0): ?>
                                                     <del class="me-2 fs-5">
                                                         <?= number_format($product['base_price']) ?> VNĐ
@@ -124,9 +129,9 @@
                                         <a href="?page=<?= max(1, $currentPage - 1) ?><?= $categoryId ? '&category=' . $categoryId : '' ?>" 
                                         class="rounded <?= $currentPage <= 1 ? 'disabled' : '' ?>">&laquo;</a>
 
-                                        <?php 
+                                        <?php
                                         $start = max(1, $currentPage - 2);
-                                        $end   = min($totalPages, $currentPage + 2);
+                                        $end = min($totalPages, $currentPage + 2);
                                         if ($start > 1): ?>
                                             <a href="?page=1<?= $categoryId ? '&category=' . $categoryId : '' ?>" class="rounded">1</a>
                                             <?php if ($start > 2): ?><span class="rounded">...</span><?php endif; ?>
@@ -160,4 +165,3 @@
     </div>
 </div>
 <!-- Shop Page End -->
- 

@@ -55,7 +55,12 @@ class Cart extends Model
         GROUP_CONCAT(
             CONCAT(o.name, ': ', ov.name)
             ORDER BY o.id SEPARATOR ' - '
-        ) AS config_display
+        ) AS config_display,
+
+        CASE
+          WHEN od.variant_id IS NOT NULL THEN pv.quantity_in_stock
+          ELSE p.base_quantity_in_stock
+        END AS stock
 
       FROM orders ord
       LEFT JOIN order_details od ON ord.id = od.order_id

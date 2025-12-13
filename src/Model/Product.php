@@ -204,6 +204,7 @@ class Product extends Model
         SELECT 
             pv.id,
             pv.price,
+            pv.sku_id,
             pv.discount_price,
             pv.quantity_in_stock AS stock,
             pv.is_default,
@@ -231,6 +232,7 @@ class Product extends Model
       $variants[] = [
         'id' => (int) $row['id'],
         'price' => (float) $row['price'],
+        'sku_id' => $row['sku_id'],
         'discount_price' => $row['discount_price'] ? (float) $row['discount_price'] : null,
         'stock' => (int) $row['stock'],
         'default' => (bool) $row['is_default'],
@@ -332,6 +334,98 @@ class Product extends Model
     $stmt = $this->connection->prepare($sql);
 
     return $stmt->execute([$productID]);
+  }
+
+  public function increaseProductSold($productID, $quantity)
+  {
+    $sql = "UPDATE products SET base_sold = base_sold + ? WHERE id = ?";
+
+    $stmt = $this->connection->prepare($sql);
+
+    return $stmt->execute([$quantity, $productID]);
+  }
+
+  public function increaseVariantSold($variantID, $quantity)
+  {
+    $sql = "UPDATE product_variants SET sold = sold + ? WHERE id = ?";
+
+    $stmt = $this->connection->prepare($sql);
+
+    return $stmt->execute([$quantity, $variantID]);
+  }
+
+  public function updateProductQtyStock($productID, $quantity)
+  {
+    $sql = "UPDATE products SET base_quantity_in_stock = base_quantity_in_stock - ? WHERE id = ?";
+
+    $stmt = $this->connection->prepare($sql);
+
+    return $stmt->execute([$quantity, $productID]);
+  }
+
+  public function updateVariantQtyStock($variantID, $quantity)
+  {
+    $sql = "UPDATE product_variants SET quantity_in_stock = quantity_in_stock - ? WHERE id = ?";
+
+    $stmt = $this->connection->prepare($sql);
+
+    return $stmt->execute([$quantity, $variantID]);
+  }
+
+  public function updateBaseSold($productID)
+  {
+    // Bước 1: Tính tổng sold của tất cả variant thuộc product_id
+    $sqlTotal = "
+      SELECT COALESCE(SUM(sold), 0) AS total_sold
+      FROM product_variants
+      WHERE product_id = ?
+    ";
+
+    $stmtTotal = $this->connection->prepare($sqlTotal);
+    $stmtTotal->execute([$productID]);
+    $totalSold = $stmtTotal->fetchColumn(); // Lấy trực tiếp giá trị tổng
+
+    // Bước 2: Cập nhật base_sold vào bảng products
+    $sqlUpdate = "
+      UPDATE products
+      SET base_sold = ?
+      WHERE id = ?
+    ";
+
+    $stmtUpdate = $this->connection->prepare($sqlUpdate);
+    $stmtUpdate->execute([$totalSold, $productID]);
+  }
+
+  public function updateBaseQtyStock($productID)
+  {
+    $sqlTotal = "
+      SELECT COALESCE(SUM(quantity_in_stock), 0) AS total_qty
+      FROM product_variants
+      WHERE product_id = ?
+    ";
+
+    $stmtTotal = $this->connection->prepare($sqlTotal);
+    $stmtTotal->execute([$productID]);
+    $totalQty = $stmtTotal->fetchColumn();
+
+    $sqlUpdate = "
+      UPDATE products
+      SET base_quantity_in_stock = ?
+      WHERE id = ?
+    ";
+
+    $stmtUpdate = $this->connection->prepare($sqlUpdate);
+    $stmtUpdate->execute([$totalQty, $productID]);
+  }
+
+  public function getProductIDByVariantID($variantID)
+  {
+    $sql = "SELECT product_id FROM product_variants WHERE id = ?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$variantID]);
+
+    $productID = $stmt->fetchColumn();
+    return $productID !== false ? (int) $productID : null;
   }
 
   public function getPaginatedProducts($page = 1, $perPage = 6, $categoryId = null)
@@ -567,17 +661,17 @@ class Product extends Model
 
   public function delete($productID)
   {
+    if ($this->hasVariant($productID)) {
+      $_SESSION["error"] = "Vui lòng xóa biến thể trước";
+      return;
+    }
+
     $this->deleteProductOptions($productID);
     $this->deleteProduct($productID);
   }
 
   public function deleteProduct($productID)
   {
-    if ($this->hasVariant($productID)) {
-      echo "<script>confirm('Không thể xóa sản phẩm có biến thể!')</script>";
-      return;
-    }
-
     $sql = "DELETE FROM {$this->table} WHERE id = ?";
     $stmt = $this->connection->prepare($sql);
     $stmt->execute([$productID]);

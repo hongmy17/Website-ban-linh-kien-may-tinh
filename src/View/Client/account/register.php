@@ -22,38 +22,20 @@
             <p class="text-muted mt-2">Tạo tài khoản để bắt đầu mua sắm</p>
           </div>
 
-          <!-- Hiển thị lỗi tổng quát (nếu có) -->
-          <?php if (!empty($error)): ?>
-            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-              <strong>Lỗi:</strong><br>
-              <?= nl2br(htmlspecialchars($error)) ?>
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-          <?php endif; ?>
-
-          <!-- Hiển thị thông báo thành công (nếu có) -->
-          <?php if (!empty($_SESSION['success_message'] ?? '')): ?>
-            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-              <?= htmlspecialchars($_SESSION['success_message']) ?>
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            <?php unset($_SESSION['success_message']); ?>
-          <?php endif; ?>
-
           <form action="/account/postRegister" method="POST" class="needs-validation" novalidate>
             <!-- Họ và tên -->
             <div class="mb-4">
               <label class="form-label fw-semibold text-dark">Họ và tên</label>
               <div class="position-relative">
                 <input type="text"
-                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['name']) ? 'is-invalid' : '' ?>"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($_SESSION["register_errors"]['name']) ? 'is-invalid' : '' ?>"
                   name="name" placeholder="Nguyễn Đặng Hồng Mỹ" style="padding-left: 3rem; height: 56px;"
-                  value="<?= htmlspecialchars($old['name'] ?? '') ?>" required>
+                  value="<?= htmlspecialchars($_SESSION['register_old']['name'] ?? '') ?>" required>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-person"></i>
                 </span>
-                <?php if (isset($errors['name'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['name']) ?></div>
+                <?php if (isset($_SESSION["register_errors"]['name'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($_SESSION["register_errors"]['name']) ?></div>
                 <?php else: ?>
                   <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
                 <?php endif; ?>
@@ -65,14 +47,14 @@
               <label class="form-label fw-semibold text-dark">Email</label>
               <div class="position-relative">
                 <input type="email"
-                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['email']) ? 'is-invalid' : '' ?>"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($_SESSION["register_errors"]['email']) ? 'is-invalid' : '' ?>"
                   name="email" placeholder="you@example.com" style="padding-left: 3rem; height: 56px;"
-                  value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
+                  value="<?= htmlspecialchars($_SESSION['register_old']['email'] ?? '') ?>" required>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-envelope"></i>
                 </span>
-                <?php if (isset($errors['email'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['email']) ?></div>
+                <?php if (isset($_SESSION["register_errors"]['email'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($_SESSION["register_errors"]['email']) ?></div>
                 <?php else: ?>
                   <div class="invalid-feedback">Email không hợp lệ!</div>
                 <?php endif; ?>
@@ -84,14 +66,14 @@
               <label class="form-label fw-semibold text-dark">Mật khẩu</label>
               <div class="position-relative">
                 <input type="password"
-                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['password']) ? 'is-invalid' : '' ?>"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($_SESSION["register_errors"]['password']) ? 'is-invalid' : '' ?>"
                   name="password" placeholder="••••••••" style="padding-left: 3rem; height: 56px;" required
                   minlength="6">
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-lock"></i>
                 </span>
-                <?php if (isset($errors['password'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['password']) ?></div>
+                <?php if (isset($_SESSION["register_errors"]['password'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($_SESSION["register_errors"]['password']) ?></div>
                 <?php else: ?>
                   <div class="invalid-feedback">Mật khẩu phải ít nhất 6 ký tự!</div>
                 <?php endif; ?>
@@ -103,13 +85,14 @@
               <label class="form-label fw-semibold text-dark">Nhập lại mật khẩu</label>
               <div class="position-relative">
                 <input type="password"
-                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($errors['password_confirm']) ? 'is-invalid' : '' ?>"
+                  class="form-control form-control-lg rounded-3 shadow-sm border-0 bg-light <?= isset($_SESSION["register_errors"]['password_confirm']) ? 'is-invalid' : '' ?>"
                   name="password_confirm" placeholder="••••••••" style="padding-left: 3rem; height: 56px;" required>
                 <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
                   <i class="bi bi-lock"></i>
                 </span>
-                <?php if (isset($errors['password_confirm'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['password_confirm']) ?></div>
+                <?php if (isset($_SESSION["register_errors"]['password_confirm'])): ?>
+                  <div class="invalid-feedback"><?= htmlspecialchars($_SESSION["register_errors"]['password_confirm']) ?>
+                  </div>
                 <?php endif; ?>
               </div>
             </div>
@@ -147,6 +130,12 @@
     </div>
   </div>
 </div>
+
+<?php
+unset($_SESSION['register_errors']);
+unset($_SESSION['register_old']);
+?>
+
 
 <!-- Bootstrap 5 Validation Script -->
 <script>

@@ -9,6 +9,7 @@ use App\Router;
 
 // Auth
 use App\Middleware\AuthAdmin;
+use App\Middleware\AuthLogin;
 
 // Client
 use App\Controller\Client\ClientHomeController;
@@ -40,17 +41,9 @@ $router->add("/contact", ["controller" => ClientContactController::class, "actio
 
 // Error
 $router->add("/404-error", ["controller" => ClientErrorController::class, "action" => "notFound"]);
-
-// Cart
-$router->add("/cart", ["controller" => ClientCartController::class, "action" => "index"]);
-$router->add("/cart/add", ["controller" => ClientCartController::class, "action" => "add"]);
-$router->add("/cart/update", ["controller" => ClientCartController::class, "action" => "update"]);
-$router->add("/cart/delete", ["controller" => ClientCartController::class, "action" => "delete"]);
-$router->add("/cart/check-out", ["controller" => ClientCartController::class, "action" => "checkOut"]);
-$router->add("/cart/pay", ["controller" => ClientCartController::class, "action" => "pay"]);
+$router->add("/not-admin", ["controller" => ClientErrorController::class, "action" => "notAdmin"]);
 
 // Account
-$router->add("/account", ["controller" => ClientAccountController::class, "action" => "index"]);
 $router->add("/account/login", ["controller" => ClientAccountController::class, "action" => "login"]);
 $router->add("/account/edit", ["controller" => ClientAccountController::class, "action" => "edit"]);
 $router->add("/account/update", ["controller" => ClientAccountController::class, "action" => "update"]);
@@ -58,6 +51,27 @@ $router->add("/account/postLogin", ["controller" => ClientAccountController::cla
 $router->add("/account/register", ["controller" => ClientAccountController::class, "action" => "register"]);
 $router->add("/account/postRegister", ["controller" => ClientAccountController::class, "action" => "postRegister"]);
 $router->add("/account/logout", ["controller" => ClientAccountController::class, "action" => "logout"]);
+
+$authLoginRoutes = [
+  // Cart
+  "/cart" => ["controller" => ClientCartController::class, "action" => "index"],
+  "/cart/add" => ["controller" => ClientCartController::class, "action" => "add"],
+  "/cart/update" => ["controller" => ClientCartController::class, "action" => "update"],
+  "/cart/delete" => ["controller" => ClientCartController::class, "action" => "delete"],
+  "/cart/check-out" => ["controller" => ClientCartController::class, "action" => "checkOut"],
+  "/cart/pay" => ["controller" => ClientCartController::class, "action" => "pay"],
+
+  // Account
+  "/account" => ["controller" => ClientAccountController::class, "action" => "index"],
+];
+
+foreach ($authLoginRoutes as $path => $config) {
+  $router->add(
+    $path,
+    $config,
+    [AuthLogin::class]
+  );
+}
 
 $adminRoutes = [
   // admin

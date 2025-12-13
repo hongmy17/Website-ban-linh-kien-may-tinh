@@ -4,19 +4,13 @@ namespace App\Controller\Client;
 
 use App\Framework\Viewer;
 use App\Model\Cart;
-use App\Model\Order;
-use App\Model\OrderDetail;
+use App\Model\Product;
 
 class ClientCartController
 {
   public function index()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
-
-    if (!$userID) {
-      header('Location: /account/login');
-      exit;
-    }
+    $userID = $_SESSION["user_id"];
 
     $cartModel = new Cart();
     $cartInfo = $cartModel->getUserCart($userID);
@@ -35,12 +29,7 @@ class ClientCartController
 
   public function add()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
-
-    if (!$userID) {
-      header('Location: /account/login');
-      exit;
-    }
+    $userID = $_SESSION["user_id"];
     $cartModel = new Cart();
 
     $orderData = [
@@ -57,12 +46,7 @@ class ClientCartController
 
   public function update()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
-
-    if (!$userID) {
-      header('Location: /account/login');
-      exit;
-    }
+    $userID = $_SESSION["user_id"];
     $cartModel = new Cart();
 
     $orderData = [
@@ -78,12 +62,7 @@ class ClientCartController
 
   public function delete()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
-
-    if (!$userID) {
-      header('Location: /account/login');
-      exit;
-    }
+    $userID = $_SESSION["user_id"];
     $cartModel = new Cart();
 
     $orderData = [
@@ -102,12 +81,7 @@ class ClientCartController
 
   public function checkOut()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
-
-    if (!$userID) {
-      header('Location: /account/login');
-      exit;
-    }
+    $userID = $_SESSION["user_id"];
 
     $cartModel = new Cart();
     $cartInfo = $cartModel->getUserCart($userID);
@@ -123,25 +97,170 @@ class ClientCartController
     ]);
   }
 
+  public function getQtyToUpdate($productsData)
+  {
+    $productsQty = [
+      "products" => [],
+      "variants" => [],
+    ];
+
+    foreach ($productsData as $productID => $variants) {
+      foreach ($variants as $id => $value) {
+        $hasVariant = (int) $id > 0;
+
+        if ($hasVariant) {
+          $productsQty["variants"][$id] = (int) $value;
+        } else {
+          $productsQty["products"][$productID] = (int) $value;
+        }
+      }
+    }
+
+    return $productsQty;
+  }
+
+  public function increaseProductSold($productsSold)
+  {
+    $productModel = new Product();
+
+    foreach ($productsSold as $productID => $quantity) {
+      $productModel->increaseProductSold($productID, $quantity);
+    }
+  }
+
+  public function increaseVariantSold($variantsSold)
+  {
+    $productModel = new Product();
+    $productsID = [];
+
+    foreach ($variantsSold as $variantID => $quantity) {
+      $productID = $productModel->getProductIDByVariantID($variantID);
+      if (!in_array($productID, $productsID)) {
+        $productsID[] = $productID;
+      }
+
+      $productModel->increaseVariantSold($variantID, $quantity);
+    }
+
+    foreach ($productsID as $productID) {
+      $productModel->updateBaseSold($productID);
+    }
+  }
+
+  public function updateProductQtyStock($productsQty)
+  {
+    $productModel = new Product();
+
+    foreach ($productsQty as $productID => $quantity) {
+      $productModel->updateProductQtyStock($productID, $quantity);
+    }
+  }
+
+  public function updateVariantQtyStock($variantsQty)
+  {
+    $productModel = new Product();
+    $productsID = [];
+
+    foreach ($variantsQty as $variantID => $quantity) {
+      $productID = $productModel->getProductIDByVariantID($variantID);
+      if (!in_array($productID, $productsID)) {
+        $productsID[] = $productID;
+      }
+
+      $productModel->updateVariantQtyStock($variantID, $quantity);
+    }
+
+    foreach ($productsID as $productID) {
+      $productModel->updateBaseQtyStock($productID);
+    }
+  }
+
   public function pay()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
+    $orderID = (int) $_GET["order_id"];
 
-    if (!$userID) {
-      header('Location: /account/login');
+    $name = trim($_POST["name"] ?? '');
+    $address = trim($_POST["address"] ?? '');
+    $phone = trim($_POST["phone"] ?? '');
+    $delivery = trim($_POST["delivery"] ?? '');
+
+    $errors = [];
+    $old = [
+      'name' => $name,
+      'address' => $address,
+      'phone' => $phone,
+      'delivery' => $delivery,
+    ];
+
+    // Validation cơ bản
+    if (empty($name)) {
+      $errors['name'] = 'Vui lòng nhập họ và tên người nhận!';
+    }
+    if (empty($address)) {
+      $errors['address'] = 'Vui lòng nhập địa chỉ nhận hàng!';
+    }
+    if (empty($phone) || !preg_match('/^[0-9]{10,11}$/', $phone)) {
+      $errors['phone'] = 'Số điện thoại phải gồm 10-11 chữ số!';
+    }
+    if (empty($delivery)) {
+      $errors['delivery'] = 'Vui lòng chọn phương thức thanh toán!';
+    }
+
+    // === KIỂM TRA TỒN KHO TRƯỚC KHI THANH TOÁN ===
+    $cartModel = new Cart();
+    $cartItems = $cartModel->getCartItems($_SESSION['user_id']); // Lấy giỏ hàng hiện tại (chưa thanh toán)
+
+    // $_POST["quantities"] có dạng: quantities[product_id][variant_id] = qty
+    $requestedQuantities = $_POST["quantities"] ?? [];
+
+    foreach ($cartItems as $item) {
+      $productID = $item['product_id'];
+      $variantID = $item['variant_id'] ?? 0; // null → 0 nếu không có biến thể
+      $currentQty = $item['quantity'];
+      $stock = $item['stock'];
+
+      // Lấy số lượng người dùng yêu cầu (nếu có thay đổi ở giỏ hàng trước đó)
+      $requestedQty = $currentQty; // mặc định giữ nguyên
+
+      if (isset($requestedQuantities[$productID][$variantID])) {
+        $requestedQty = (int) $requestedQuantities[$productID][$variantID];
+      }
+
+      // Kiểm tra vượt tồn kho
+      if ($requestedQty > $stock) {
+        $config = !empty($item['config_display']) ? " ({$item['config_display']})" : '';
+        $sku = !empty($item['sku_id']) ? " (Mã: {$item['sku_id']})" : '';
+
+        $errors['stock'] = "Sản phẩm \"{$item['product_name']}{$config}{$sku}\" chỉ còn {$stock} sản phẩm trong kho (bạn đang đặt {$requestedQty}). Vui lòng quay lại giỏ hàng điều chỉnh!";
+        break; // chỉ cần 1 lỗi là đủ để dừng
+      }
+    }
+
+    // Nếu có lỗi (bao gồm cả lỗi tồn kho)
+    if ($errors) {
+      $_SESSION['checkout_errors'] = $errors;
+      $_SESSION['checkout_old'] = $old;
+      header("Location: /cart/check-out");
       exit;
     }
 
-    $orderID = (int) $_GET["order_id"];
-    $cartModel = new Cart();
-
+    // === TIẾP TỤC THANH TOÁN KHI KHÔNG CÓ LỖI ===
     $checkOutData = [
-      "receiver_name" => $_POST["name"],
-      "address" => $_POST["address"],
-      "receiver_phone" => $_POST["phone"],
+      "receiver_name" => $name,
+      "address" => $address,
+      "receiver_phone" => $phone,
     ];
 
     $cartModel->pay($orderID, $checkOutData);
+
+    $productsQty = $this->getQtyToUpdate($requestedQuantities);
+
+    $this->increaseProductSold($productsQty["products"]);
+    $this->increaseVariantSold($productsQty["variants"]);
+    $this->updateProductQtyStock($productsQty["products"]);
+    $this->updateVariantQtyStock($productsQty["variants"]);
+
+    $_SESSION["success"] = "Bạn đã đặt hàng thành công!";
     header("Location: /cart");
     exit;
   }

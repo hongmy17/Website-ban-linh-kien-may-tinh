@@ -9,12 +9,7 @@ class ClientAccountController
 {
   public function index()
   {
-    $userID = $_SESSION["user_id"] ?? NULL;
-
-    if (!$userID) {
-      header('Location: /account/login');
-      exit;
-    }
+    $userID = $_SESSION["user_id"];
 
     $userModel = new User();
     $user = $userModel->find($userID);
@@ -104,9 +99,9 @@ class ClientAccountController
       $errors['password_confirm'] = 'Mật khẩu không khớp.';
 
     if ($errors) {
-      $_SESSION['errors'] = $errors;
-      $_SESSION['old'] = $old;
-      header("Location: account/register");
+      $_SESSION['register_errors'] = $errors;
+      $_SESSION['register_old'] = $old;
+      header("Location: /account/register");
       exit;
     }
 
@@ -118,6 +113,7 @@ class ClientAccountController
     ];
 
     $userModel->create($userData);
+    $_SESSION["success"] = "Bạn đã tạo tài khoản thành công";
     header("Location: /account/login");
     exit;
   }
@@ -138,11 +134,15 @@ class ClientAccountController
 
     $user = $userModel->getUserByEmail($email);
 
-    if (!$user || !password_verify($password, $user['password'])) {
-      $errors['general'] = 'Email hoặc mật khẩu không đúng!';
-    } elseif ($user['status'] ?? 'active' !== 'active') {
-      $errors['general'] = 'Tài khoản của bạn đã bị khóa.';
+    if (!$user) {
+      $errors['email'] = 'Email không tồn tại.';
+    } else if (!$user || !password_verify($password, $user['password'])) {
+      $errors['general'] = 'Vui lòng nhập đúng mật khẩu!';
+      var_dump(1);
     }
+    //  elseif ($user['status'] ?? 'active' !== 'active') {
+    //   $errors['general'] = 'Tài khoản của bạn đã bị khóa.';
+    // }
 
     if ($errors) {
       $_SESSION['login_errors'] = $errors;
@@ -155,8 +155,9 @@ class ClientAccountController
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = $user['name'];
     $_SESSION['is_admin'] = $user['is_admin'];
+    $_SESSION["success"] = "Bạn đã đăng nhập thành công";
 
-    header("Location: /");
+    header("Location: /account");
     exit;
   }
 
