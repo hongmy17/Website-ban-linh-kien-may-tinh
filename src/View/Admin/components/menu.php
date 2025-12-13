@@ -16,8 +16,6 @@
           <nav class="sb-sidenav-menu-nested nav">
             <a class="nav-link" href="/admin/user/add">Thêm người dùng</a>
             <a class="nav-link" href="/admin/user">Danh sách người dùng</a>
-            <a class="nav-link" href="/admin/user/info">Thông tin người dùng</a>
-            <a class="nav-link" href="/admin/user/edit">Chỉnh sửa người dùng</a>
           </nav>
         </div>
 

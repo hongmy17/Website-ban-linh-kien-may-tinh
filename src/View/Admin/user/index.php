@@ -95,7 +95,7 @@
               <a href="/admin/user/edit?id=<?= $user['id']; ?>" class="edit text-decoration-none">
                 <i class="fas fa-pen text-warning mx-2"></i>
               </a>
-              <a href="#" class="edit text-decoration-none">
+              <a href="/admin/user/delete?id=<?= $user['id']; ?>" class="edit text-decoration-none">
                 <i class="fa fa-trash text-danger"></i>
               </a>
             </div>

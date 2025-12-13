@@ -91,6 +91,13 @@ class User extends Model
     ]);
   }
 
+  public function deleteUser($userID)
+  {
+    $sql = "DELETE FROM {$this->table} WHERE id = ?";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$userID]);
+  }
+
   public function getUserNameBy($userID)
   {
     $sql = "SELECT name FROM users WHERE id = ?";

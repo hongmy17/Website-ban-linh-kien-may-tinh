@@ -69,6 +69,7 @@ $adminRoutes = [
   "/admin/user/edit" => ["controller" => AdminUserController::class, "action" => "edit"],
   "/admin/user/info" => ["controller" => AdminUserController::class, "action" => "info"],
   "/admin/user/update" => ["controller" => AdminUserController::class, "action" => "update"],
+  "/admin/user/delete" => ["controller" => AdminUserController::class, "action" => "delete"],
 
   // Product
   "/admin/product" => ["controller" => AdminProductController::class, "action" => "index"],

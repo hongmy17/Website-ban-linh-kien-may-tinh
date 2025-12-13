@@ -43,6 +43,16 @@ class AdminUserController
     ]);
   }
 
+  public function delete()
+  {
+    $userID = $_GET["id"];
+    $productModel = new User();
+    $productModel->deleteUser($userID);
+
+    header("Location: /admin/user");
+    exit;
+  }
+
   public function update()
   {
     $userID = $_GET["id"];
