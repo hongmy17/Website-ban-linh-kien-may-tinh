@@ -36,6 +36,41 @@ class ClientAccountController
     ]);
   }
 
+  public function edit()
+  {
+    $userModel = new User;
+    $user = $userModel->find($_GET['id']);
+    $viewer = new Viewer();
+    echo $viewer->renderClient([
+      "title" => "Chỉnh sửa hồ sơ",
+      "pageName" => "account/edit.php",
+      "user" => $user
+    ]);
+  }
+
+  public function update()
+  {
+    $userID = $_GET["id"];
+    $userModel = new User();
+
+    $userData = [
+      "name" => trim($_POST["name"]),
+      "email" => $_POST["email"] ?? "",
+      "address" => trim($_POST["address"]),
+      "phone" => $_POST["phone"] ?? "",
+      "avatar" => $_FILES["avatar"]["name"] ?? null,
+    ];
+
+    if (!empty($_FILES["avatar"]["name"])) {
+      $target = "/upload/user/" . basename($_FILES["avatar"]["name"]);
+      move_uploaded_file($_FILES["avatar"]["tmp_name"], $target);
+    }
+
+    $userModel->updateClient($userID, $userData);
+    header("Location: /account/edit?id=$userID");  
+    exit;
+  }
+
   public function register()
   {
     $viewer = new Viewer();

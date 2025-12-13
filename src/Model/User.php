@@ -19,6 +19,7 @@ class User extends Model
     return true;
   }
 
+  // Chức năng Thêm người dùng Admin
   public function create($userData)
   {
     $sql = "
@@ -35,7 +36,8 @@ class User extends Model
     ]);
   }
 
-  public function update($id, $userData)
+  // chức năng sửa thông tin người dùng Admin
+  public function updateAdmin($id, $userData)
   {
     $newImage = $userData["avatar"] ?? null;
     $newPassword = $userData["password"] ?? null;
@@ -59,6 +61,32 @@ class User extends Model
       $userData["phone"] ?? "",
       $newImage,
       $newPassword,
+      $id
+    ]);
+  }
+
+   // chức năng sửa thông tin người dùng Client
+  public function updateClient($id, $userData)
+  {
+    $newImage = $userData["avatar"] ?? null;
+
+    $sql = "
+      UPDATE users SET 
+        name = ?, 
+        email = ?,
+        address = ?, 
+        phone = ?, 
+        avatar = COALESCE(NULLIF(?, ''), avatar)
+      WHERE id = ?
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([
+      $userData["name"],
+      $userData["email"] ?? "",
+      $userData["address"],
+      $userData["phone"] ?? "",
+      $newImage,
       $id
     ]);
   }

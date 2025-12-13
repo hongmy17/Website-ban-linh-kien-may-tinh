@@ -62,7 +62,7 @@ class AdminUserController
       move_uploaded_file($_FILES["avatar"]["tmp_name"], $target);
     }
 
-    $userModel->update($userID, $userData);
+    $userModel->updateAdmin($userID, $userData);
     header("Location: /admin/user/edit?id=$userID");  
     exit;
   }

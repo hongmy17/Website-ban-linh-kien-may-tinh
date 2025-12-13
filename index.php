@@ -52,6 +52,8 @@ $router->add("/cart/pay", ["controller" => ClientCartController::class, "action"
 // Account
 $router->add("/account", ["controller" => ClientAccountController::class, "action" => "index"]);
 $router->add("/account/login", ["controller" => ClientAccountController::class, "action" => "login"]);
+$router->add("/account/edit", ["controller" => ClientAccountController::class, "action" => "edit"]);
+$router->add("/account/update", ["controller" => ClientAccountController::class, "action" => "update"]);
 $router->add("/account/postLogin", ["controller" => ClientAccountController::class, "action" => "postLogin"]);
 $router->add("/account/register", ["controller" => ClientAccountController::class, "action" => "register"]);
 $router->add("/account/postRegister", ["controller" => ClientAccountController::class, "action" => "postRegister"]);

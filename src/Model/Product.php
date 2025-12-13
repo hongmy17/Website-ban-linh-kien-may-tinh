@@ -55,7 +55,7 @@ class Product extends Model
         p.base_price,
         p.base_discount_price,
         p.view,
-        p.sold,
+        p.base_sold,
         c.name AS category_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
@@ -86,7 +86,7 @@ class Product extends Model
         p.base_price,
         p.base_discount_price,
         p.view,
-        p.sold,
+        p.base_sold,
         c.name AS category_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
@@ -118,11 +118,11 @@ class Product extends Model
         p.base_price,
         p.base_discount_price,
         p.view,
-        p.sold,
+        p.base_sold,
         c.name AS category_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
-      ORDER BY p.sold DESC
+      ORDER BY p.base_sold DESC
     ";
 
     if ($limit !== null) {
@@ -353,7 +353,7 @@ class Product extends Model
         p.base_price,
         p.base_discount_price,
         p.view,
-        p.sold,
+        p.base_sold,
         c.name AS category_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
@@ -440,7 +440,7 @@ class Product extends Model
   {
     $sql = "
       INSERT INTO products
-        (name, base_image, base_price, base_discount_price, description, view, sold, category_id, created_at, updated_at)
+        (name, base_image, base_price, base_discount_price, description, view, base_sold, category_id, created_at, updated_at)
         VALUES (?, ?, ?, ?, ?, 0, 0, ?, NOW(), NOW())
     ";
 

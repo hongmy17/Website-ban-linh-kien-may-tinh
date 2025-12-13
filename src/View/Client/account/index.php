@@ -61,11 +61,12 @@
 
             <!-- Nút chỉnh sửa đẹp mắt -->
             <div class="d-grid d-md-block">
-              <button class="btn btn-primary btn-lg px-100 px-5 py-3 rounded-pill shadow-sm fw-medium"
-                onclick="editProfile()">
-                <i class="bi bi-pencil-square me-2"></i>
-                Chỉnh sửa hồ sơ
-              </button>
+              <a href="/account/edit?id=<?= $user['id'] ?>">
+                <button class="btn btn-primary btn-lg px-100 px-5 py-3 rounded-pill shadow-sm fw-medium">
+                  <i class="bi bi-pencil-square me-2"></i>
+                  Chỉnh sửa hồ sơ
+                </button>
+              </a>
             </div>
           </div>
         </div>
