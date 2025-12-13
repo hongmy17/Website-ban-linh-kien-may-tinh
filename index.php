@@ -60,6 +60,8 @@ $authLoginRoutes = [
   "/cart/delete" => ["controller" => ClientCartController::class, "action" => "delete"],
   "/cart/check-out" => ["controller" => ClientCartController::class, "action" => "checkOut"],
   "/cart/pay" => ["controller" => ClientCartController::class, "action" => "pay"],
+  "/cart/history" => ["controller" => ClientCartController::class, "action" => "history"],
+  "/cart/detail" => ["controller" => ClientCartController::class, "action" => "detail"],
 
   // Account
   "/account" => ["controller" => ClientAccountController::class, "action" => "index"],

@@ -5,6 +5,7 @@ namespace App\Controller\Client;
 use App\Framework\Viewer;
 use App\Model\Cart;
 use App\Model\Product;
+use App\Model\Order;
 
 class ClientCartController
 {
@@ -264,4 +265,72 @@ class ClientCartController
     header("Location: /cart");
     exit;
   }
+
+  public function history()
+  {
+    // Kiểm tra đăng nhập
+    if (!isset($_SESSION['user_id'])) {
+      header('Location: /login');
+      exit;
+    }
+
+    $userID = $_SESSION['user_id'];
+
+    $orderModel = new Order();
+    $cartModel = new Cart(); // dùng để lấy chi tiết sản phẩm trong đơn
+
+    // Lấy tất cả đơn hàng đã thanh toán của user
+    $orders = $orderModel->getUserOrders($userID);
+
+    // Lấy chi tiết sản phẩm cho từng đơn hàng
+    $orderItems = [];
+    foreach ($orders as $order) {
+      $orderItems[$order['id']] = $cartModel->getOrderItems($order['id']);
+    }
+
+    $viewer = new Viewer();
+    echo $viewer->renderClient([
+      "title" => "Lịch sử mua hàng",
+      "pageName" => "cart/history.php",
+      "orders" => $orders,          // danh sách đơn hàng
+      "orderItems" => $orderItems   // chi tiết sản phẩm theo từng đơn
+    ]);
+  }
+
+  public function detail()
+  {
+    $orderID = (int) $_GET['id'];
+
+    $orderModel = new Order();
+    $cartModel = new Cart();
+
+    // Lấy đơn hàng đã thanh toán
+    $orders = $orderModel->getUserOrders($_SESSION['user_id']);
+    $order = null;
+
+    foreach ($orders as $o) {
+      if ($o['id'] == $orderID) {
+        $order = $o;
+        break;
+      }
+    }
+
+    if (!$order) {
+      $_SESSION["error"] = "Đơn hàng không tòn tại";
+      header("Location: /cart/history");
+      exit;
+    }
+
+    // Lấy sản phẩm trong đơn
+    $items = $cartModel->getOrderItems($orderID);
+
+    $viewer = new Viewer();
+    echo $viewer->renderClient([
+      "title" => "Chi tiết đơn hàng #{$orderID}",
+      "pageName" => "cart/detail.php",
+      "order" => $order,
+      "items" => $items
+    ]);
+  }
+
 }

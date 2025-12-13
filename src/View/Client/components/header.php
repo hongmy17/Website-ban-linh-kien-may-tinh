@@ -47,9 +47,15 @@
           </ul>
         </div>
 
-        <a href="/cart" class="text-muted d-flex align-items-center justify-content-center"><span
-            class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
-        </a>
+        <div class="dropdown">
+          <div class="text-muted d-flex align-items-center justify-content-center me-3" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false"><span class="rounded-circle btn-md-square border"><i
+                class="fas fa-shopping-cart"></i></div>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/cart">Giỏ hàng</a></li>
+            <li><a class="dropdown-item" href="/cart/history">Lịch sử mua hàng</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -82,4 +82,27 @@ class Order extends Model
 
     return $stmt->fetchColumn() !== false;
   }
+
+  public function getUserOrders($userID)
+  {
+    $sql = "
+        SELECT 
+            o.id,
+            o.total,
+            o.is_paid,
+            o.address,
+            o.receiver_name,
+            o.receiver_phone,
+            o.created_at,
+            o.updated_at
+        FROM orders o
+        WHERE o.user_id = ? 
+          AND o.is_paid = 1
+        ORDER BY o.created_at DESC
+    ";
+
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$userID]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
