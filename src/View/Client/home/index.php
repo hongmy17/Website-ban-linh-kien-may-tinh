@@ -5,29 +5,16 @@
       <div class="header-carousel owl-carousel bg-light py-5">
         <div class="row g-0 header-carousel-item align-items-center">
           <div class="col-xl-6 carousel-img wow fadeInLeft" data-wow-delay="0.1s">
-            <img src="/public/assets/images/client//carousel-1.png" class="img-fluid w-100" alt="Image">
-          </div>
-          <div class="col-xl-6 carousel-content p-4">
-            <h4 class="text-uppercase fw-bold mb-4 wow fadeInRight" data-wow-delay="0.1s" style="letter-spacing: 3px;">
-              Tiết kiệm tới 400.000 VNĐ</h4>
-            <h1 class="display-3 text-capitalize mb-4 wow fadeInRight" data-wow-delay="0.3s">Laptops & Máy tính để bàn
-              hoặc điện thoại thông minh
-            </h1>
-            <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInRight" data-wow-delay="0.7s" href="/product">Shop
-              Now</a>
-          </div>
-        </div>
-        <div class="row g-0 header-carousel-item align-items-center">
-          <div class="col-xl-6 carousel-img wow fadeInLeft" data-wow-delay="0.1s">
             <img src="/public/assets/images/client/carousel-2.png" class="img-fluid w-100" alt="Image">
           </div>
           <div class="col-xl-6 carousel-content p-4">
             <h4 class="text-uppercase fw-bold mb-4 wow fadeInRight" data-wow-delay="0.1s" style="letter-spacing: 3px;">
-              Tiết kiệm tới 200.000 VNĐ</h4>
-            <h1 class="display-3 text-capitalize mb-4 wow fadeInRight" data-wow-delay="0.3s">Laptops & Máy tính để bàn
-              hoặc điện thoại thông minh</h1>
-            <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInRight" data-wow-delay="0.7s" href="/product">Shop
-              Now</a>
+              Tiết kiệm tới 400.000 VNĐ</h4>
+            <h1 class="display-3 text-capitalize mb-4 wow fadeInRight" data-wow-delay="0.3s">Chuyên PC – Cấu hình mạnh,
+              giá tốt
+            </h1>
+            <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInRight" data-wow-delay="0.7s" href="/product">Mua
+              ngay</a>
           </div>
         </div>
       </div>
@@ -292,40 +279,3 @@
   </div>
 </div>
 <!-- Our Products End -->
-
-<!-- Product Banner Start -->
-<div class="container-fluid py-5">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
-        <a href="#">
-          <div class="bg-primary rounded position-relative">
-            <img src="/public/assets/images/client//product-banner.jpg" class="img-fluid w-100 rounded" alt="">
-            <div
-              class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center rounded p-4"
-              style="background: rgba(255, 255, 255, 0.5);">
-              <h3 class="display-5 text-primary">Bộ EOS Rebel <br> <span>T7i</span></h3>
-              <p class="fs-4 text-muted">899.000 VNĐ</p>
-              <a href="#" class="btn btn-primary rounded-pill align-self-start py-2 px-4">Mua ngay</a>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
-        <a href="#">
-          <div class="text-center bg-primary rounded position-relative">
-            <img src="/public/assets/images/client//product-banner-2.jpg" class="img-fluid w-100" alt="">
-            <div
-              class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center rounded p-4"
-              style="background: rgba(242, 139, 0, 0.5);">
-              <h2 class="display-2 text-secondary">SALE</h2>
-              <h4 class="display-5 text-white mb-4">Giảm giá tới 50%</h4>
-              <a href="#" class="btn btn-secondary rounded-pill align-self-center py-2 px-4">Mua ngay</a>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Product Banner End -->
