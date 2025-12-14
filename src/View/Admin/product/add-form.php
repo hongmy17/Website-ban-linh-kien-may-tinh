@@ -38,7 +38,14 @@
           <div class="row mt-2">
             <div class="col-md-12">
               <label class="labels">Giảm giá</label><input type="number" class="form-control"
-                value="<?= $product["base_discount_price"]; ?>" name="base_discount_price" placeholder="VD: 90000" />
+                name="base_discount_price" placeholder="VD: 90000" />
+              <p class="field-message mb-0"></p>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Tồn kho</label><input type="number" class="form-control"
+                name="stock" placeholder="VD: 10" />
               <p class="field-message mb-0"></p>
             </div>
           </div>

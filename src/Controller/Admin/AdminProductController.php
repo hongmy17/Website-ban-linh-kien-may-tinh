@@ -48,6 +48,7 @@ class AdminProductController
       "description" => $_POST["description"] ?? "",
       "base_price" => (float)$_POST["base_price"],
       "base_discount_price" => $_POST["base_discount_price"] ? (float)$_POST["base_discount_price"] : null,
+      "stock" => (int)$_POST["stock"],
       "category_id" => (int)$_POST["category_id"],
       "base_image" => $_FILES["base_image"]["name"] ?? null,
     ];
@@ -57,7 +58,7 @@ class AdminProductController
       move_uploaded_file($_FILES["base_image"]["tmp_name"], $target);
     }
 
-    $options = $_POST["options"];
+    $options = $_POST["options"] ?? NULL;
     $productModel->store($productData, $options);
     $productID = $productModel->getLatestProductID();
 
@@ -128,6 +129,7 @@ class AdminProductController
       "description" => $_POST["description"] ?? "",
       "base_price" => (float)$_POST["base_price"],
       "base_discount_price" => $_POST["base_discount_price"] ? (float)$_POST["base_discount_price"] : null,
+      "base_quantity_in_stock" => (int)$_POST["stock"],
       "category_id" => (int)$_POST["category_id"],
       "base_image" => $_FILES["base_image"]["name"] ?? null,
     ];
@@ -204,7 +206,7 @@ class AdminProductController
     $productID = $_GET["product_id"];
     $variantID = $_GET["variant_id"];
 
-    $productModel->deleteVariant($variantID);
+    $productModel->deleteVariant($productID, $variantID);
     header("Location: /admin/product/edit?id=$productID");
     exit;
   }

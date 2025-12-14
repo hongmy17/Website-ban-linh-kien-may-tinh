@@ -534,8 +534,8 @@ class Product extends Model
   {
     $sql = "
       INSERT INTO products
-        (name, base_image, base_price, base_discount_price, description, view, base_sold, category_id, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, 0, 0, ?, NOW(), NOW())
+        (name, base_image, base_price, base_discount_price, description, view, base_sold, base_quantity_in_stock, category_id, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, 0, 0, ?, ?, NOW(), NOW())
     ";
 
     $stmt = $this->connection->prepare($sql);
@@ -545,6 +545,7 @@ class Product extends Model
       $productData["base_price"],
       $productData["base_discount_price"] ?: null,
       $productData["description"] ?? "",
+      $productData["stock"],
       $productData["category_id"],
     ]);
 
@@ -593,6 +594,7 @@ class Product extends Model
   {
     $variantID = $this->storeAndGetVariantID($productID, $variantData);
     $this->storeVariantValue($variantID, $productID, $variantData["options"]);
+    $this->updateBaseQtyStock($productID);
   }
 
   public function update($productID, $productData)
@@ -605,6 +607,7 @@ class Product extends Model
         description = ?, 
         base_price = ?, 
         base_discount_price = ?, 
+        base_quantity_in_stock = ?, 
         category_id = ?, 
         base_image = COALESCE(NULLIF(?, ''), base_image),
         updated_at = NOW()
@@ -617,6 +620,7 @@ class Product extends Model
       $productData["description"] ?? "",
       $productData["base_price"],
       $productData["base_discount_price"] ?: null,
+      $productData["base_quantity_in_stock"],
       $productData["category_id"],
       $newImage,
       $productID
@@ -642,6 +646,8 @@ class Product extends Model
       $variantData["id"],
       $productID
     ]);
+
+    $this->updateBaseQtyStock($productID);
   }
 
   public function hasVariant($productID)
@@ -698,9 +704,10 @@ class Product extends Model
     $stmt->execute([$variantID]);
   }
 
-  public function deleteVariant($variantID)
+  public function deleteVariant($productID, $variantID)
   {
     $this->deleteProductValues($variantID);
     $this->deleteProductVariant($variantID);
+    $this->updateBaseQtyStock($productID);
   }
 }

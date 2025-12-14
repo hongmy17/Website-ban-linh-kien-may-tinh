@@ -44,6 +44,13 @@
           </div>
           <div class="row mt-2">
             <div class="col-md-12">
+              <label class="labels">Tồn kho</label><input readonly type="number" class="form-control"
+                value="<?= $product["base_quantity_in_stock"]; ?>" name="stock" />
+              <p class="field-message mb-0"></p>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12">
               <label class="labels">Danh mục</label>
               <select class="form-select" required disabled>
                 <option value="">-- Chọn danh mục --</option>
